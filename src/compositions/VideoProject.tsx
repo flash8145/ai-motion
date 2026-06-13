@@ -26,6 +26,17 @@ import { OverlayHeadline } from "../scenes/OverlayHeadline";
 import { GalleryGrid } from "../scenes/GalleryGrid";
 import { WorkspaceShowcase } from "../scenes/WorkspaceShowcase";
 import { ContentWall } from "../scenes/ContentWall";
+import { ProductReveal } from "../scenes/ProductReveal";
+
+// ── Design Studio Scenes ─────────────────────────────────────────
+import { ToolbarMockup } from "../scenes/ToolbarMockup";
+import { RotatedWordStack } from "../scenes/RotatedWordStack";
+import { TiltedCardCarousel } from "../scenes/TiltedCardCarousel";
+import { CircleMotifTransition } from "../scenes/CircleMotifTransition";
+import { LogoRevealOutro } from "../scenes/LogoRevealOutro";
+
+// ── Persistent overlay ───────────────────────────────────────────
+import { SocialBadge } from "../components/SocialBadge";
 
 // ── Overlay components ───────────────────────────────────────────
 import { TextOverlay } from "../overlays/TextOverlay";
@@ -328,12 +339,68 @@ function renderScene(scene: Scene): React.ReactNode {
         />
       );
 
+    case "ProductReveal":
+      return (
+        <ProductReveal
+          image={(props.image as string) ?? ""}
+          title={(props.title as string) ?? ""}
+          subtitle={props.subtitle as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          titleStartFrame={props.titleStartFrame as number | undefined}
+          subtitleStartFrame={props.subtitleStartFrame as number | undefined}
+          imageStartFrame={props.imageStartFrame as number | undefined}
+          sweepStartFrame={props.sweepStartFrame as number | undefined}
+          sweepDurationInFrames={props.sweepDurationInFrames as number | undefined}
+          aspectRatio={props.aspectRatio as string | undefined}
+        />
+      );
+
     case "ContentWall":
       return (
         <ContentWall
           items={(props.items as string[]) ?? []}
           columns={props.columns as number | undefined}
           scrollSpeed={props.scrollSpeed as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+        />
+      );
+
+    case "ToolbarMockup":
+      return (
+        <ToolbarMockup
+          startFrame={props.startFrame as number | undefined}
+          iconStagger={props.iconStagger as number | undefined}
+        />
+      );
+
+    case "RotatedWordStack":
+      return (
+        <RotatedWordStack
+          phrases={props.phrases as string[] | undefined}
+          rotationDeg={props.rotationDeg as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+        />
+      );
+
+    case "TiltedCardCarousel":
+      return (
+        <TiltedCardCarousel
+          startFrame={props.startFrame as number | undefined}
+          cardStagger={props.cardStagger as number | undefined}
+        />
+      );
+
+    case "CircleMotifTransition":
+      return (
+        <CircleMotifTransition
+          startFrame={props.startFrame as number | undefined}
+          circleStagger={props.circleStagger as number | undefined}
+        />
+      );
+
+    case "LogoRevealOutro":
+      return (
+        <LogoRevealOutro
           startFrame={props.startFrame as number | undefined}
         />
       );
@@ -491,6 +558,9 @@ export const VideoProject: React.FC<VideoProjectProps> = ({ project }) => {
             </SceneWrapper>
           </Sequence>
         ))}
+
+        {/* Persistent social badge overlay (rendered above all scenes) */}
+        <SocialBadge />
 
         {/* Audio track */}
         {audio?.musicUrl && (

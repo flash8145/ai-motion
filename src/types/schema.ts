@@ -12,7 +12,8 @@ export type StylePreset =
   | "Warm"
   | "Ocean"
   | "Sunset"
-  | "Midnight";
+  | "Midnight"
+  | "DeepBlue";
 
 // ─── Scene Types ─────────────────────────────────────────────────
 export type SceneType =
@@ -33,7 +34,13 @@ export type SceneType =
   | "OverlayHeadline"
   | "GalleryGrid"
   | "WorkspaceShowcase"
-  | "ContentWall";
+  | "ContentWall"
+  | "ProductReveal"
+  | "ToolbarMockup"
+  | "RotatedWordStack"
+  | "TiltedCardCarousel"
+  | "CircleMotifTransition"
+  | "LogoRevealOutro";
 
 // ─── Transition Types ────────────────────────────────────────────
 export type TransitionType =

@@ -291,6 +291,28 @@ export const THEME_PRESETS: Record<StylePreset, Theme> = {
     glassmorphism: true,
     borderRadius: 8,
   },
+
+  DeepBlue: {
+    stylePreset: "DeepBlue",
+    colors: {
+      background: "#040D2C",
+      surface: "#0B1A42",
+      primary: "#1452D4",
+      secondary: "#0A2D6B",
+      text: "#FFFFFF",
+      mutedText: "#6B7FA8",
+      accent: "#3B82F6",
+      border: "rgba(20, 82, 212, 0.15)",
+      charts: ["#1452D4", "#3B82F6", "#0A2D6B", "#60A5FA", "#1E3A5F"],
+    },
+    typography: {
+      headingFont: "Outfit",
+      bodyFont: "Inter",
+      monoFont: "Fira Code",
+    },
+    glassmorphism: true,
+    borderRadius: 14,
+  },
 };
 
 /**

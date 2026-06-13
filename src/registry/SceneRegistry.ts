@@ -27,6 +27,14 @@ import { OverlayHeadline } from "../scenes/OverlayHeadline";
 import { GalleryGrid } from "../scenes/GalleryGrid";
 import { WorkspaceShowcase } from "../scenes/WorkspaceShowcase";
 import { ContentWall } from "../scenes/ContentWall";
+import { ProductReveal } from "../scenes/ProductReveal";
+
+// ── Design Studio Scenes ─────────────────────────────────────────
+import { ToolbarMockup } from "../scenes/ToolbarMockup";
+import { RotatedWordStack } from "../scenes/RotatedWordStack";
+import { TiltedCardCarousel } from "../scenes/TiltedCardCarousel";
+import { CircleMotifTransition } from "../scenes/CircleMotifTransition";
+import { LogoRevealOutro } from "../scenes/LogoRevealOutro";
 
 /**
  * Master registry of all available scene components.
@@ -55,6 +63,14 @@ export const SceneRegistry: Record<string, React.FC<any>> = {
   GalleryGrid,
   WorkspaceShowcase,
   ContentWall,
+  ProductReveal,
+
+  // Phase 4 — Design Studio scenes
+  ToolbarMockup,
+  RotatedWordStack,
+  TiltedCardCarousel,
+  CircleMotifTransition,
+  LogoRevealOutro,
 };
 
 export type SceneRegistryKey = keyof typeof SceneRegistry;

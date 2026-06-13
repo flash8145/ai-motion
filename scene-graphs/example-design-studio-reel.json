@@ -1,0 +1,102 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Sandy Design Studio - Instagram Reel",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "totalDurationSec": 25
+  },
+  "theme": {
+    "stylePreset": "DeepBlue",
+    "colors": {
+      "background": "#040D2C",
+      "surface": "#0B1A42",
+      "primary": "#1452D4",
+      "secondary": "#0A2D6B",
+      "text": "#FFFFFF",
+      "mutedText": "#6B7FA8",
+      "accent": "#3B82F6",
+      "border": "rgba(20, 82, 212, 0.15)",
+      "charts": ["#1452D4", "#3B82F6", "#0A2D6B", "#60A5FA", "#1E3A5F"]
+    },
+    "typography": {
+      "headingFont": "Outfit",
+      "bodyFont": "Inter",
+      "monoFont": "Fira Code"
+    },
+    "glassmorphism": true,
+    "borderRadius": 14
+  },
+  "scenes": [
+    {
+      "id": "kinetic-intro",
+      "type": "TitleReveal",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "headline": "Creativity is",
+        "headlineStart": 10,
+        "animationType": "reveal"
+      }
+    },
+    {
+      "id": "toolbar-mockup",
+      "type": "ToolbarMockup",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "startFrame": 5,
+        "iconStagger": 8
+      }
+    },
+    {
+      "id": "rotated-word-stack",
+      "type": "RotatedWordStack",
+      "durationFrames": 150,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "phrases": [
+          "Brand Identity",
+          "Brand Strategy",
+          "Brand Story",
+          "Graphic Design",
+          "Video Production",
+          "Video Editing",
+          "Content Creation"
+        ],
+        "rotationDeg": -8,
+        "startFrame": 0
+      }
+    },
+    {
+      "id": "tilted-card-carousel",
+      "type": "TiltedCardCarousel",
+      "durationFrames": 120,
+      "transitionIn": { "type": "slide-left", "durationFrames": 15 },
+      "props": {
+        "startFrame": 5,
+        "cardStagger": 10
+      }
+    },
+    {
+      "id": "circle-motif",
+      "type": "CircleMotifTransition",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "startFrame": 10,
+        "circleStagger": 12
+      }
+    },
+    {
+      "id": "logo-reveal-outro",
+      "type": "LogoRevealOutro",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 20 },
+      "props": {
+        "startFrame": 5
+      }
+    }
+  ]
+}

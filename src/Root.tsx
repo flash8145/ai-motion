@@ -12,6 +12,10 @@ import { WorkspaceShowcaseDemo } from "./demo/WorkspaceShowcaseDemo";
 import { ContentWallDemo } from "./demo/ContentWallDemo";
 import { BentoGridDemo } from "./demo/BentoGridDemo";
 import { AnimatedCursorDemo } from "./demo/AnimatedCursorDemo";
+import { ProductRevealDemo } from "./demo/ProductRevealDemo";
+
+// ── Scene graph JSON imports ─────────────────────────────────────
+import designStudioReel from "../scene-graphs/example-design-studio-reel.json";
 
 // ── Default props for the Remotion Studio preview ────────────────
 const defaultTheme = getPreset("ModernSaaS");
@@ -126,6 +130,9 @@ const defaultProject: VideoProjectType = {
   ],
 };
 
+// ── Design Studio Reel project ───────────────────────────────────
+const designStudioProject = designStudioReel as unknown as VideoProjectType;
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -140,6 +147,17 @@ export const RemotionRoot: React.FC = () => {
         width={defaultProject.metadata.width}
         height={defaultProject.metadata.height}
         defaultProps={{ project: defaultProject }}
+      />
+
+      {/* ── Design Studio Reel ──────────────────────────────────── */}
+      <Composition
+        id="Demo-DesignStudioReel"
+        component={VideoProject}
+        durationInFrames={750}
+        fps={30}
+        width={1280}
+        height={720}
+        defaultProps={{ project: designStudioProject }}
       />
 
       {/* ── Gemini Flow Demo Compositions ───────────────────────── */}
@@ -199,7 +217,14 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
       />
+      <Composition
+        id="Demo-ProductReveal"
+        component={ProductRevealDemo}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
     </>
   );
 };
-

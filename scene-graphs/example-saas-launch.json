@@ -1,0 +1,129 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "SaaS Product Launch Video",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "totalDurationSec": 20
+  },
+  "theme": {
+    "stylePreset": "ModernSaaS",
+    "colors": {
+      "background": "#0F0F1A",
+      "surface": "#1A1A2E",
+      "primary": "#6C63FF",
+      "secondary": "#3F3D56",
+      "text": "#FFFFFF",
+      "mutedText": "#A0A0B2",
+      "accent": "#F50057",
+      "border": "rgba(108, 99, 255, 0.15)",
+      "charts": ["#6C63FF", "#F50057", "#00BFA5", "#FF6E40", "#AA00FF"]
+    },
+    "typography": {
+      "headingFont": "Outfit",
+      "bodyFont": "Inter",
+      "monoFont": "Fira Code"
+    },
+    "glassmorphism": true,
+    "borderRadius": 14
+  },
+  "scenes": [
+    {
+      "id": "scene-intro",
+      "type": "TitleReveal",
+      "durationFrames": 150,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 20
+      },
+      "props": {
+        "tagline": "Introducing",
+        "headline": "The Next Generation of Analytics",
+        "subtitle": "Harness the power of real-time data with beautiful dashboards your entire team will love."
+      }
+    },
+    {
+      "id": "scene-features",
+      "type": "KineticText",
+      "durationFrames": 150,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 15
+      },
+      "props": {
+        "lines": [
+          { "text": "10x Faster Queries" },
+          { "text": "built on modern infrastructure" },
+          { "text": "AI-Powered Insights" },
+          { "text": "that drive real decisions" },
+          { "text": "Team Collaboration" },
+          { "text": "from day one" }
+        ],
+        "lineStagger": 10
+      }
+    },
+    {
+      "id": "scene-demo",
+      "type": "DashboardShowcase",
+      "durationFrames": 150,
+      "transitionIn": {
+        "type": "zoom",
+        "durationFrames": 20
+      },
+      "props": {
+        "url": "https://analytics.saasplatform.io/dashboard",
+        "browserWidth": 920,
+        "browserHeight": 580,
+        "cursorKeyframes": [
+          { "frame": 15, "x": 100, "y": 250 },
+          { "frame": 40, "x": 350, "y": 120, "click": true },
+          { "frame": 65, "x": 550, "y": 280 },
+          { "frame": 85, "x": 700, "y": 180, "click": true },
+          { "frame": 110, "x": 450, "y": 350, "click": true }
+        ],
+        "highlights": [
+          { "text": "📈 Revenue +38%", "x": -130, "y": 100, "showAtFrame": 30 },
+          { "text": "⚡ 99.9% Uptime", "x": 720, "y": 150, "showAtFrame": 60 },
+          { "text": "🔒 SOC2 Certified", "x": 720, "y": 300, "showAtFrame": 90 }
+        ]
+      },
+      "overlays": [
+        {
+          "id": "demo-badge-1",
+          "type": "badge",
+          "startTimeFrame": 50,
+          "durationFrames": 40,
+          "position": { "x": 100, "y": 50 },
+          "animation": { "type": "pop", "durationFrames": 10 },
+          "props": { "text": "Live Demo", "icon": "🔴" }
+        }
+      ]
+    },
+    {
+      "id": "scene-cta",
+      "type": "CTASection",
+      "durationFrames": 150,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 15
+      },
+      "props": {
+        "headline": "Start Building Today",
+        "description": "Join 15,000+ data teams already transforming their analytics workflow.",
+        "buttonText": "Start Free Trial →",
+        "pricingText": "Free for up to 3 users",
+        "features": [
+          "Unlimited dashboards & reports",
+          "Real-time collaboration",
+          "AI query assistant",
+          "Enterprise SSO & RBAC",
+          "99.99% SLA guarantee"
+        ]
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.25
+  }
+}

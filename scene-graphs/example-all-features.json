@@ -1,0 +1,274 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "All Features Showcase",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "totalDurationSec": 32
+  },
+  "theme": {
+    "stylePreset": "Sunset",
+    "colors": {
+      "background": "#1A0B2E",
+      "surface": "#2D124D",
+      "primary": "#FF6B6B",
+      "secondary": "#FFBE0B",
+      "text": "#FFF0F5",
+      "mutedText": "#C5A3E8",
+      "accent": "#FF007F",
+      "border": "rgba(255, 107, 107, 0.15)",
+      "charts": ["#FF6B6B", "#FFBE0B", "#FF007F", "#8338EC", "#3A86C8"]
+    },
+    "typography": {
+      "headingFont": "Outfit",
+      "bodyFont": "Inter",
+      "monoFont": "Fira Code"
+    },
+    "glassmorphism": true,
+    "borderRadius": 20
+  },
+  "scenes": [
+    {
+      "id": "scene-logos",
+      "type": "LogoShowcase",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 15
+      },
+      "props": {
+        "heading": "Trusted by Global Teams",
+        "logos": [
+          { "name": "Google", "color": "#4285F4" },
+          { "name": "Stripe", "color": "#635BFF" },
+          { "name": "Vercel", "color": "#000000" },
+          { "name": "Figma", "color": "#F24E1E" }
+        ],
+        "headingStart": 5,
+        "logosStart": 20,
+        "logoStagger": 5
+      }
+    },
+    {
+      "id": "scene-split",
+      "type": "SplitScreen",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "slide-left",
+        "durationFrames": 15
+      },
+      "props": {
+        "layout": "image-right",
+        "headline": "Simplicity meets Power",
+        "description": "Build high-performance graphics with zero custom rendering engines. Control layout dynamically through JSON declarations.",
+        "items": [
+          { "icon": "⚡", "text": "Hardware Accelerated Rendering" },
+          { "icon": "🎨", "text": "Custom theme presets" }
+        ],
+        "imagePlaceholder": "Remotion Studio Canvas",
+        "headlineStart": 5,
+        "contentStart": 20,
+        "imageStart": 12
+      }
+    },
+    {
+      "id": "scene-features",
+      "type": "FeatureGrid",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 15
+      },
+      "props": {
+        "heading": "Engineered for Creators",
+        "subtitle": "Everything you need to automate video rendering at scale.",
+        "columns": 3,
+        "features": [
+          {
+            "icon": "🧩",
+            "title": "Flexible Components",
+            "description": "Drag and drop responsive React components."
+          },
+          {
+            "icon": "📊",
+            "title": "Data Driven",
+            "description": "Render dynamic text, charts, and media inputs."
+          },
+          {
+            "icon": "🏎️",
+            "title": "Fast Execution",
+            "description": "Run on AWS Lambda for parallel frame rendering."
+          }
+        ],
+        "headingStart": 5,
+        "gridStart": 20,
+        "itemStagger": 6
+      }
+    },
+    {
+      "id": "scene-stats",
+      "type": "StatsCounter",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "zoom",
+        "durationFrames": 15
+      },
+      "props": {
+        "heading": "Growing Exponentially",
+        "stats": [
+          {
+            "prefix": "$",
+            "value": "12",
+            "suffix": "M",
+            "label": "ARR Processed"
+          },
+          {
+            "value": "85",
+            "suffix": "%",
+            "label": "Faster Renders"
+          },
+          {
+            "prefix": "+",
+            "value": "250",
+            "suffix": "K",
+            "label": "Active Users"
+          }
+        ],
+        "headingStart": 5,
+        "statsStart": 18,
+        "statStagger": 8
+      }
+    },
+    {
+      "id": "scene-testimonials",
+      "type": "TestimonialCards",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 15
+      },
+      "props": {
+        "heading": "What Creators are Saying",
+        "testimonials": [
+          {
+            "quote": "This platform cut our content production costs by 80%! Reusable templates are a game changer.",
+            "name": "Sarah Connor",
+            "role": "Head of Design",
+            "company": "Skynet Media",
+            "avatarInitials": "SC"
+          },
+          {
+            "quote": "Automating video via JSON schema lets us render thousands of personalized videos a day.",
+            "name": "Tony Stark",
+            "role": "CEO",
+            "company": "Stark Industries",
+            "avatarInitials": "TS"
+          }
+        ],
+        "headingStart": 5,
+        "cardsStart": 20,
+        "cardStagger": 10
+      }
+    },
+    {
+      "id": "scene-pricing",
+      "type": "PricingTable",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 15
+      },
+      "props": {
+        "heading": "Flexible Plans",
+        "subtitle": "Choose a tier that grows with your business.",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "$0",
+            "period": "mo",
+            "description": "Perfect for hobbyists and developers.",
+            "features": [
+              "5 templates",
+              "Watermarked renders",
+              "Community support"
+            ],
+            "buttonText": "Free Forever"
+          },
+          {
+            "name": "Pro",
+            "price": "$49",
+            "period": "mo",
+            "description": "For professionals and small teams.",
+            "features": [
+              "Unlimited templates",
+              "No watermarks",
+              "Priority support",
+              "API access"
+            ],
+            "buttonText": "Get Pro",
+            "highlighted": true,
+            "badge": "Popular"
+          }
+        ],
+        "headingStart": 5,
+        "tiersStart": 22,
+        "tierStagger": 8
+      }
+    },
+    {
+      "id": "scene-arr-chart",
+      "type": "ChartShowcase",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "slide-left",
+        "durationFrames": 15
+      },
+      "props": {
+        "chartType": "line",
+        "heading": "ARR Growth Projection",
+        "subtitle": "Scaling rapidly towards $15M ARR.",
+        "data": [
+          { "label": "Q1", "value": 1200000 },
+          { "label": "Q2", "value": 2400000 },
+          { "label": "Q3", "value": 4800000 },
+          { "label": "Q4", "value": 7500000 },
+          { "label": "Next Y", "value": 15000000 }
+        ],
+        "chartWidth": 800,
+        "chartHeight": 360,
+        "headingStart": 5,
+        "chartStart": 20
+      }
+    },
+    {
+      "id": "scene-acquisition-chart",
+      "type": "ChartShowcase",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "zoom",
+        "durationFrames": 15
+      },
+      "props": {
+        "chartType": "bar",
+        "heading": "User Acquisition Sources",
+        "subtitle": "Diversified channels driving organic growth.",
+        "data": [
+          { "label": "Search", "value": 450 },
+          { "label": "Social", "value": 300 },
+          { "label": "Referrals", "value": 150 },
+          { "label": "Direct", "value": 200 }
+        ],
+        "chartWidth": 760,
+        "chartHeight": 360,
+        "headingStart": 5,
+        "chartStart": 20,
+        "showValues": true,
+        "showLabels": true
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.25
+  }
+}

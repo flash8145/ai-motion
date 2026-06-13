@@ -1,0 +1,44 @@
+# Dependency directories
+node_modules/
+
+# Build and output directories
+dist/
+out/
+build/
+
+# Local configuration and environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Webpack cache
+.cache/
+
+# IDE and Editor directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# AI Coding Assistants / Sandboxes / IDE configurations
+.agent/
+.agents/
+.claude/
+.codex/
+.gemini/
+.windsurf/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

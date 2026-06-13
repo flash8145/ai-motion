@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Product Demo Video",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "totalDurationSec": 16
+  },
+  "theme": {
+    "stylePreset": "Stripe",
+    "colors": {
+      "background": "#0A2540",
+      "surface": "#163456",
+      "primary": "#635BFF",
+      "secondary": "#00D4AA",
+      "text": "#FFFFFF",
+      "mutedText": "#ADBDCC",
+      "accent": "#80E9D0",
+      "border": "rgba(255, 255, 255, 0.1)",
+      "charts": ["#635BFF", "#00D4AA", "#FF6B6B", "#FFD93D", "#6BCB77"]
+    },
+    "typography": {
+      "headingFont": "Outfit",
+      "bodyFont": "Inter",
+      "monoFont": "Fira Code"
+    },
+    "glassmorphism": true,
+    "borderRadius": 12
+  },
+  "scenes": [
+    {
+      "id": "demo-intro",
+      "type": "TitleReveal",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 15
+      },
+      "props": {
+        "tagline": "Product Demo",
+        "headline": "See It In Action",
+        "subtitle": "Watch how easy it is to build, deploy, and scale your payment infrastructure."
+      }
+    },
+    {
+      "id": "demo-walkthrough",
+      "type": "DashboardShowcase",
+      "durationFrames": 180,
+      "transitionIn": {
+        "type": "slide-left",
+        "durationFrames": 18
+      },
+      "props": {
+        "url": "https://dashboard.stripe.dev/payments",
+        "browserWidth": 940,
+        "browserHeight": 580,
+        "cursorKeyframes": [
+          { "frame": 20, "x": 80, "y": 180 },
+          { "frame": 45, "x": 250, "y": 120, "click": true },
+          { "frame": 70, "x": 400, "y": 250 },
+          { "frame": 95, "x": 600, "y": 180, "click": true },
+          { "frame": 120, "x": 750, "y": 320, "click": true },
+          { "frame": 150, "x": 450, "y": 400 }
+        ],
+        "highlights": [
+          { "text": "💳 One-click checkout", "x": -140, "y": 120, "showAtFrame": 35 },
+          { "text": "📊 Revenue analytics", "x": 750, "y": 250, "showAtFrame": 80 }
+        ]
+      },
+      "overlays": [
+        {
+          "id": "walkthrough-focus",
+          "type": "zoom-focus",
+          "startTimeFrame": 40,
+          "durationFrames": 30,
+          "position": { "x": 220, "y": 100, "width": 200, "height": 50 },
+          "animation": { "type": "fade", "durationFrames": 8 },
+          "props": { "label": "API Keys" }
+        },
+        {
+          "id": "walkthrough-text",
+          "type": "text",
+          "startTimeFrame": 90,
+          "durationFrames": 35,
+          "position": { "x": 100, "y": 450 },
+          "animation": { "type": "fade", "durationFrames": 8 },
+          "props": { "text": "Drag to create custom views" }
+        }
+      ]
+    },
+    {
+      "id": "demo-cta",
+      "type": "CTASection",
+      "durationFrames": 180,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 15
+      },
+      "props": {
+        "headline": "Ready to Get Started?",
+        "description": "Set up in minutes. No credit card required.",
+        "buttonText": "Create Account →",
+        "pricingText": "Pay as you go — 2.9% + 30¢",
+        "features": [
+          "Global payments in 135+ currencies",
+          "Pre-built checkout UI",
+          "Fraud protection included",
+          "24/7 developer support"
+        ]
+      }
+    }
+  ]
+}

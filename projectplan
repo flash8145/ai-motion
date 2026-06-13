@@ -1,0 +1,185 @@
+# AI-Powered Motion Graphics Platform: Refined Local Phase 1 Plan
+
+This plan details the construction of the local-first prototype inside the workspace directory (`d:\motion\motion-platform`).
+
+## Proposed Project Layout
+The project will be built inside `d:\motion\motion-platform/` with the following structure:
+
+```
+motion-platform/
+├── package.json
+├── remotion.config.ts
+├── tsconfig.json
+├── .env
+├── src/
+│   ├── index.ts                      # Remotion registerRoot
+│   ├── Root.tsx                      # <Composition> registrations
+│   ├── compositions/
+│   │   └── VideoProject.tsx          # Sequencer mapping scenes to components
+│   ├── types/
+│   │   ├── schema.ts                 # TypeScript interfaces
+│   │   └── scene-graph.schema.json   # JSON Schema for ajv
+│   ├── scenes/
+│   │   ├── TitleReveal.tsx           # Large tagline + title reveal
+│   │   ├── KineticText.tsx           # Word-staggered kinetic text animation
+│   │   ├── DashboardShowcase.tsx     # Mockup browser with interactive steps
+│   │   └── CTASection.tsx            # Outro card with buttons
+│   ├── overlays/
+│   │   ├── TextOverlay.tsx
+│   │   ├── CursorOverlay.tsx
+│   │   ├── BadgeOverlay.tsx
+│   │   ├── ArrowOverlay.tsx
+│   │   └── ZoomFocusOverlay.tsx
+│   ├── components/
+│   │   ├── primitives/
+│   │   │   ├── AnimatedText.tsx      # Letter/word level spring reveals
+│   │   │   ├── GlassPanel.tsx        # Glassmorphic backdrop-blur card
+│   │   │   ├── GradientBackground.tsx# Animated fluid gradient backgrounds
+│   │   │   ├── BrowserChrome.tsx     # OS-styled mock browser container
+│   │   │   └── NoiseTexture.tsx      # Film grain texture overlay
+│   │   ├── charts/
+│   │   │   ├── AnimatedBarChart.tsx
+│   │   │   ├── AnimatedLineChart.tsx
+│   │   │   └── chartUtils.ts
+│   │   └── cursor/
+│   │       └── AnimatedCursor.tsx    # Interactive cursor drawing
+│   ├── theme/
+│   │   ├── presets.ts                # Curated palettes (Apple, Stripe, Linear, Notion, ModernSaaS, Enterprise, Futuristic)
+│   │   ├── fonts.ts                  # Google Fonts loader via @remotion/google-fonts
+│   │   └── ThemeProvider.tsx         # Context for theme propagation
+│   ├── animation/
+│   │   ├── springs.ts                # Custom Apple-like spring settings
+│   │   ├── easings.ts                # Cubic-bezier curve configurations
+│   │   └── transitions.ts            # Scene transitions (fade, slide, zoom)
+│   ├── audio/
+│   │   └── AudioTrack.tsx            # Audio tracks setup
+│   ├── validation/
+│   │   ├── validateSchema.ts         # Ajv schema verification
+│   │   └── validateSceneGraph.ts     # Time & custom logic verification
+│   └── utils/
+│       ├── interpolation.ts
+│       └── assetLoader.ts
+├── scene-graphs/
+│   ├── example-saas-launch.json
+│   └── example-product-demo.json
+├── scripts/
+│   └── render.ts                     # CLI renderer: node scripts/render.ts <json-file>
+└── out/                              # Output build destination
+```
+
+---
+
+## Technical Specifications (Phase 1)
+
+### 1. Schema Definitions (`src/types/schema.ts`)
+```typescript
+export interface VideoProject {
+  version: string;
+  metadata: {
+    title: string;
+    width: number;
+    height: number;
+    fps: number;
+    totalDurationSec: number;
+  };
+  theme: {
+    stylePreset: "Apple" | "Stripe" | "Linear" | "Notion" | "ModernSaaS" | "Enterprise" | "Futuristic";
+    colors: {
+      background: string;
+      surface: string;
+      primary: string;
+      secondary: string;
+      text: string;
+      mutedText: string;
+      accent: string;
+      border: string;
+      charts: string[];
+    };
+    typography: {
+      headingFont: string;
+      bodyFont: string;
+      monoFont: string;
+    };
+    glassmorphism: boolean;
+    borderRadius: number;
+  };
+  scenes: Scene[];
+  audio?: {
+    musicUrl?: string;
+    musicVolume?: number;
+  };
+}
+
+export interface Scene {
+  id: string;
+  type: "TitleReveal" | "KineticText" | "DashboardShowcase" | "CTASection";
+  durationFrames: number;
+  transitionIn?: {
+    type: "fade" | "slide-up" | "slide-left" | "zoom" | "none";
+    durationFrames: number;
+  };
+  props: Record<string, any>;
+  overlays?: OverlayLayer[];
+}
+
+export interface OverlayLayer {
+  id: string;
+  type: "text" | "cursor" | "badge" | "arrow" | "zoom-focus";
+  startTimeFrame: number;
+  durationFrames: number;
+  position: { x: number; y: number; width?: number; height?: number };
+  animation: {
+    type: "pop" | "fade" | "draw-path" | "float";
+    durationFrames: number;
+  };
+  props: Record<string, any>;
+}
+```
+
+### 2. Animation Foundation
+- **Spring Presets (`animation/springs.ts`)**:
+  - `snappy`: damping 20, stiffness 160, mass 0.5 (fast popups, menus, clicks)
+  - `smooth`: damping 26, stiffness 120, mass 0.8 (large slide-ins, device layout entries)
+  - `slow`: damping 40, stiffness 80, mass 1.0 (heavy text reveals, background pans)
+- **Easings (`animation/easings.ts`)**:
+  - Standard ease-out-quart: `cubic-bezier(0.16, 1, 0.3, 1)`
+  - Standard ease-in-out: `cubic-bezier(0.77, 0, 0.175, 1)`
+
+### 3. Core Primitives (`components/primitives/`)
+- **AnimatedText**: Splitting sentences into words/characters, using spring delay to mask translate-up.
+- **GradientBackground**: Fluid CSS animation or canvas animating multiple radial/linear gradients.
+- **GlassPanel**: backdrop-filter blur (12px), border (1px solid rgba(255, 255, 255, 0.08)), box-shadow.
+- **BrowserChrome**: Mock window layout, traffic-light actions, web address bar, clean shadows.
+- **NoiseTexture**: absolute overlay SVG/CSS noise pattern with low opacity (0.02 - 0.04).
+
+### 4. Components & Compositions
+- **TitleReveal**: Reveal high-contrast tagline and headline sequentially.
+- **KineticText**: Kinetic text engine breaking paragraphs into distinct kinetic sizes/weights.
+- **DashboardShowcase**: Browser window wrapping a mockup image, with floating cursor moving and clicking on specific hotspots.
+- **CTASection**: Dynamic glass card containing headers, pricing highlights, and animated button pulses.
+- **VideoProject**: Sequencer using `<Series>` and mapping scene configurations.
+
+### 5. Validation Layers (`validation/`)
+- **validateSchema**: Compiles `scene-graph.schema.json` via Ajv to guarantee strict properties.
+- **validateSceneGraph**:
+  - Sum of scene durations == `fps * totalDurationSec`.
+  - Scenes duration must be positive.
+  - Image URLs must be verified if a DashboardShowcase is chosen.
+
+---
+
+## Step-by-Step Execution Plan
+
+1. **Scaffolding**: Run `npx create-video` to generate a blank TypeScript project, rename directories, install additional dependencies (`ajv`, `ajv-formats`, `@remotion/google-fonts`).
+2. **Types & JSON Schema**: Add `src/types/schema.ts` and `src/types/scene-graph.schema.json`.
+3. **Validation Code**: Implement `validation/validateSchema.ts` and `validation/validateSceneGraph.ts`.
+4. **Theme & Animation Foundations**:
+   - Write `theme/presets.ts`, `theme/fonts.ts`, `theme/ThemeProvider.tsx`.
+   - Write `animation/springs.ts`, `animation/easings.ts`, `animation/transitions.ts`.
+5. **Primitives**: Create `AnimatedText`, `GradientBackground`, `NoiseTexture`, `GlassPanel`, `BrowserChrome`.
+6. **Scenes**: Write components for `TitleReveal`, `KineticText`, `DashboardShowcase`, `CTASection`.
+7. **Overlay & Cursor Components**: Create `AnimatedCursor` and overlay support in scenes.
+8. **Composer**: Write `compositions/VideoProject.tsx` and register it in `Root.tsx` / `index.ts`.
+9. **JSON Graphs**: Add 2 mock configurations in `scene-graphs/`.
+10. **Render CLI**: Write `scripts/render.ts` calling `@remotion/renderer`.
+11. **Testing**: Run preview and verify MP4 creation.

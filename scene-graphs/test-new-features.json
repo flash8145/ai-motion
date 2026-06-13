@@ -1,0 +1,109 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "New Features Showcase",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "totalDurationSec": 12
+  },
+  "theme": {
+    "stylePreset": "ModernSaaS",
+    "colors": {
+      "background": "#0F0F1A",
+      "surface": "#1A1A2E",
+      "primary": "#6C63FF",
+      "secondary": "#00BFA5",
+      "text": "#FFFFFF",
+      "mutedText": "#A0A0B2",
+      "accent": "#F50057",
+      "border": "rgba(108, 99, 255, 0.15)",
+      "charts": ["#6C63FF", "#F50057", "#00BFA5", "#FF6E40", "#AA00FF"]
+    },
+    "typography": {
+      "headingFont": "Outfit",
+      "bodyFont": "Inter",
+      "monoFont": "Fira Code"
+    },
+    "glassmorphism": true,
+    "borderRadius": 14
+  },
+  "scenes": [
+    {
+      "id": "scene-intro-bounce",
+      "type": "TitleReveal",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 15
+      },
+      "props": {
+        "tagline": "Typography Overload",
+        "headline": "Bouncy Elastic Text Reveals",
+        "subtitle": "With rotational velocity physics built into springs",
+        "animationType": "bounce",
+        "taglineStart": 10,
+        "headlineStart": 25,
+        "subtitleStart": 50
+      }
+    },
+    {
+      "id": "scene-comparison",
+      "type": "ComparisonScene",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "slide-left",
+        "durationFrames": 15
+      },
+      "props": {
+        "heading": "Upgrade Your Workflow",
+        "subheading": "Old and slow vs modern and safe automation",
+        "leftTitle": "Manual Pipeline",
+        "leftItems": [
+          "Manual frame compiling",
+          "Excessive CPU load & crashes",
+          "No validation rules"
+        ],
+        "rightTitle": "Antigravity Motion",
+        "rightItems": [
+          "JSON-to-video schema rendering",
+          "Safe concurrency caps",
+          "Zero laptop shutdowns"
+        ],
+        "leftHeaderColor": "#F50057",
+        "rightHeaderColor": "#00BFA5",
+        "leftIcon": "❌",
+        "rightIcon": "✅",
+        "headingStart": 5,
+        "contentStart": 20
+      }
+    },
+    {
+      "id": "scene-code-typing",
+      "type": "InteractiveCodeMockup",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 15
+      },
+      "props": {
+        "heading": "Declarative Video API",
+        "subtitle": "Write typescript, render instantly",
+        "fileName": "render-video.ts",
+        "codeLines": [
+          "import { renderMedia } from \"@remotion/renderer\";",
+          "",
+          "// Cap concurrency to prevent laptop crash",
+          "await renderMedia({",
+          "  composition: \"VideoProject\",",
+          "  concurrency: 2,",
+          "});"
+        ],
+        "highlightedLines": [4, 5, 6, 7],
+        "headingStart": 5,
+        "mockupStart": 20,
+        "typingSpeed": 3
+      }
+    }
+  ]
+}

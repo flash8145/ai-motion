@@ -20,6 +20,13 @@ import { ChartShowcase } from "../scenes/ChartShowcase";
 import { ComparisonScene } from "../scenes/ComparisonScene";
 import { InteractiveCodeMockup } from "../scenes/InteractiveCodeMockup";
 
+// ── Gemini Flow Scenes ───────────────────────────────────────────
+import { PromptCard } from "../scenes/PromptCard";
+import { OverlayHeadline } from "../scenes/OverlayHeadline";
+import { GalleryGrid } from "../scenes/GalleryGrid";
+import { WorkspaceShowcase } from "../scenes/WorkspaceShowcase";
+import { ContentWall } from "../scenes/ContentWall";
+
 // ── Overlay components ───────────────────────────────────────────
 import { TextOverlay } from "../overlays/TextOverlay";
 import { CursorOverlay } from "../overlays/CursorOverlay";
@@ -274,6 +281,60 @@ function renderScene(scene: Scene): React.ReactNode {
           headingStart={props.headingStart as number | undefined}
           mockupStart={props.mockupStart as number | undefined}
           typingSpeed={props.typingSpeed as number | undefined}
+        />
+      );
+
+    case "PromptCard":
+      return (
+        <PromptCard
+          prompt={(props.prompt as string) ?? ""}
+          placeholder={props.placeholder as string | undefined}
+          showSubmitButton={props.showSubmitButton as boolean | undefined}
+          typingSpeed={props.typingSpeed as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+        />
+      );
+
+    case "OverlayHeadline":
+      return (
+        <OverlayHeadline
+          title={(props.title as string) ?? ""}
+          subtitle={props.subtitle as string | undefined}
+          align={props.align as "left" | "center" | "right" | undefined}
+          titleStartFrame={props.titleStartFrame as number | undefined}
+          subtitleStartFrame={props.subtitleStartFrame as number | undefined}
+        />
+      );
+
+    case "GalleryGrid":
+      return (
+        <GalleryGrid
+          images={(props.images as string[]) ?? []}
+          columns={props.columns as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          itemStagger={props.itemStagger as number | undefined}
+        />
+      );
+
+    case "WorkspaceShowcase":
+      return (
+        <WorkspaceShowcase
+          image={props.image as string | undefined}
+          title={props.title as string | undefined}
+          subtitle={props.subtitle as string | undefined}
+          zoomAmount={props.zoomAmount as number | undefined}
+          panAmount={props.panAmount as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+        />
+      );
+
+    case "ContentWall":
+      return (
+        <ContentWall
+          items={(props.items as string[]) ?? []}
+          columns={props.columns as number | undefined}
+          scrollSpeed={props.scrollSpeed as number | undefined}
+          startFrame={props.startFrame as number | undefined}
         />
       );
 

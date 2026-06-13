@@ -4,6 +4,15 @@ import { VideoProject } from "./compositions/VideoProject";
 import type { VideoProject as VideoProjectType } from "./types/schema";
 import { getPreset } from "./theme/presets";
 
+// ── Demo compositions ────────────────────────────────────────────
+import { PromptCardDemo } from "./demo/PromptCardDemo";
+import { OverlayHeadlineDemo } from "./demo/OverlayHeadlineDemo";
+import { GalleryGridDemo } from "./demo/GalleryGridDemo";
+import { WorkspaceShowcaseDemo } from "./demo/WorkspaceShowcaseDemo";
+import { ContentWallDemo } from "./demo/ContentWallDemo";
+import { BentoGridDemo } from "./demo/BentoGridDemo";
+import { AnimatedCursorDemo } from "./demo/AnimatedCursorDemo";
+
 // ── Default props for the Remotion Studio preview ────────────────
 const defaultTheme = getPreset("ModernSaaS");
 
@@ -120,6 +129,7 @@ const defaultProject: VideoProjectType = {
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* Main VideoProject composition */}
       <Composition
         id="VideoProject"
         component={VideoProject}
@@ -131,6 +141,65 @@ export const RemotionRoot: React.FC = () => {
         height={defaultProject.metadata.height}
         defaultProps={{ project: defaultProject }}
       />
+
+      {/* ── Gemini Flow Demo Compositions ───────────────────────── */}
+      <Composition
+        id="Demo-PromptCard"
+        component={PromptCardDemo}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-OverlayHeadline"
+        component={OverlayHeadlineDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-GalleryGrid"
+        component={GalleryGridDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-WorkspaceShowcase"
+        component={WorkspaceShowcaseDemo}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-ContentWall"
+        component={ContentWallDemo}
+        durationInFrames={300}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-BentoGrid"
+        component={BentoGridDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-AnimatedCursor"
+        component={AnimatedCursorDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
     </>
   );
 };
+

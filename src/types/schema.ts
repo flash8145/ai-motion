@@ -28,7 +28,12 @@ export type SceneType =
   | "SplitScreen"
   | "ChartShowcase"
   | "ComparisonScene"
-  | "InteractiveCodeMockup";
+  | "InteractiveCodeMockup"
+  | "PromptCard"
+  | "OverlayHeadline"
+  | "GalleryGrid"
+  | "WorkspaceShowcase"
+  | "ContentWall";
 
 // ─── Transition Types ────────────────────────────────────────────
 export type TransitionType =

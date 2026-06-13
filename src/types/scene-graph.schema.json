@@ -117,7 +117,12 @@
             "SplitScreen",
             "ChartShowcase",
             "ComparisonScene",
-            "InteractiveCodeMockup"
+            "InteractiveCodeMockup",
+            "PromptCard",
+            "OverlayHeadline",
+            "GalleryGrid",
+            "WorkspaceShowcase",
+            "ContentWall"
           ]
         },
         "durationFrames": { "type": "integer", "minimum": 1 },

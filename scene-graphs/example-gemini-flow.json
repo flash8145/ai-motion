@@ -1,0 +1,127 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Gemini Flow AI Launch",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "totalDurationSec": 20
+  },
+  "theme": {
+    "stylePreset": "Futuristic",
+    "colors": {
+      "background": "#06060F",
+      "surface": "#0E0E1A",
+      "primary": "#7C3AED",
+      "secondary": "#14B8A6",
+      "text": "#F8FAFC",
+      "mutedText": "#94A3B8",
+      "accent": "#A78BFA",
+      "border": "rgba(124, 58, 237, 0.12)",
+      "charts": ["#7C3AED", "#14B8A6", "#F472B6", "#38BDF8", "#FBBF24"]
+    },
+    "typography": {
+      "headingFont": "Plus Jakarta Sans",
+      "bodyFont": "Inter",
+      "monoFont": "JetBrains Mono"
+    },
+    "glassmorphism": true,
+    "borderRadius": 24
+  },
+  "scenes": [
+    {
+      "id": "scene-1-prompt",
+      "type": "PromptCard",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 15
+      },
+      "props": {
+        "prompt": "Create an immersive, high-end promotional video showcasing our new Gemini Flow AI platform...",
+        "placeholder": "Ask Gemini to generate anything...",
+        "showSubmitButton": true,
+        "typingSpeed": 0.8,
+        "startFrame": 10
+      }
+    },
+    {
+      "id": "scene-2-headline",
+      "type": "OverlayHeadline",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "zoom",
+        "durationFrames": 15
+      },
+      "props": {
+        "title": "Unleash Intelligent Creativity",
+        "subtitle": "Generating premium visual layouts in real-time.",
+        "align": "center",
+        "titleStartFrame": 15,
+        "subtitleStartFrame": 50
+      }
+    },
+    {
+      "id": "scene-3-workspace",
+      "type": "WorkspaceShowcase",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "slide-left",
+        "durationFrames": 15
+      },
+      "props": {
+        "title": "Interactive Scene Editor",
+        "subtitle": "Review generated structures in a beautiful mockup timeline.",
+        "zoomAmount": 0.06,
+        "panAmount": 15,
+        "startFrame": 10
+      }
+    },
+    {
+      "id": "scene-4-gallery",
+      "type": "GalleryGrid",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 15
+      },
+      "props": {
+        "images": [
+          "#7C3AED",
+          "#14B8A6",
+          "#F472B6",
+          "#38BDF8",
+          "#FBBF24",
+          "#A78BFA"
+        ],
+        "columns": 3,
+        "startFrame": 15,
+        "itemStagger": 6
+      }
+    },
+    {
+      "id": "scene-5-wall",
+      "type": "ContentWall",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 15
+      },
+      "props": {
+        "items": [
+          "Interactive Web Apps",
+          "Procedural Textures",
+          "Remotion Video Scripts",
+          "Dynamic SVG Graphs",
+          "Stunning Dark Modes",
+          "Fluid Animations",
+          "Autonomous Coding",
+          "Parametric Curves"
+        ],
+        "columns": 4,
+        "scrollSpeed": 2.0,
+        "startFrame": 10
+      }
+    }
+  ]
+}

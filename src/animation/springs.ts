@@ -52,6 +52,27 @@ export const SPRING_PRESETS = {
     stiffness: 200,
     mass: 0.5,
   } as SpringConfig,
+
+  /** Apple's signature deceleration */
+  appleSmooth: {
+    damping: 35,
+    stiffness: 100,
+    mass: 1.2,
+  } as SpringConfig,
+
+  /** Google Material motion */
+  materialStandard: {
+    damping: 28,
+    stiffness: 140,
+    mass: 0.7,
+  } as SpringConfig,
+
+  /** Zero overshoot for camera moves */
+  cinematic: {
+    damping: 50,
+    stiffness: 60,
+    mass: 2.0,
+  } as SpringConfig,
 } as const;
 
 export type SpringPresetName = keyof typeof SPRING_PRESETS;

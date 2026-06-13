@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "MacBook Feature Cards Reference",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "totalDurationSec": 8
+  },
+  "theme": {
+    "stylePreset": "Apple",
+    "colors": {
+      "background": "#000000",
+      "surface": "#111111",
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1A6",
+      "text": "#F5F5F7",
+      "mutedText": "#86868B",
+      "accent": "#0066CC",
+      "border": "#424245",
+      "charts": ["#0066CC"]
+    },
+    "typography": {
+      "headingFont": "Inter",
+      "bodyFont": "Inter",
+      "monoFont": "monospace"
+    },
+    "glassmorphism": true,
+    "borderRadius": 24
+  },
+  "scenes": [
+    {
+      "id": "scene-1",
+      "type": "FeatureGrid",
+      "durationFrames": 480,
+      "staggerGroup": {
+        "children": ["feat1", "feat2", "feat3"],
+        "offsetFrames": 8,
+        "direction": "forward"
+      },
+      "props": {
+        "heading": "M3 Max.",
+        "subtitle": "Mind-blowing performance.",
+        "columns": 3,
+        "features": [
+          { "icon": "🚀", "title": "Speed", "description": "Up to 2x faster CPU." },
+          { "icon": "🔋", "title": "Battery", "description": "Up to 22 hours of battery life." },
+          { "icon": "💻", "title": "Display", "description": "Liquid Retina XDR display." }
+        ]
+      }
+    }
+  ]
+}

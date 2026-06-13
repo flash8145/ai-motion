@@ -33,8 +33,8 @@ interface AnimatedTextProps {
   maxWidth?: number;
   /** Whether to use heading font (true) or body font (false). Default: true */
   isHeading?: boolean;
-  /** Custom animation style: "reveal" (default), "bounce" (spring rotation), "neon" (glowing neon) */
-  animationType?: "reveal" | "bounce" | "neon";
+  /** Custom animation style: "reveal" (default), "bounce" (spring rotation), "neon" (glowing neon), "mask" (text mask reveal) */
+  animationType?: "reveal" | "bounce" | "neon" | "mask";
 }
 
 /**
@@ -135,13 +135,24 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
               fontWeight,
               color: resolvedColor,
               lineHeight,
-              transform: transformStr,
-              opacity,
+              transform: animationType === "mask" ? "none" : transformStr,
+              opacity: animationType === "mask" ? 1 : opacity,
               textShadow: textShadowStr,
               willChange: "transform, opacity",
+              overflow: animationType === "mask" ? "hidden" : "visible",
             }}
           >
-            {unit === " " ? "\u00A0" : unit}
+            {animationType === "mask" ? (
+              <span style={{
+                display: "inline-block",
+                transform: `translateY(${interpolate(springVal, [0, 1], [110, 0])}%)`,
+                willChange: "transform"
+              }}>
+                {unit === " " ? "\u00A0" : unit}
+              </span>
+            ) : (
+              unit === " " ? "\u00A0" : unit
+            )}
           </span>
         );
       })}

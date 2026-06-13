@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Apple Watch Stats Reference",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "totalDurationSec": 6
+  },
+  "theme": {
+    "stylePreset": "Apple",
+    "colors": {
+      "background": "#000000",
+      "surface": "#111111",
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1A6",
+      "text": "#F5F5F7",
+      "mutedText": "#86868B",
+      "accent": "#0066CC",
+      "border": "#424245",
+      "charts": ["#0066CC"]
+    },
+    "typography": {
+      "headingFont": "Inter",
+      "bodyFont": "Inter",
+      "monoFont": "monospace"
+    },
+    "glassmorphism": true,
+    "borderRadius": 24
+  },
+  "scenes": [
+    {
+      "id": "scene-1",
+      "type": "StatsCounter",
+      "durationFrames": 360,
+      "props": {
+        "heading": "Workout Metrics",
+        "stats": [
+          { "value": "120", "label": "Heart Rate", "suffix": " BPM" },
+          { "value": "450", "label": "Active Energy", "suffix": " CAL" }
+        ]
+      }
+    }
+  ]
+}

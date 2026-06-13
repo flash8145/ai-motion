@@ -1,0 +1,82 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Apple-Style Product Reveal Reference",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "totalDurationSec": 12
+  },
+  "theme": {
+    "stylePreset": "Apple",
+    "colors": {
+      "background": "#000000",
+      "surface": "#111111",
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1A6",
+      "text": "#F5F5F7",
+      "mutedText": "#86868B",
+      "accent": "#0066CC",
+      "border": "#424245",
+      "charts": ["#0066CC", "#FF3B30", "#34C759"]
+    },
+    "typography": {
+      "headingFont": "Inter, sans-serif",
+      "bodyFont": "Inter, sans-serif",
+      "monoFont": "monospace"
+    },
+    "glassmorphism": true,
+    "borderRadius": 24
+  },
+  "scenes": [
+    {
+      "id": "apple-product-reveal-1",
+      "type": "ProductReveal",
+      "durationFrames": 720,
+      "transitionIn": {
+        "type": "none",
+        "durationFrames": 0
+      },
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0,
+          "easing": {
+            "type": "cubic-bezier",
+            "x1": 0.16,
+            "y1": 1,
+            "x2": 0.3,
+            "y2": 1
+          }
+        }
+      ],
+      "staggerGroup": {
+        "children": ["title", "subtitle", "image"],
+        "offsetFrames": 4,
+        "direction": "forward"
+      },
+      "camera": {
+        "type": "perspective",
+        "fov": 60,
+        "position": { "x": 0, "y": 0, "z": 800 }
+      },
+      "textLayer": {
+        "tracking": 2.5,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "image": "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&q=80&w=1920",
+        "title": "Pro. Beyond.",
+        "subtitle": "The most powerful MacBook Pro ever is here.",
+        "startFrame": 0,
+        "titleStartFrame": 15,
+        "subtitleStartFrame": 30,
+        "imageStartFrame": 60,
+        "sweepStartFrame": 120,
+        "sweepDurationInFrames": 60,
+        "aspectRatio": "16 / 10"
+      }
+    }
+  ]
+}

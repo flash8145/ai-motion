@@ -116,6 +116,39 @@ export interface OverlayLayer {
   props: Record<string, unknown>;
 }
 
+// ─── Animation & Layout ──────────────────────────────────────────
+export interface EasingConfig {
+  type: "cubic-bezier" | "linear" | "ease-in" | "ease-out" | "ease-in-out";
+  x1?: number;
+  y1?: number;
+  x2?: number;
+  y2?: number;
+}
+
+export interface Keyframe {
+  frame: number;
+  value: number;
+  easing?: EasingConfig;
+}
+
+export interface StaggerGroup {
+  children: string[];
+  offsetFrames: number;
+  direction?: "forward" | "backward" | "center";
+}
+
+export interface Camera {
+  type: "perspective" | "orthographic";
+  fov?: number;
+  position?: { x: number; y: number; z: number };
+}
+
+export interface TextLayer {
+  tracking?: number;
+  maskReveal?: boolean;
+  variableWeight?: boolean;
+}
+
 // ─── Scene ───────────────────────────────────────────────────────
 export interface Scene {
   id: string;
@@ -124,6 +157,10 @@ export interface Scene {
   transitionIn?: TransitionIn;
   props: Record<string, unknown>;
   overlays?: OverlayLayer[];
+  keyframes?: Keyframe[];
+  staggerGroup?: StaggerGroup;
+  camera?: Camera;
+  textLayer?: TextLayer;
 }
 
 // ─── Audio Config ────────────────────────────────────────────────

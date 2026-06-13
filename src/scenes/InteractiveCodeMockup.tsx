@@ -26,7 +26,7 @@ interface InteractiveCodeMockupProps {
 }
 
 // Simple syntax highligher for javascript/typescript/json
-function highlightCode(text: string, themeColors: Record<string, string>): React.ReactNode[] {
+function highlightCode(text: string, themeColors: { mutedText: string; secondary: string; accent: string }): React.ReactNode[] {
   // Regex for keywords, comments, strings
   const tokens = text.split(/(\/\/.*|"(?:\\"|[^"])*"|'(?:\\'|[^'])*'|\b(?:import|from|const|let|var|function|return|async|await|if|else|true|false|class|extends|new|export|default|type|interface|from)\b|\s+)/g);
 
@@ -97,7 +97,6 @@ export const InteractiveCodeMockup: React.FC<InteractiveCodeMockupProps> = ({
   const fullText = useMemo(() => codeLines.join("\n"), [codeLines]);
   const typingStartFrame = mockupStart + 15;
   const typedCharCount = Math.max(0, Math.floor((frame - typingStartFrame) * typingSpeed));
-  const currentText = useMemo(() => fullText.slice(0, typedCharCount), [fullText, typedCharCount]);
   const isTypingDone = typedCharCount >= fullText.length;
 
   // Split typed text back into lines

@@ -5,7 +5,6 @@ import {
   useVideoConfig,
   spring,
   interpolate,
-  Easing,
 } from "remotion";
 import { useTheme } from "../theme/ThemeProvider";
 import { GlassPanel } from "../components/primitives/GlassPanel";

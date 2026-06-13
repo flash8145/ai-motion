@@ -14,7 +14,7 @@ const defaultProject: VideoProjectType = {
     width: 1920,
     height: 1080,
     fps: 30,
-    totalDurationSec: 16,
+    totalDurationSec: 24,
   },
   theme: defaultTheme,
   scenes: [
@@ -60,6 +60,41 @@ const defaultProject: VideoProjectType = {
           { text: "🚀 +42% Growth", x: 700, y: 200, showAtFrame: 65 },
         ],
       },
+    },
+    {
+      id: "line-chart",
+      type: "ChartShowcase",
+      durationFrames: 120,
+      transitionIn: { type: "slide-left", durationFrames: 15 },
+      props: {
+        chartType: "line",
+        heading: "Performance Growth",
+        subtitle: "Requests served per second scaling globally.",
+        data: [
+          { "label": "Jan", "value": 120 },
+          { "label": "Feb", "value": 210 },
+          { "label": "Mar", "value": 450 },
+          { "label": "Apr", "value": 890 },
+          { "label": "May", "value": 1500 }
+        ]
+      }
+    },
+    {
+      id: "bar-chart",
+      type: "ChartShowcase",
+      durationFrames: 120,
+      transitionIn: { type: "zoom", durationFrames: 15 },
+      props: {
+        chartType: "bar",
+        heading: "User Demographics",
+        subtitle: "Acquisition sources for modern analytics accounts.",
+        data: [
+          { "label": "Organic", "value": 750 },
+          { "label": "Social", "value": 450 },
+          { "label": "Direct", "value": 300 },
+          { "label": "Referrals", "value": 180 }
+        ]
+      }
     },
     {
       id: "cta",

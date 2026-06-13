@@ -13,6 +13,7 @@ import { ContentWallDemo } from "./demo/ContentWallDemo";
 import { BentoGridDemo } from "./demo/BentoGridDemo";
 import { AnimatedCursorDemo } from "./demo/AnimatedCursorDemo";
 import { ProductRevealDemo } from "./demo/ProductRevealDemo";
+import { PremiumLaunchLibraryDemo } from "./demo/PremiumLaunchLibraryDemo";
 
 // ── Scene graph JSON imports ─────────────────────────────────────
 import designStudioReel from "../scene-graphs/example-design-studio-reel.json";
@@ -224,6 +225,14 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+      <Composition
+        id="Demo-PremiumLaunchLibrary"
+        component={PremiumLaunchLibraryDemo}
+        durationInFrames={440}
+        fps={30}
+        width={720}
+        height={1280}
       />
     </>
   );

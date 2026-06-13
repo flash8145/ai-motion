@@ -9,9 +9,7 @@ import {
 import { useTheme } from "../theme/ThemeProvider";
 import { SPRING_PRESETS } from "../animation/springs";
 
-export interface SocialBadgeProps {}
-
-export const SocialBadge: React.FC<SocialBadgeProps> = () => {
+export const SocialBadge: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const theme = useTheme();

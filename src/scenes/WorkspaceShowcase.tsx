@@ -6,8 +6,8 @@ import {
   spring,
   interpolate,
   Easing,
-  Img,
 } from "remotion";
+import { ImageWithFallback } from "../components/ImageWithFallback";
 import { useTheme } from "../theme/ThemeProvider";
 import { BrowserChrome } from "../components/primitives/BrowserChrome";
 import { AnimatedText } from "../components/primitives/AnimatedText";
@@ -207,17 +207,15 @@ export const WorkspaceShowcase: React.FC<WorkspaceShowcaseProps> = ({
               width={browserWidth}
               height={browserHeight}
             >
-              {image ? (
-                <Img
-                  src={image}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              ) : (
-                /* Gradient placeholder */
+              <ImageWithFallback
+                src={image}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+                fallback={
+                  /* Gradient placeholder */
                 <div
                   style={{
                     width: "100%",
@@ -323,7 +321,8 @@ export const WorkspaceShowcase: React.FC<WorkspaceShowcaseProps> = ({
                     </div>
                   </div>
                 </div>
-              )}
+                }
+              />
             </BrowserChrome>
           </div>
         </AbsoluteFill>

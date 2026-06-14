@@ -6,8 +6,8 @@ import {
   spring,
   interpolate,
   Easing,
-  Img,
 } from "remotion";
+import { ImageWithFallback } from "../components/ImageWithFallback";
 import { useTheme } from "../theme/ThemeProvider";
 import { BrowserChrome } from "../components/primitives/BrowserChrome";
 import { AnimatedCursor } from "../components/cursor/AnimatedCursor";
@@ -112,42 +112,43 @@ export const DashboardShowcase: React.FC<DashboardShowcaseProps> = ({
             height={browserHeight}
           >
             {/* Content area */}
-            {screenshotUrl ? (
-              <Img
-                src={screenshotUrl}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-            ) : mockupContent ? (
-              <div style={{ width: "100%", height: "100%", position: "relative" }}>
-                {mockupContent}
-              </div>
-            ) : (
-              // Default placeholder mockup
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: theme.colors.surface,
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: theme.resolvedFonts.body,
-                    fontSize: 16,
-                    color: theme.colors.mutedText,
-                  }}
-                >
-                  Dashboard Preview
-                </span>
-              </div>
-            )}
+            <ImageWithFallback
+              src={screenshotUrl}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+              fallback={
+                mockupContent ? (
+                  <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                    {mockupContent}
+                  </div>
+                ) : (
+                  // Default placeholder mockup
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: theme.colors.surface,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: theme.resolvedFonts.body,
+                        fontSize: 16,
+                        color: theme.colors.mutedText,
+                      }}
+                    >
+                      Dashboard Preview
+                    </span>
+                  </div>
+                )
+              }
+            />
 
             {/* Cursor overlay */}
             {cursorKeyframes.length > 0 && (

@@ -12,19 +12,29 @@ try {
 
 async function main() {
   const brief = process.argv[2];
+  const providerArg = process.argv[3];
+  
   if (!brief) {
-    console.error("Usage: npx tsx scripts/generate.ts 'Your video brief'");
+    console.error("Usage: npx tsx scripts/generate.ts 'Your video brief' [openai|gemini]");
     process.exit(1);
   }
+
+  let provider: "openai" | "gemini";
+  if (providerArg === "openai" || providerArg === "gemini") {
+    provider = providerArg;
+  } else {
+    provider = process.env.GEMINI_API_KEY ? "gemini" : "openai";
+  }
   
-  console.log("🎬 Generating scene graph using ChatGPT/OpenAI API...");
+  console.log(`🎬 Generating scene graph using ${provider === "gemini" ? "Gemini" : "ChatGPT/OpenAI"} API...`);
   
   try {
     const result = await generateSceneGraph({
       brief,
       style: "apple",
       duration: 15,
-      aspectRatio: "16:9"
+      aspectRatio: "16:9",
+      provider
     });
     
     if (result.wasRepaired) {

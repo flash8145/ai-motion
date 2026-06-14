@@ -6,8 +6,8 @@ import {
   spring,
   interpolate,
   Easing,
-  Img,
 } from "remotion";
+import { ImageWithFallback } from "../components/ImageWithFallback";
 import { useTheme } from "../theme/ThemeProvider";
 import { GlassPanel } from "../components/primitives/GlassPanel";
 import { GradientBackground } from "../components/primitives/GradientBackground";
@@ -216,39 +216,38 @@ export const SplitScreen: React.FC<SplitScreenProps> = ({
       }}
     >
       <GlassPanel padding={0} style={{ overflow: "hidden", width: "100%" }}>
-        {imageUrl ? (
-          <Img
-            src={imageUrl}
-            style={{
-              width: "100%",
-              height: 400,
-              objectFit: "cover",
-              borderRadius: theme.borderRadius,
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              width: "100%",
-              height: 400,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: `${theme.colors.primary}11`,
-              borderRadius: theme.borderRadius,
-            }}
-          >
-            <span
+        <ImageWithFallback
+          src={imageUrl}
+          style={{
+            width: "100%",
+            height: 400,
+            objectFit: "cover",
+            borderRadius: theme.borderRadius,
+          }}
+          fallback={
+            <div
               style={{
-                fontFamily: theme.resolvedFonts.body,
-                fontSize: 18,
-                color: theme.colors.mutedText,
+                width: "100%",
+                height: 400,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: `${theme.colors.primary}11`,
+                borderRadius: theme.borderRadius,
               }}
             >
-              {imagePlaceholder}
-            </span>
-          </div>
-        )}
+              <span
+                style={{
+                  fontFamily: theme.resolvedFonts.body,
+                  fontSize: 18,
+                  color: theme.colors.mutedText,
+                }}
+              >
+                {imagePlaceholder}
+              </span>
+            </div>
+          }
+        />
       </GlassPanel>
     </div>
   );

@@ -6,6 +6,7 @@ export interface GenerationRequest {
   duration?: number;
   aspectRatio?: "16:9" | "9:16" | "1:1";
   referenceUrls?: string[];
+  provider?: "openai" | "gemini";
 }
 
 export interface GenerationResult {

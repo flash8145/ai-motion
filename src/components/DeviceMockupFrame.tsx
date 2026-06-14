@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  Img,
   interpolate,
   spring,
   useCurrentFrame,
   useVideoConfig,
   Video,
 } from "remotion";
+import { ImageWithFallback } from "./ImageWithFallback";
 import { SPRING_PRESETS } from "../animation/springs";
 
 export type DeviceType = "macbook" | "browser" | "tablet";
@@ -50,7 +50,7 @@ const renderMedia = (
 
   if (typeof media === "string") {
     return (
-      <Img
+      <ImageWithFallback
         src={media}
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
       />
@@ -73,7 +73,7 @@ const renderMedia = (
   }
 
   return (
-    <Img
+    <ImageWithFallback
       src={media.src}
       style={{
         width: "100%",

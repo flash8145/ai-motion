@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 import { SYSTEM_PROMPT } from "./prompts/system";
 import { FEW_SHOT_EXAMPLES } from "./prompts/fewShot";
 import { validateSchema } from "../validation/validateSchema";
@@ -10,27 +11,58 @@ import type { GenerationRequest, GenerationResult } from "./types";
 export async function generateSceneGraph(
   request: GenerationRequest
 ): Promise<GenerationResult> {
-  const client = new OpenAI();
+  const provider = request.provider || (process.env.GEMINI_API_KEY ? "gemini" : "openai");
   const userPrompt = buildUserPrompt(request);
-  const model = process.env.OPENAI_MODEL || "gpt-4o";
 
-  const response = await client.chat.completions.create({
-    model: model,
-    messages: [
-      { role: "system", content: SYSTEM_PROMPT },
-      // Few-shot examples
-      ...FEW_SHOT_EXAMPLES.map(ex => ({
-        role: ex.role,
-        content: ex.content
-      })),
-      // Actual request
-      { role: "user", content: userPrompt }
-    ],
-    temperature: 0.1,
-    response_format: { type: "json_object" }
-  });
+  let rawText = "";
 
-  const rawText = response.choices[0].message?.content || "";
+  if (provider === "gemini") {
+    const ai = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY || ""
+    });
+    const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+
+    const response = await ai.models.generateContent({
+      model: model,
+      contents: [
+        ...FEW_SHOT_EXAMPLES.map(ex => ({
+          role: ex.role === "assistant" ? "model" : "user",
+          parts: [{ text: ex.content }]
+        })),
+        { role: "user", parts: [{ text: userPrompt }] }
+      ],
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        temperature: 0.1,
+        responseMimeType: "application/json"
+      }
+    });
+
+    rawText = response.text || "";
+  } else {
+    const client = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY || ""
+    });
+    const model = process.env.OPENAI_MODEL || "gpt-4o";
+
+    const response = await client.chat.completions.create({
+      model: model,
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        // Few-shot examples
+        ...FEW_SHOT_EXAMPLES.map(ex => ({
+          role: ex.role,
+          content: ex.content
+        })),
+        // Actual request
+        { role: "user", content: userPrompt }
+      ],
+      temperature: 0.1,
+      response_format: { type: "json_object" }
+    });
+
+    rawText = response.choices[0].message?.content || "";
+  }
 
   // Strip markdown if AI added it despite instructions
   const jsonText = rawText
@@ -49,7 +81,7 @@ export async function generateSceneGraph(
   const schemaResult = validateSchema(parsed);
   if (!schemaResult.valid) {
     // Try auto-repair
-    const repaired = await autoRepair(parsed, schemaResult.errors);
+    const repaired = await autoRepair(parsed, schemaResult.errors, provider);
     return {
       project: repaired.project,
       wasRepaired: true,
@@ -60,7 +92,7 @@ export async function generateSceneGraph(
   // Semantic validation
   const semanticResult = validateSceneGraph(parsed as VideoProject);
   if (!semanticResult.valid) {
-    const repaired = await autoRepair(parsed, semanticResult.errors);
+    const repaired = await autoRepair(parsed, semanticResult.errors, provider);
     return {
       project: repaired.project,
       wasRepaired: true,

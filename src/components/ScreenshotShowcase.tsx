@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  Img,
   interpolate,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { ImageWithFallback } from "./ImageWithFallback";
 
 export type PanDirection = "up" | "down" | "left" | "right" | "none";
 
@@ -82,7 +82,7 @@ export const ScreenshotShowcase: React.FC<ScreenshotShowcaseProps> = ({
           : undefined,
       }}
     >
-      <Img
+      <ImageWithFallback
         src={image}
         style={{
           width: "100%",

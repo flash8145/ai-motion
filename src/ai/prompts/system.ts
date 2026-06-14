@@ -41,6 +41,15 @@ Premium curves (provide these coordinates in keyframes):
 - FOV: 45-60 for product shots, 80+ for environmental.
 - Subtle parallax on all scenes (panAmount: 15-25).
 
+### Images & Media (CRITICAL)
+- Never invent/hallucinate new or random Unsplash photo IDs. 
+- Only use the following guaranteed valid placeholder image URLs:
+  * Abstract Purple/Teal Art: https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1920
+  * Laptop/Workspace: https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&q=80&w=1920
+  * Dashboard Screenshot: https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1920
+  * Modern Workspace: https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920
+  * Tech device/phone: https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=1920
+
 ---
 
 ## Available Scene Types

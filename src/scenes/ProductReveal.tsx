@@ -6,8 +6,8 @@ import {
   spring,
   interpolate,
   Easing,
-  Img,
 } from "remotion";
+import { ImageWithFallback } from "../components/ImageWithFallback";
 import { useTheme } from "../theme/ThemeProvider";
 import { AnimatedText } from "../components/primitives/AnimatedText";
 import { GradientBackground } from "../components/primitives/GradientBackground";
@@ -135,7 +135,6 @@ export const ProductReveal: React.FC<ProductRevealProps> = ({
   );
 
   // ─── MOCKUP FALLBACK (if image is missing or empty) ─────────────
-  const hasImage = image && image.trim().length > 0;
   const placeholderGradient = `linear-gradient(135deg, ${theme.colors.surface} 0%, ${theme.colors.background} 100%)`;
 
   // Dynamic responsive width configuration
@@ -295,142 +294,141 @@ export const ProductReveal: React.FC<ProductRevealProps> = ({
 
             {/* Product Mockup Render */}
             <AbsoluteFill style={{ overflow: "hidden", borderRadius: theme.borderRadius }}>
-              {hasImage ? (
-                <Img
-                  src={image}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              ) : (
-                /* Premium SaaS Mockup Fallback UI */
-                <AbsoluteFill
-                  style={{
-                    background: placeholderGradient,
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  {/* Mock Browser Title Bar */}
-                  <div
+              <ImageWithFallback
+                src={image}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+                fallback={
+                  /* Premium SaaS Mockup Fallback UI */
+                  <AbsoluteFill
                     style={{
-                      height: 38,
-                      backgroundColor: `${theme.colors.background}bb`,
-                      borderBottom: `1px solid ${theme.colors.border}`,
+                      background: placeholderGradient,
                       display: "flex",
-                      alignItems: "center",
-                      padding: "0 16px",
-                      gap: 6,
+                      flexDirection: "column",
                     }}
                   >
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#FF5F57" }} />
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#FEBC2E" }} />
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#28C840" }} />
+                    {/* Mock Browser Title Bar */}
                     <div
                       style={{
-                        marginLeft: 16,
-                        height: 20,
-                        flex: 1,
-                        maxWidth: 320,
-                        backgroundColor: "rgba(255,255,255,0.04)",
-                        borderRadius: 4,
+                        height: 38,
+                        backgroundColor: `${theme.colors.background}bb`,
+                        borderBottom: `1px solid ${theme.colors.border}`,
                         display: "flex",
                         alignItems: "center",
-                        padding: "0 8px",
+                        padding: "0 16px",
+                        gap: 6,
                       }}
                     >
-                      <div style={{ fontSize: 9, color: theme.colors.mutedText, fontFamily: theme.resolvedFonts.mono, opacity: 0.6 }}>
-                        https://app.productreveal.io
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Mock content showing charts and elements */}
-                  <div style={{ display: "flex", flex: 1, padding: 20, gap: 16 }}>
-                    {/* Mock Sidebar */}
-                    <div
-                      style={{
-                        width: 140,
-                        backgroundColor: "rgba(255,255,255,0.02)",
-                        borderRadius: theme.borderRadius * 0.4,
-                        border: `1px solid ${theme.colors.border}`,
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 12,
-                        padding: 12,
-                      }}
-                    >
-                      <div style={{ height: 16, width: "70%", backgroundColor: theme.colors.primary, opacity: 0.3, borderRadius: 3 }} />
-                      <div style={{ height: 12, width: "90%", backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
-                      <div style={{ height: 12, width: "80%", backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
-                      <div style={{ height: 12, width: "85%", backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
-                      <div style={{ height: 12, width: "60%", backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
-                    </div>
-
-                    {/* Mock Main Section */}
-                    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16 }}>
-                      {/* Top metrics row */}
-                      <div style={{ display: "flex", gap: 12, height: "40%" }}>
-                        <div
-                          style={{
-                            flex: 1,
-                            backgroundColor: "rgba(255,255,255,0.02)",
-                            borderRadius: theme.borderRadius * 0.4,
-                            border: `1px solid ${theme.colors.border}`,
-                            padding: 12,
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <div style={{ fontSize: 10, color: theme.colors.mutedText }}>Monthly Revenue</div>
-                          <div style={{ fontSize: 22, fontWeight: 700, color: theme.colors.primary }}>$142,380</div>
-                        </div>
-                        <div
-                          style={{
-                            flex: 1,
-                            backgroundColor: "rgba(255,255,255,0.02)",
-                            borderRadius: theme.borderRadius * 0.4,
-                            border: `1px solid ${theme.colors.border}`,
-                            padding: 12,
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <div style={{ fontSize: 10, color: theme.colors.mutedText }}>Conversion Rate</div>
-                          <div style={{ fontSize: 22, fontWeight: 700, color: theme.colors.secondary }}>4.82%</div>
-                        </div>
-                      </div>
-
-                      {/* Large chart mock */}
+                      <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#FF5F57" }} />
+                      <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#FEBC2E" }} />
+                      <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#28C840" }} />
                       <div
                         style={{
+                          marginLeft: 16,
+                          height: 20,
                           flex: 1,
+                          maxWidth: 320,
+                          backgroundColor: "rgba(255,255,255,0.04)",
+                          borderRadius: 4,
+                          display: "flex",
+                          alignItems: "center",
+                          padding: "0 8px",
+                        }}
+                      >
+                        <div style={{ fontSize: 9, color: theme.colors.mutedText, fontFamily: theme.resolvedFonts.mono, opacity: 0.6 }}>
+                          https://app.productreveal.io
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Mock content showing charts and elements */}
+                    <div style={{ display: "flex", flex: 1, padding: 20, gap: 16 }}>
+                      {/* Mock Sidebar */}
+                      <div
+                        style={{
+                          width: 140,
                           backgroundColor: "rgba(255,255,255,0.02)",
                           borderRadius: theme.borderRadius * 0.4,
                           border: `1px solid ${theme.colors.border}`,
-                          padding: 16,
-                          position: "relative",
                           display: "flex",
-                          alignItems: "flex-end",
-                          gap: 8,
+                          flexDirection: "column",
+                          gap: 12,
+                          padding: 12,
                         }}
                       >
-                        {/* Mock chart bars */}
-                        <div style={{ height: "40%", width: 20, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: "3px 3px 0 0" }} />
-                        <div style={{ height: "60%", width: 20, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: "3px 3px 0 0" }} />
-                        <div style={{ height: "55%", width: 20, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: "3px 3px 0 0" }} />
-                        <div style={{ height: "85%", width: 20, backgroundColor: theme.colors.primary, opacity: 0.8, borderRadius: "3px 3px 0 0" }} />
-                        <div style={{ height: "70%", width: 20, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: "3px 3px 0 0" }} />
-                        <div style={{ height: "95%", width: 20, backgroundColor: theme.colors.secondary, opacity: 0.8, borderRadius: "3px 3px 0 0" }} />
+                        <div style={{ height: 16, width: "70%", backgroundColor: theme.colors.primary, opacity: 0.3, borderRadius: 3 }} />
+                        <div style={{ height: 12, width: "90%", backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
+                        <div style={{ height: 12, width: "80%", backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
+                        <div style={{ height: 12, width: "85%", backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
+                        <div style={{ height: 12, width: "60%", backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
+                      </div>
+
+                      {/* Mock Main Section */}
+                      <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16 }}>
+                        {/* Top metrics row */}
+                        <div style={{ display: "flex", gap: 12, height: "40%" }}>
+                          <div
+                            style={{
+                              flex: 1,
+                              backgroundColor: "rgba(255,255,255,0.02)",
+                              borderRadius: theme.borderRadius * 0.4,
+                              border: `1px solid ${theme.colors.border}`,
+                              padding: 12,
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <div style={{ fontSize: 10, color: theme.colors.mutedText }}>Monthly Revenue</div>
+                            <div style={{ fontSize: 22, fontWeight: 700, color: theme.colors.primary }}>$142,380</div>
+                          </div>
+                          <div
+                            style={{
+                              flex: 1,
+                              backgroundColor: "rgba(255,255,255,0.02)",
+                              borderRadius: theme.borderRadius * 0.4,
+                              border: `1px solid ${theme.colors.border}`,
+                              padding: 12,
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <div style={{ fontSize: 10, color: theme.colors.mutedText }}>Conversion Rate</div>
+                            <div style={{ fontSize: 22, fontWeight: 700, color: theme.colors.secondary }}>4.82%</div>
+                          </div>
+                        </div>
+
+                        {/* Large chart mock */}
+                        <div
+                          style={{
+                            flex: 1,
+                            backgroundColor: "rgba(255,255,255,0.02)",
+                            borderRadius: theme.borderRadius * 0.4,
+                            border: `1px solid ${theme.colors.border}`,
+                            padding: 16,
+                            position: "relative",
+                            display: "flex",
+                            alignItems: "flex-end",
+                            gap: 8,
+                          }}
+                        >
+                          {/* Mock chart bars */}
+                          <div style={{ height: "40%", width: 20, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: "3px 3px 0 0" }} />
+                          <div style={{ height: "60%", width: 20, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: "3px 3px 0 0" }} />
+                          <div style={{ height: "55%", width: 20, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: "3px 3px 0 0" }} />
+                          <div style={{ height: "85%", width: 20, backgroundColor: theme.colors.primary, opacity: 0.8, borderRadius: "3px 3px 0 0" }} />
+                          <div style={{ height: "70%", width: 20, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: "3px 3px 0 0" }} />
+                          <div style={{ height: "95%", width: 20, backgroundColor: theme.colors.secondary, opacity: 0.8, borderRadius: "3px 3px 0 0" }} />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </AbsoluteFill>
-              )}
+                  </AbsoluteFill>
+                }
+              />
             </AbsoluteFill>
 
             {/* ─── Light Sweep Overlay ─── */}

@@ -1,0 +1,220 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Effortless. Elevated.",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "totalDurationSec": 15
+  },
+  "theme": {
+    "stylePreset": "Apple",
+    "colors": {
+      "background": "#000000",
+      "surface": "#111111",
+      "primary": "#FFFFFF",
+      "secondary": "#86868B",
+      "text": "#F5F5F7",
+      "mutedText": "#86868B",
+      "accent": "#0066CC",
+      "border": "#2C2C2E",
+      "charts": [
+        "#0066CC",
+        "#34C759",
+        "#FF9F0A"
+      ]
+    },
+    "typography": {
+      "headingFont": "Inter",
+      "bodyFont": "Inter",
+      "monoFont": "JetBrains Mono"
+    },
+    "glassmorphism": true,
+    "borderRadius": 20
+  },
+  "scenes": [
+    {
+      "id": "hero-title-reveal",
+      "type": "OverlayHeadline",
+      "durationFrames": 180,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 20
+      },
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.95,
+          "easing": {
+            "type": "cubic-bezier",
+            "x1": 0.16,
+            "y1": 1,
+            "x2": 0.3,
+            "y2": 1
+          }
+        },
+        {
+          "frame": 60,
+          "value": 1
+        }
+      ],
+      "textLayer": {
+        "tracking": 1.5,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "title": "Effortless. Elevated.",
+        "subtitle": "Experience the future of seamless interaction.",
+        "align": "center",
+        "titleStartFrame": 15,
+        "subtitleStartFrame": 60
+      }
+    },
+    {
+      "id": "feature-showcase",
+      "type": "SplitScreen",
+      "durationFrames": 300,
+      "transitionIn": {
+        "type": "slide-left",
+        "durationFrames": 18
+      },
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.95,
+          "easing": {
+            "type": "cubic-bezier",
+            "x1": 0.16,
+            "y1": 1,
+            "x2": 0.3,
+            "y2": 1
+          }
+        },
+        {
+          "frame": 60,
+          "value": 1
+        }
+      ],
+      "staggerGroup": {
+        "children": [
+          "headline",
+          "description",
+          "items",
+          "image"
+        ],
+        "offsetFrames": 10,
+        "direction": "forward"
+      },
+      "textLayer": {
+        "tracking": 1,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "layout": "image-right",
+        "headline": "Intuitive by Design.",
+        "description": "Every detail crafted for an unparalleled user experience.",
+        "items": [
+          {
+            "icon": "sparkles",
+            "text": "Dynamic Haptic Feedback"
+          },
+          {
+            "icon": "brain",
+            "text": "Adaptive Neural Engine"
+          },
+          {
+            "icon": "display",
+            "text": "Crystal-Clear Retina Display"
+          }
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1611078489224-67a5460205b9?auto=format&fit=crop&q=80&w=1920",
+        "headlineStart": 15,
+        "contentStart": 60,
+        "imageStart": 45
+      }
+    },
+    {
+      "id": "product-reveal-final",
+      "type": "ProductReveal",
+      "durationFrames": 300,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 20
+      },
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.95,
+          "easing": {
+            "type": "cubic-bezier",
+            "x1": 0.16,
+            "y1": 1,
+            "x2": 0.3,
+            "y2": 1
+          }
+        },
+        {
+          "frame": 60,
+          "value": 1
+        }
+      ],
+      "staggerGroup": {
+        "children": [
+          "title",
+          "subtitle",
+          "image"
+        ],
+        "offsetFrames": 10,
+        "direction": "forward"
+      },
+      "textLayer": {
+        "tracking": 2,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "image": "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&q=80&w=1920",
+        "title": "Beyond Expectation.",
+        "subtitle": "Precision engineered. Powerfully simple.",
+        "startFrame": 0,
+        "titleStartFrame": 30,
+        "subtitleStartFrame": 80,
+        "imageStartFrame": 60,
+        "sweepStartFrame": 120,
+        "sweepDurationInFrames": 80,
+        "aspectRatio": "16 / 10"
+      }
+    },
+    {
+      "id": "outro-logo",
+      "type": "LogoRevealOutro",
+      "durationFrames": 120,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 20
+      },
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.95,
+          "easing": {
+            "type": "cubic-bezier",
+            "x1": 0.16,
+            "y1": 1,
+            "x2": 0.3,
+            "y2": 1
+          }
+        },
+        {
+          "frame": 60,
+          "value": 1
+        }
+      ],
+      "props": {
+        "startFrame": 0
+      }
+    }
+  ]
+}

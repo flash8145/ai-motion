@@ -35,6 +35,22 @@ import { TiltedCardCarousel } from "../scenes/TiltedCardCarousel";
 import { CircleMotifTransition } from "../scenes/CircleMotifTransition";
 import { LogoRevealOutro } from "../scenes/LogoRevealOutro";
 
+// ── Explainer / Keyframe Engine Scenes ───────────────────────────
+import { FreeformAnimation, type FreeformElement } from "../scenes/FreeformAnimation";
+import { PathDrawScene, type DrawnPathConfig, type PathLabel } from "../scenes/PathDrawScene";
+import { IconMorph } from "../scenes/IconMorph";
+import { ProcessFlow, type ProcessFlowStep } from "../scenes/ProcessFlow";
+import { LottieScene } from "../scenes/LottieScene";
+import { WhiteboardReveal } from "../scenes/WhiteboardReveal";
+import type { LottieAnimationData } from "@remotion/lottie";
+
+// ── 3D / VFX Scenes ──────────────────────────────────────────────
+import { Product3DReveal } from "../scenes/Product3DReveal";
+import { ParticleField } from "../scenes/ParticleField";
+import { GlobeAnimation, type GlobePin, type GlobeArc } from "../scenes/GlobeAnimation";
+import { LogoExtrude3D } from "../scenes/LogoExtrude3D";
+import { ShaderBackground3D } from "../scenes/ShaderBackground3D";
+
 // ── Overlay components ───────────────────────────────────────────
 import { TextOverlay } from "../overlays/TextOverlay";
 import { CursorOverlay } from "../overlays/CursorOverlay";
@@ -401,6 +417,148 @@ function renderScene(scene: Scene): React.ReactNode {
           startFrame={props.startFrame as number | undefined}
           title={props.title as string | undefined}
           subtitle={props.subtitle as string | undefined}
+        />
+      );
+
+    case "FreeformAnimation":
+      return (
+        <FreeformAnimation
+          elements={(props.elements as FreeformElement[]) ?? []}
+          background={props.background as "theme" | "transparent" | string | undefined}
+        />
+      );
+
+    case "PathDrawScene":
+      return (
+        <PathDrawScene
+          paths={(props.paths as DrawnPathConfig[]) ?? []}
+          viewBoxWidth={props.viewBoxWidth as number | undefined}
+          viewBoxHeight={props.viewBoxHeight as number | undefined}
+          heading={props.heading as string | undefined}
+          headingStart={props.headingStart as number | undefined}
+          labels={props.labels as PathLabel[] | undefined}
+          background={props.background as "theme" | "transparent" | undefined}
+        />
+      );
+
+    case "IconMorph":
+      return (
+        <IconMorph
+          icons={(props.icons as string[]) ?? []}
+          labels={props.labels as string[] | undefined}
+          startFrame={props.startFrame as number | undefined}
+          holdDurationFrames={props.holdDurationFrames as number | undefined}
+          morphDurationFrames={props.morphDurationFrames as number | undefined}
+          size={props.size as number | undefined}
+          color={props.color as string | undefined}
+          viewBox={props.viewBox as string | undefined}
+        />
+      );
+
+    case "ProcessFlow":
+      return (
+        <ProcessFlow
+          steps={(props.steps as ProcessFlowStep[]) ?? []}
+          direction={props.direction as "horizontal" | "vertical" | undefined}
+          heading={props.heading as string | undefined}
+          headingStart={props.headingStart as number | undefined}
+          stepsStart={props.stepsStart as number | undefined}
+          stepStagger={props.stepStagger as number | undefined}
+          accentColor={props.accentColor as string | undefined}
+          canvasWidth={props.canvasWidth as number | undefined}
+          canvasHeight={props.canvasHeight as number | undefined}
+        />
+      );
+
+    case "LottieScene":
+      return (
+        <LottieScene
+          src={props.src as string | undefined}
+          animationData={props.animationData as LottieAnimationData | undefined}
+          loop={props.loop as boolean | undefined}
+          playbackRate={props.playbackRate as number | undefined}
+          width={props.width as number | undefined}
+          height={props.height as number | undefined}
+          background={props.background as "theme" | "transparent" | undefined}
+        />
+      );
+
+    case "WhiteboardReveal":
+      return (
+        <WhiteboardReveal
+          sketchPath={(props.sketchPath as string) ?? ""}
+          sketchViewBox={props.sketchViewBox as string | undefined}
+          title={props.title as string | undefined}
+          description={props.description as string | undefined}
+          icon={props.icon as string | undefined}
+          drawStartFrame={props.drawStartFrame as number | undefined}
+          drawDurationFrames={props.drawDurationFrames as number | undefined}
+          contentStartFrame={props.contentStartFrame as number | undefined}
+          accentColor={props.accentColor as string | undefined}
+          background={props.background as "theme" | "transparent" | "paper" | undefined}
+        />
+      );
+
+    case "Product3DReveal":
+      return (
+        <Product3DReveal
+          shape={props.shape as "rounded-box" | "cylinder" | "sphere" | undefined}
+          color={props.color as string | undefined}
+          title={props.title as string | undefined}
+          subtitle={props.subtitle as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          titleStartFrame={props.titleStartFrame as number | undefined}
+          rotationSpeed={props.rotationSpeed as number | undefined}
+          cameraDistance={props.cameraDistance as number | undefined}
+        />
+      );
+
+    case "ParticleField":
+      return (
+        <ParticleField
+          count={props.count as number | undefined}
+          color={props.color as string | undefined}
+          spread={props.spread as number | undefined}
+          speed={props.speed as number | undefined}
+          background={props.background as "theme" | "transparent" | string | undefined}
+        />
+      );
+
+    case "GlobeAnimation":
+      return (
+        <GlobeAnimation
+          pins={props.pins as GlobePin[] | undefined}
+          arcs={props.arcs as GlobeArc[] | undefined}
+          rotationSpeed={props.rotationSpeed as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          radius={props.radius as number | undefined}
+          color={props.color as string | undefined}
+          heading={props.heading as string | undefined}
+          headingStart={props.headingStart as number | undefined}
+        />
+      );
+
+    case "LogoExtrude3D":
+      return (
+        <LogoExtrude3D
+          path={(props.path as string) ?? ""}
+          color={props.color as string | undefined}
+          depth={props.depth as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          title={props.title as string | undefined}
+          titleStartFrame={props.titleStartFrame as number | undefined}
+        />
+      );
+
+    case "ShaderBackground3D":
+      return (
+        <ShaderBackground3D
+          variant={props.variant as "gradient-flow" | "light-rays" | "grain-noise" | undefined}
+          colorA={props.colorA as string | undefined}
+          colorB={props.colorB as string | undefined}
+          speed={props.speed as number | undefined}
+          heading={props.heading as string | undefined}
+          headingStart={props.headingStart as number | undefined}
         />
       );
 

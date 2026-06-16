@@ -78,9 +78,9 @@ export async function generateSceneGraph(
   }
 
   // Schema validation
-  let schemaResult = validateSchema(parsed);
+  const schemaResult = validateSchema(parsed);
   let wasRepaired = false;
-  let repairLog: string[] = [];
+  const repairLog: string[] = [];
 
   if (!schemaResult.valid) {
     wasRepaired = true;
@@ -100,7 +100,7 @@ export async function generateSceneGraph(
   }
 
   // Semantic validation
-  let semanticResult = validateSceneGraph(parsed as VideoProject);
+  const semanticResult = validateSceneGraph(parsed as VideoProject);
   if (!semanticResult.valid) {
     wasRepaired = true;
     repairLog.push(...semanticResult.errors);
@@ -124,9 +124,11 @@ export async function generateSceneGraph(
   };
 }
 
-function cleanInvalidOptionalProperties(project: any, errors: string[]): any {
+function cleanInvalidOptionalProperties(project: unknown, errors: string[]): unknown {
   // Deep clone project to avoid mutating the original object
-  const cleaned = JSON.parse(JSON.stringify(project));
+  const cleaned = JSON.parse(JSON.stringify(project)) as {
+    scenes?: Array<Record<string, unknown>>;
+  };
   
   for (const error of errors) {
     // AJV errors look like: "/scenes/0/keyframes: must be array" or similar

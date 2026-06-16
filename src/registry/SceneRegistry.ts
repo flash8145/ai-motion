@@ -36,6 +36,21 @@ import { TiltedCardCarousel } from "../scenes/TiltedCardCarousel";
 import { CircleMotifTransition } from "../scenes/CircleMotifTransition";
 import { LogoRevealOutro } from "../scenes/LogoRevealOutro";
 
+// ── Explainer / Keyframe Engine Scenes ───────────────────────────
+import { FreeformAnimation } from "../scenes/FreeformAnimation";
+import { PathDrawScene } from "../scenes/PathDrawScene";
+import { IconMorph } from "../scenes/IconMorph";
+import { ProcessFlow } from "../scenes/ProcessFlow";
+import { LottieScene } from "../scenes/LottieScene";
+import { WhiteboardReveal } from "../scenes/WhiteboardReveal";
+
+// ── 3D / VFX Scenes ──────────────────────────────────────────────
+import { Product3DReveal } from "../scenes/Product3DReveal";
+import { ParticleField } from "../scenes/ParticleField";
+import { GlobeAnimation } from "../scenes/GlobeAnimation";
+import { LogoExtrude3D } from "../scenes/LogoExtrude3D";
+import { ShaderBackground3D } from "../scenes/ShaderBackground3D";
+
 /**
  * Master registry of all available scene components.
  * Keys must match the `type` field in Scene Graph JSON.
@@ -71,6 +86,21 @@ export const SceneRegistry: Record<string, React.FC<any>> = {
   TiltedCardCarousel,
   CircleMotifTransition,
   LogoRevealOutro,
+
+  // Phase 5 — Explainer / Keyframe Engine scenes
+  FreeformAnimation,
+  PathDrawScene,
+  IconMorph,
+  ProcessFlow,
+  LottieScene,
+  WhiteboardReveal,
+
+  // Phase 6 — 3D / VFX scenes
+  Product3DReveal,
+  ParticleField,
+  GlobeAnimation,
+  LogoExtrude3D,
+  ShaderBackground3D,
 };
 
 export type SceneRegistryKey = keyof typeof SceneRegistry;

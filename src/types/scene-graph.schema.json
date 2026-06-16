@@ -129,7 +129,18 @@
             "RotatedWordStack",
             "TiltedCardCarousel",
             "CircleMotifTransition",
-            "LogoRevealOutro"
+            "LogoRevealOutro",
+            "FreeformAnimation",
+            "PathDrawScene",
+            "IconMorph",
+            "ProcessFlow",
+            "LottieScene",
+            "WhiteboardReveal",
+            "Product3DReveal",
+            "ParticleField",
+            "GlobeAnimation",
+            "LogoExtrude3D",
+            "ShaderBackground3D"
           ]
         },
         "durationFrames": { "type": "integer", "minimum": 1 },

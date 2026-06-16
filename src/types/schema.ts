@@ -40,7 +40,18 @@ export type SceneType =
   | "RotatedWordStack"
   | "TiltedCardCarousel"
   | "CircleMotifTransition"
-  | "LogoRevealOutro";
+  | "LogoRevealOutro"
+  | "FreeformAnimation"
+  | "PathDrawScene"
+  | "IconMorph"
+  | "ProcessFlow"
+  | "LottieScene"
+  | "WhiteboardReveal"
+  | "Product3DReveal"
+  | "ParticleField"
+  | "GlobeAnimation"
+  | "LogoExtrude3D"
+  | "ShaderBackground3D";
 
 // ─── Transition Types ────────────────────────────────────────────
 export type TransitionType =

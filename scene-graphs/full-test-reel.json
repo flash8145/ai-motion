@@ -1,0 +1,275 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Full Platform Test Reel",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "totalDurationSec": 55
+  },
+  "theme": {
+    "stylePreset": "Apple",
+    "colors": {
+      "background": "#000000",
+      "surface": "#1C1C1E",
+      "primary": "#0A84FF",
+      "secondary": "#5E5CE6",
+      "text": "#FFFFFF",
+      "mutedText": "#98989D",
+      "accent": "#FF375F",
+      "border": "rgba(255, 255, 255, 0.08)",
+      "charts": ["#0A84FF", "#30D158", "#FF9F0A", "#FF375F", "#BF5AF2"]
+    },
+    "typography": {
+      "headingFont": "Inter",
+      "bodyFont": "Inter",
+      "monoFont": "Fira Code"
+    },
+    "glassmorphism": true,
+    "borderRadius": 16
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "type": "TitleReveal",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "tagline": "Introducing",
+        "headline": "The AI Motion Design Platform",
+        "subtitle": "From a prompt to a premium motion graphic video.",
+        "taglineStart": 5,
+        "headlineStart": 15,
+        "subtitleStart": 40
+      }
+    },
+    {
+      "id": "kinetic-capabilities",
+      "type": "KineticText",
+      "durationFrames": 120,
+      "transitionIn": { "type": "slide-up", "durationFrames": 15 },
+      "props": {
+        "lines": [
+          { "text": "Explainers." },
+          { "text": "Product Launches." },
+          { "text": "Data Stories." },
+          { "text": "3D Reveals." }
+        ],
+        "startFrame": 5,
+        "lineStagger": 14
+      }
+    },
+    {
+      "id": "how-it-works",
+      "type": "ProcessFlow",
+      "durationFrames": 150,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "heading": "How it works",
+        "headingStart": 5,
+        "steps": [
+          { "emoji": "📝", "title": "Describe", "description": "Write a prompt" },
+          { "emoji": "🤖", "title": "Generate", "description": "AI plans every scene" },
+          { "emoji": "🎬", "title": "Render", "description": "Export your video" }
+        ],
+        "stepsStart": 25,
+        "stepStagger": 35
+      }
+    },
+    {
+      "id": "journey-timeline",
+      "type": "PathDrawScene",
+      "durationFrames": 130,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "heading": "Built for every story",
+        "headingStart": 5,
+        "paths": [
+          {
+            "d": "M 200 700 C 500 700 600 400 960 400 S 1400 700 1720 700",
+            "startFrame": 20,
+            "color": "#0A84FF",
+            "strokeWidth": 4,
+            "drawDurationFrames": 60
+          }
+        ],
+        "labels": [
+          { "text": "Explainers", "x": 200, "y": 760, "showAtFrame": 25 },
+          { "text": "Product Launches", "x": 960, "y": 340, "showAtFrame": 55 },
+          { "text": "Data Visualizations", "x": 1720, "y": 760, "showAtFrame": 80 }
+        ]
+      }
+    },
+    {
+      "id": "icon-morph-workflow",
+      "type": "IconMorph",
+      "durationFrames": 140,
+      "transitionIn": { "type": "zoom", "durationFrames": 15 },
+      "props": {
+        "icons": [
+          "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm9.4 4a7.4 7.4 0 0 0-.15-1.5l2.1-1.6-2-3.5-2.4 1a7.6 7.6 0 0 0-2.6-1.5L16 2h-4l-.35 2.4a7.6 7.6 0 0 0-2.6 1.5l-2.4-1-2 3.5 2.1 1.6A7.4 7.4 0 0 0 6.6 12c0 .5.05 1 .15 1.5l-2.1 1.6 2 3.5 2.4-1c.75.65 1.63 1.16 2.6 1.5L12 22h4l.35-2.4c.97-.34 1.85-.85 2.6-1.5l2.4 1 2-3.5-2.1-1.6c.1-.5.15-1 .15-1.5z",
+          "M13 2 3 14h7l-1 8 11-12h-7z",
+          "M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"
+        ],
+        "labels": ["Configure", "Automate", "Done"],
+        "startFrame": 5,
+        "holdDurationFrames": 40,
+        "morphDurationFrames": 20
+      }
+    },
+    {
+      "id": "whiteboard-explainer",
+      "type": "WhiteboardReveal",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "sketchPath": "M 660 500 a 300 120 0 1 0 600 0 a 300 120 0 1 0 -600 0",
+        "icon": "M13 2 3 14h7l-1 8 11-12h-7z",
+        "title": "Explain Anything",
+        "description": "Whiteboard-style explainer scenes, generated automatically.",
+        "drawStartFrame": 10,
+        "drawDurationFrames": 50
+      }
+    },
+    {
+      "id": "freeform-keyframes",
+      "type": "FreeformAnimation",
+      "durationFrames": 90,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "background": "theme",
+        "elements": [
+          {
+            "id": "headline",
+            "kind": "text",
+            "content": "Keyframe anything.",
+            "initial": { "x": 960, "y": 460, "opacity": 0 },
+            "style": { "fontSize": 64, "fontWeight": 800, "color": "#FFFFFF" },
+            "tracks": [
+              {
+                "property": "opacity",
+                "keyframes": [
+                  { "frame": 0, "value": 0 },
+                  { "frame": 20, "value": 1, "easing": { "type": "cubic-bezier", "x1": 0.16, "y1": 1, "x2": 0.3, "y2": 1 } }
+                ]
+              },
+              {
+                "property": "y",
+                "keyframes": [
+                  { "frame": 0, "value": 500 },
+                  { "frame": 20, "value": 460, "easing": { "type": "cubic-bezier", "x1": 0.16, "y1": 1, "x2": 0.3, "y2": 1 } }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "badge",
+            "kind": "circle",
+            "initial": { "x": 960, "y": 600, "width": 16, "height": 16, "scale": 0 },
+            "style": { "fill": "#0A84FF" },
+            "tracks": [
+              {
+                "property": "scale",
+                "keyframes": [
+                  { "frame": 25, "value": 0 },
+                  { "frame": 45, "value": 1, "easing": { "type": "cubic-bezier", "x1": 0.34, "y1": 1.56, "x2": 0.64, "y2": 1 } }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "data-story",
+      "type": "ChartShowcase",
+      "durationFrames": 120,
+      "transitionIn": { "type": "slide-left", "durationFrames": 15 },
+      "props": {
+        "chartType": "line",
+        "heading": "Data Visualizations",
+        "subtitle": "Turn raw numbers into a story.",
+        "data": [
+          { "label": "Jan", "value": 120 },
+          { "label": "Feb", "value": 210 },
+          { "label": "Mar", "value": 450 },
+          { "label": "Apr", "value": 890 },
+          { "label": "May", "value": 1500 }
+        ]
+      }
+    },
+    {
+      "id": "product-3d",
+      "type": "Product3DReveal",
+      "durationFrames": 150,
+      "transitionIn": { "type": "fade", "durationFrames": 20 },
+      "props": {
+        "shape": "rounded-box",
+        "title": "Designed in 3D.",
+        "subtitle": "A new dimension of product storytelling.",
+        "startFrame": 5
+      }
+    },
+    {
+      "id": "globe-reach",
+      "type": "GlobeAnimation",
+      "durationFrames": 150,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "heading": "Available worldwide",
+        "headingStart": 5,
+        "pins": [
+          { "lat": 37.77, "lng": -122.42, "showAtFrame": 40 },
+          { "lat": 51.51, "lng": -0.13, "showAtFrame": 50 },
+          { "lat": 35.68, "lng": 139.69, "showAtFrame": 60 },
+          { "lat": -33.87, "lng": 151.21, "showAtFrame": 70 }
+        ],
+        "arcs": [
+          { "from": 0, "to": 1 },
+          { "from": 1, "to": 2 },
+          { "from": 2, "to": 3 }
+        ]
+      }
+    },
+    {
+      "id": "logo-3d-reveal",
+      "type": "LogoExtrude3D",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 20 },
+      "props": {
+        "path": "M13 2 3 14h7l-1 8 11-12h-7z",
+        "title": "MOTION",
+        "startFrame": 5
+      }
+    },
+    {
+      "id": "vfx-finale",
+      "type": "ShaderBackground3D",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "variant": "light-rays",
+        "heading": "Built for the future of motion design",
+        "headingStart": 15
+      }
+    },
+    {
+      "id": "cta-outro",
+      "type": "CTASection",
+      "durationFrames": 120,
+      "transitionIn": { "type": "slide-up", "durationFrames": 15 },
+      "props": {
+        "headline": "Start Creating Today",
+        "description": "Describe your video. Let AI design it.",
+        "buttonText": "Get Started",
+        "pricingText": "Free to try",
+        "features": [
+          "2D & 3D scenes",
+          "Custom keyframe animation",
+          "VFX shaders",
+          "Instant rendering"
+        ]
+      }
+    }
+  ]
+}

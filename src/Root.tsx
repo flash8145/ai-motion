@@ -14,9 +14,25 @@ import { BentoGridDemo } from "./demo/BentoGridDemo";
 import { AnimatedCursorDemo } from "./demo/AnimatedCursorDemo";
 import { ProductRevealDemo } from "./demo/ProductRevealDemo";
 import { PremiumLaunchLibraryDemo } from "./demo/PremiumLaunchLibraryDemo";
+import {
+  FreeformAnimationDemo,
+  PathDrawSceneDemo,
+  IconMorphDemo,
+  ProcessFlowDemo,
+  WhiteboardRevealDemo,
+  LottieSceneDemo,
+} from "./demo/ExplainerScenesDemo";
+import {
+  Product3DRevealDemo,
+  ParticleFieldDemo,
+  GlobeAnimationDemo,
+  LogoExtrude3DDemo,
+  ShaderBackground3DDemo,
+} from "./demo/ThreeDScenesDemo";
 
 // ── Scene graph JSON imports ─────────────────────────────────────
 import designStudioReel from "../scene-graphs/example-design-studio-reel.json";
+import fullTestReel from "../scene-graphs/full-test-reel.json";
 
 // ── Default props for the Remotion Studio preview ────────────────
 const defaultTheme = getPreset("ModernSaaS");
@@ -134,6 +150,9 @@ const defaultProject: VideoProjectType = {
 // ── Design Studio Reel project ───────────────────────────────────
 const designStudioProject = designStudioReel as unknown as VideoProjectType;
 
+// ── Full Platform Test Reel project ──────────────────────────────
+const fullTestReelProject = fullTestReel as unknown as VideoProjectType;
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -159,6 +178,19 @@ export const RemotionRoot: React.FC = () => {
         width={1280}
         height={720}
         defaultProps={{ project: designStudioProject }}
+      />
+
+      {/* ── Full Platform Test Reel ─────────────────────────────── */}
+      <Composition
+        id="FullTestReel"
+        component={VideoProject}
+        durationInFrames={
+          fullTestReelProject.metadata.fps * fullTestReelProject.metadata.totalDurationSec
+        }
+        fps={fullTestReelProject.metadata.fps}
+        width={fullTestReelProject.metadata.width}
+        height={fullTestReelProject.metadata.height}
+        defaultProps={{ project: fullTestReelProject }}
       />
 
       {/* ── Gemini Flow Demo Compositions ───────────────────────── */}
@@ -233,6 +265,98 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={720}
         height={1280}
+      />
+
+      {/* ── Explainer / Keyframe Engine Demo Compositions ───────── */}
+      <Composition
+        id="Demo-FreeformAnimation"
+        component={FreeformAnimationDemo}
+        durationInFrames={90}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-PathDrawScene"
+        component={PathDrawSceneDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-IconMorph"
+        component={IconMorphDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-ProcessFlow"
+        component={ProcessFlowDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-WhiteboardReveal"
+        component={WhiteboardRevealDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-LottieScene"
+        component={LottieSceneDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* ── 3D / VFX Demo Compositions ───────────────────────────── */}
+      <Composition
+        id="Demo-Product3DReveal"
+        component={Product3DRevealDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-ParticleField"
+        component={ParticleFieldDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-GlobeAnimation"
+        component={GlobeAnimationDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-LogoExtrude3D"
+        component={LogoExtrude3DDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-ShaderBackground3D"
+        component={ShaderBackground3DDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
       />
     </>
   );

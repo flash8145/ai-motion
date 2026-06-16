@@ -248,6 +248,110 @@ Each scene must have:
 24. **LogoRevealOutro**
     - "startFrame": integer (optional)
 
+25. **FreeformAnimation** — use for ANY custom keyframed animation that doesn't fit a pre-built scene (After-Effects-style layer timeline: arbitrary shapes/text/images/icons each individually keyframed).
+    - "elements": array of objects (required), each:
+      - "id": string (required, unique within scene)
+      - "kind": "text" | "rect" | "circle" | "image" | "icon" (required)
+      - "content": string (text content, image URL, or icon SVG path "d", depending on kind)
+      - "initial": { "x": number, "y": number, "scale"?: number, "rotation"?: number, "opacity"?: number, "width"?: number, "height"?: number } (required, position is the element's center point in scene pixel coordinates)
+      - "tracks": array of { "property": "x"|"y"|"scale"|"rotation"|"opacity", "keyframes": Keyframe[] } (optional — animates that property over the scene's frames, overriding "initial" once keyframes start)
+      - "style": { "fontSize"?, "fontWeight"?, "color"?, "fill"?, "stroke"?, "strokeWidth"?, "borderRadius"? } (optional)
+    - "background": "theme" | "transparent" | hex color string (optional, default "transparent")
+
+26. **PathDrawScene** — use for hand-drawn timelines, map routes, signatures, or any progressively-drawn line/diagram.
+    - "paths": array of objects (required), each: { "d": string (SVG path data), "color"?: string, "strokeWidth"?: number, "startFrame"?: number, "drawDurationFrames"?: number, "fill"?: string }
+    - "viewBoxWidth": number (optional, default 1920)
+    - "viewBoxHeight": number (optional, default 1080)
+    - "heading": string (optional)
+    - "headingStart": integer (optional)
+    - "labels": array of { "text": string, "x": number, "y": number, "showAtFrame": number } (optional, point callouts along the path)
+    - "background": "theme" | "transparent" (optional)
+
+27. **IconMorph** — use to morph one icon shape into another in sequence (e.g. cursor -> gear -> checkmark), the shape-layer-path-keyframe equivalent of After Effects.
+    - "icons": array of strings (required, 2+ SVG path "d" strings, all sharing the same viewBox)
+    - "labels": array of strings (optional, one label per icon, crossfades in sync with the morph)
+    - "startFrame": integer (optional)
+    - "holdDurationFrames": integer (optional, default 40 — how long each icon holds before morphing)
+    - "morphDurationFrames": integer (optional, default 20)
+    - "size": number (optional, default 200)
+    - "color": string (optional)
+    - "viewBox": string (optional, default "0 0 24 24")
+
+28. **ProcessFlow** — use for "Step 1 -> Step 2 -> Step 3" style explainer diagrams with connected nodes.
+    - "steps": array of objects (required), each: { "icon"?: string (SVG path "d"), "emoji"?: string, "title": string, "description"?: string }
+    - "direction": "horizontal" | "vertical" (optional, default "horizontal")
+    - "heading": string (optional)
+    - "headingStart": integer (optional)
+    - "stepsStart": integer (optional, default 20)
+    - "stepStagger": integer (optional, default 35 — frames between each step's entrance)
+    - "accentColor": string (optional)
+    - "canvasWidth": number (optional, default 1920)
+    - "canvasHeight": number (optional, default 1080)
+
+29. **LottieScene** — use to embed an After-Effects-exported Lottie/Bodymovin JSON animation.
+    - "src": string (optional, URL to a Lottie JSON file — use this OR "animationData", not both)
+    - "animationData": object (optional, inline Lottie JSON if already known)
+    - "loop": boolean (optional)
+    - "playbackRate": number (optional, default 1)
+    - "width": number (optional)
+    - "height": number (optional)
+    - "background": "theme" | "transparent" (optional)
+
+30. **WhiteboardReveal** — use for hand-drawn "whiteboard explainer" style scenes: a sketch doodle draws itself on, then a title/description/icon fades in.
+    - "sketchPath": string (required, SVG path "d" for the hand-drawn doodle — e.g. a circle around a keyword, an underline, an arrow)
+    - "sketchViewBox": string (optional, default "0 0 1920 1080")
+    - "title": string (optional)
+    - "description": string (optional)
+    - "icon": string (optional, SVG path "d")
+    - "drawStartFrame": integer (optional)
+    - "drawDurationFrames": integer (optional, default 50)
+    - "contentStartFrame": integer (optional, default: shortly before the sketch finishes drawing)
+    - "accentColor": string (optional, the "ink" color)
+    - "background": "theme" | "transparent" | "paper" (optional, default "paper" — a warm off-white whiteboard color)
+
+31. **Product3DReveal** — use for a real 3D product hero shot (rotating in space, not flat 2D).
+    - "shape": "rounded-box" | "cylinder" | "sphere" (optional, default "rounded-box" — stand-in product geometry)
+    - "color": string (optional)
+    - "title": string (optional)
+    - "subtitle": string (optional)
+    - "startFrame": integer (optional)
+    - "titleStartFrame": integer (optional)
+    - "rotationSpeed": number (optional, default 0.15 — degrees/frame of continuous spin after entrance)
+    - "cameraDistance": number (optional, default 6)
+
+32. **ParticleField** — use as an ambient VFX particle background (drifting glowing dots), e.g. behind a hero headline.
+    - "count": number (optional, default 400)
+    - "color": string (optional)
+    - "spread": number (optional, default 8 — how far particles scatter from center)
+    - "speed": number (optional, default 0.6)
+    - "background": "theme" | "transparent" | hex color string (optional)
+
+33. **GlobeAnimation** — use for "global reach" / "worldwide" / "available everywhere" sections.
+    - "pins": array of { "lat": number, "lng": number, "showAtFrame"?: number } (optional)
+    - "arcs": array of { "from": integer, "to": integer } (optional, indices into "pins", draws a connecting great-circle line)
+    - "rotationSpeed": number (optional, default 0.1)
+    - "startFrame": integer (optional)
+    - "radius": number (optional, default 2)
+    - "color": string (optional)
+    - "heading": string (optional)
+    - "headingStart": integer (optional)
+
+34. **LogoExtrude3D** — use for a premium 3D logo reveal (extrudes a flat icon/logo into a 3D embossed object).
+    - "path": string (required, SVG path "d" for the logo/icon silhouette, viewBox-independent)
+    - "color": string (optional)
+    - "depth": number (optional, default 6 — extrusion depth)
+    - "startFrame": integer (optional)
+    - "title": string (optional)
+    - "titleStartFrame": integer (optional)
+
+35. **ShaderBackground3D** — use for an animated GLSL VFX background (gradient flow, light rays, or grain noise) as a full scene, optionally with a heading on top.
+    - "variant": "gradient-flow" | "light-rays" | "grain-noise" (optional, default "gradient-flow")
+    - "colorA": string (optional)
+    - "colorB": string (optional)
+    - "speed": number (optional, default 1)
+    - "heading": string (optional)
+    - "headingStart": integer (optional)
+
 ---
 
 ## Detailed Easing, Keyframes, and Camera Configs

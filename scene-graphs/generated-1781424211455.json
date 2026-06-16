@@ -1,0 +1,261 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Futuristic SaaS Launch",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "totalDurationSec": 15
+  },
+  "theme": {
+    "stylePreset": "Apple",
+    "colors": {
+      "background": "#000000",
+      "surface": "#111111",
+      "primary": "#F5F5F7",
+      "secondary": "#86868B",
+      "text": "#F5F5F7",
+      "mutedText": "#86868B",
+      "accent": "#0066CC",
+      "border": "rgba(255, 255, 255, 0.1)",
+      "charts": [
+        "#0066CC",
+        "#34C759",
+        "#FF9F0A"
+      ]
+    },
+    "typography": {
+      "headingFont": "SF Pro Display",
+      "bodyFont": "SF Pro Text",
+      "monoFont": "SF Mono"
+    },
+    "glassmorphism": true,
+    "borderRadius": 20
+  },
+  "scenes": [
+    {
+      "id": "dev-tools-showcase",
+      "type": "InteractiveCodeMockup",
+      "durationFrames": 300,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 20
+      },
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0,
+          "easing": {
+            "type": "cubic-bezier",
+            "x1": 0.16,
+            "y1": 1,
+            "x2": 0.3,
+            "y2": 1
+          }
+        },
+        {
+          "frame": 60,
+          "value": 1
+        }
+      ],
+      "camera": {
+        "type": "perspective",
+        "fov": 55,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 800
+        }
+      },
+      "textLayer": {
+        "tracking": 1,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "heading": "Build Smarter, Not Harder.",
+        "subtitle": "Intuitive APIs for seamless integration.",
+        "codeLines": [
+          "import { Database } from '@acme/db';",
+          "",
+          "async function fetchData(query: string) {",
+          "  const db = new Database();",
+          "  const result = await db.query(query);",
+          "  return result.rows;",
+          "}",
+          "",
+          "// Real-time data streaming with WebSockets",
+          "const ws = new WebSocket('wss://api.acme.com/stream');",
+          "ws.onmessage = (event) => console.log('New data:', event.data);"
+        ],
+        "fileName": "api.ts",
+        "highlightedLines": [
+          4,
+          5,
+          10
+        ],
+        "headingStart": 15,
+        "mockupStart": 60,
+        "typingSpeed": 0.8
+      }
+    },
+    {
+      "id": "database-performance-chart",
+      "type": "ChartShowcase",
+      "durationFrames": 300,
+      "transitionIn": {
+        "type": "slide-left",
+        "durationFrames": 18
+      },
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0,
+          "easing": {
+            "type": "cubic-bezier",
+            "x1": 0.16,
+            "y1": 1,
+            "x2": 0.3,
+            "y2": 1
+          }
+        },
+        {
+          "frame": 60,
+          "value": 1
+        }
+      ],
+      "camera": {
+        "type": "perspective",
+        "fov": 55,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 800
+        }
+      },
+      "textLayer": {
+        "tracking": 1,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "chartType": "line",
+        "heading": "Unrivaled Performance.",
+        "subtitle": "Experience sub-millisecond query times, globally.",
+        "data": [
+          {
+            "label": "0ms",
+            "value": 100
+          },
+          {
+            "label": "100ms",
+            "value": 95
+          },
+          {
+            "label": "200ms",
+            "value": 80
+          },
+          {
+            "label": "300ms",
+            "value": 60
+          },
+          {
+            "label": "400ms",
+            "value": 30
+          },
+          {
+            "label": "500ms",
+            "value": 10
+          }
+        ],
+        "chartWidth": 1200,
+        "chartHeight": 500,
+        "headingStart": 15,
+        "chartStart": 60,
+        "showValues": true,
+        "showLabels": true
+      }
+    },
+    {
+      "id": "customer-testimonials",
+      "type": "TestimonialCards",
+      "durationFrames": 300,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 15
+      },
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0,
+          "easing": {
+            "type": "cubic-bezier",
+            "x1": 0.16,
+            "y1": 1,
+            "x2": 0.3,
+            "y2": 1
+          }
+        },
+        {
+          "frame": 60,
+          "value": 1
+        }
+      ],
+      "staggerGroup": {
+        "children": [
+          "testimonial-0",
+          "testimonial-1",
+          "testimonial-2"
+        ],
+        "offsetFrames": 10,
+        "direction": "forward"
+      },
+      "camera": {
+        "type": "perspective",
+        "fov": 55,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 800
+        }
+      },
+      "textLayer": {
+        "tracking": 1,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "heading": "Trusted by Industry Leaders.",
+        "testimonials": [
+          {
+            "quote": "ACME's platform transformed our data workflows. The performance is simply unmatched.",
+            "name": "Jane Doe",
+            "role": "CTO",
+            "company": "InnovateX",
+            "avatarInitials": "JD",
+            "avatarColor": "#0066CC"
+          },
+          {
+            "quote": "The developer experience is fantastic. We integrated in days, not weeks.",
+            "name": "John Smith",
+            "role": "Lead Engineer",
+            "company": "GlobalTech",
+            "avatarInitials": "JS",
+            "avatarColor": "#34C759"
+          },
+          {
+            "quote": "Scalability and reliability are critical for us. ACME delivers on all fronts.",
+            "name": "Emily White",
+            "role": "VP of Product",
+            "company": "DataFlow",
+            "avatarInitials": "EW",
+            "avatarColor": "#FF9F0A"
+          }
+        ],
+        "headingStart": 15,
+        "cardsStart": 60,
+        "cardStagger": 10
+      }
+    }
+  ]
+}

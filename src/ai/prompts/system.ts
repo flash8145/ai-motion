@@ -253,7 +253,7 @@ Each scene must have:
 ## Detailed Easing, Keyframes, and Camera Configs
 
 To ensure premium motion, use:
-- "keyframes": If specified, this contains keyframe configurations for properties (mostly timing and scale values).
+- "keyframes": If specified, this must be a flat array of Keyframe objects representing scene progress (from value 0 to 1). DO NOT output keyframes as an object containing property names (like 'opacity' or 'scale'). It must be a single flat JSON array.
   Example:
   \`\`\`json
   "keyframes": [

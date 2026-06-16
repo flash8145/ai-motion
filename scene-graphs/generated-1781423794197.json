@@ -1,0 +1,322 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Futuristic SaaS Launch",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "totalDurationSec": 15
+  },
+  "theme": {
+    "stylePreset": "Apple",
+    "colors": {
+      "background": "#000000",
+      "surface": "#111111",
+      "primary": "#FFFFFF",
+      "secondary": "#86868B",
+      "text": "#F5F5F7",
+      "mutedText": "#86868B",
+      "accent": "#0066CC",
+      "border": "#2C2C2E",
+      "charts": [
+        "#0066CC",
+        "#34C759",
+        "#FF9F0A"
+      ]
+    },
+    "typography": {
+      "headingFont": "Inter",
+      "bodyFont": "Inter",
+      "monoFont": "JetBrains Mono"
+    },
+    "glassmorphism": true,
+    "borderRadius": 20
+  },
+  "scenes": [
+    {
+      "id": "dev-tools-code",
+      "type": "InteractiveCodeMockup",
+      "durationFrames": 300,
+      "transitionIn": {
+        "type": "fade",
+        "durationFrames": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "frame": 0,
+            "value": 0,
+            "easing": {
+              "type": "cubic-bezier",
+              "x1": 0.16,
+              "y1": 1,
+              "x2": 0.3,
+              "y2": 1
+            }
+          },
+          {
+            "frame": 30,
+            "value": 1
+          }
+        ],
+        "scale": [
+          {
+            "frame": 0,
+            "value": 0.9,
+            "easing": {
+              "type": "cubic-bezier",
+              "x1": 0.16,
+              "y1": 1,
+              "x2": 0.3,
+              "y2": 1
+            }
+          },
+          {
+            "frame": 30,
+            "value": 1
+          }
+        ]
+      },
+      "camera": {
+        "type": "perspective",
+        "fov": 55,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 800
+        }
+      },
+      "textLayer": {
+        "tracking": 1.5,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "heading": "Build Faster. Deploy Smarter.",
+        "subtitle": "Seamless integration with your existing stack.",
+        "codeLines": [
+          "import { Database } from '@your-saas/sdk';",
+          "",
+          "const db = new Database({",
+          "  apiKey: process.env.YOUR_SAAS_API_KEY",
+          "});",
+          "",
+          "async function getUserData(userId: string) {",
+          "  const user = await db.users.get(userId);",
+          "  return user;",
+          "}",
+          "",
+          "// Real-time data sync, powered by WebSockets"
+        ],
+        "fileName": "api.ts",
+        "highlightedLines": [
+          6,
+          7
+        ],
+        "headingStart": 15,
+        "mockupStart": 60,
+        "typingSpeed": 1.5
+      }
+    },
+    {
+      "id": "db-performance-chart",
+      "type": "ChartShowcase",
+      "durationFrames": 300,
+      "transitionIn": {
+        "type": "slide-left",
+        "durationFrames": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "frame": 0,
+            "value": 0,
+            "easing": {
+              "type": "cubic-bezier",
+              "x1": 0.16,
+              "y1": 1,
+              "x2": 0.3,
+              "y2": 1
+            }
+          },
+          {
+            "frame": 30,
+            "value": 1
+          }
+        ],
+        "scale": [
+          {
+            "frame": 0,
+            "value": 0.9,
+            "easing": {
+              "type": "cubic-bezier",
+              "x1": 0.16,
+              "y1": 1,
+              "x2": 0.3,
+              "y2": 1
+            }
+          },
+          {
+            "frame": 30,
+            "value": 1
+          }
+        ]
+      },
+      "camera": {
+        "type": "perspective",
+        "fov": 55,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 800
+        }
+      },
+      "textLayer": {
+        "tracking": 1.5,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "chartType": "line",
+        "heading": "Unrivaled Database Performance.",
+        "subtitle": "Real-time insights, zero latency.",
+        "data": [
+          {
+            "label": "0ms",
+            "value": 100
+          },
+          {
+            "label": "10ms",
+            "value": 98
+          },
+          {
+            "label": "20ms",
+            "value": 95
+          },
+          {
+            "label": "30ms",
+            "value": 92
+          },
+          {
+            "label": "40ms",
+            "value": 90
+          },
+          {
+            "label": "50ms",
+            "value": 88
+          },
+          {
+            "label": "60ms",
+            "value": 85
+          }
+        ],
+        "chartWidth": 1200,
+        "chartHeight": 500,
+        "headingStart": 15,
+        "chartStart": 60,
+        "showValues": true,
+        "showLabels": true
+      }
+    },
+    {
+      "id": "customer-testimonials",
+      "type": "TestimonialCards",
+      "durationFrames": 300,
+      "transitionIn": {
+        "type": "slide-up",
+        "durationFrames": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "frame": 0,
+            "value": 0,
+            "easing": {
+              "type": "cubic-bezier",
+              "x1": 0.16,
+              "y1": 1,
+              "x2": 0.3,
+              "y2": 1
+            }
+          },
+          {
+            "frame": 30,
+            "value": 1
+          }
+        ],
+        "scale": [
+          {
+            "frame": 0,
+            "value": 0.9,
+            "easing": {
+              "type": "cubic-bezier",
+              "x1": 0.16,
+              "y1": 1,
+              "x2": 0.3,
+              "y2": 1
+            }
+          },
+          {
+            "frame": 30,
+            "value": 1
+          }
+        ]
+      },
+      "staggerGroup": {
+        "children": [
+          "testimonial-card-0",
+          "testimonial-card-1",
+          "testimonial-card-2"
+        ],
+        "offsetFrames": 10,
+        "direction": "forward"
+      },
+      "camera": {
+        "type": "perspective",
+        "fov": 55,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 800
+        }
+      },
+      "textLayer": {
+        "tracking": 1.5,
+        "maskReveal": true,
+        "variableWeight": true
+      },
+      "props": {
+        "heading": "Trusted by Industry Leaders.",
+        "testimonials": [
+          {
+            "quote": "Our development cycles have been cut in half. The performance is simply unmatched.",
+            "name": "Alex Chen",
+            "role": "CTO",
+            "company": "InnovateX",
+            "avatarInitials": "AC",
+            "avatarColor": "#0066CC"
+          },
+          {
+            "quote": "The real-time data capabilities transformed our user experience overnight.",
+            "name": "Sarah Lee",
+            "role": "Lead Engineer",
+            "company": "DataFlow Solutions",
+            "avatarInitials": "SL",
+            "avatarColor": "#34C759"
+          },
+          {
+            "quote": "From integration to deployment, the developer experience is truly premium.",
+            "name": "Michael Brown",
+            "role": "VP of Engineering",
+            "company": "GlobalTech",
+            "avatarInitials": "MB",
+            "avatarColor": "#FF9F0A"
+          }
+        ],
+        "headingStart": 15,
+        "cardsStart": 60,
+        "cardStagger": 10
+      }
+    }
+  ]
+}

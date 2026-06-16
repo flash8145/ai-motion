@@ -12,10 +12,14 @@ import { SPRING_PRESETS } from "../animation/springs";
 
 interface LogoRevealOutroProps {
   startFrame?: number; // default 5
+  title?: string;
+  subtitle?: string;
 }
 
 export const LogoRevealOutro: React.FC<LogoRevealOutroProps> = ({
   startFrame = 5,
+  title,
+  subtitle,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -137,34 +141,38 @@ export const LogoRevealOutro: React.FC<LogoRevealOutroProps> = ({
           </div>
         </div>
 
-        {/* "SDS" wordmark */}
-        <div
-          style={{
-            marginTop: 30,
-            fontSize: 72,
-            fontWeight: 800,
-            fontFamily: theme.resolvedFonts.heading,
-            color: theme.colors.mutedText + "66",
-            lineHeight: 1,
-          }}
-        >
-          SDS
-        </div>
+        {/* Title wordmark */}
+        {title && (
+          <div
+            style={{
+              marginTop: 30,
+              fontSize: 72,
+              fontWeight: 800,
+              fontFamily: theme.resolvedFonts.heading,
+              color: theme.colors.mutedText + "66",
+              lineHeight: 1,
+            }}
+          >
+            {title}
+          </div>
+        )}
 
-        {/* "SANDYDESIGNSTUDIO" tagline */}
-        <div
-          style={{
-            marginTop: 12,
-            fontSize: 14,
-            fontWeight: 600,
-            letterSpacing: 6,
-            textTransform: "uppercase" as const,
-            fontFamily: theme.resolvedFonts.body,
-            color: theme.colors.mutedText + "4D",
-          }}
-        >
-          SANDYDESIGNSTUDIO
-        </div>
+        {/* Subtitle tagline */}
+        {subtitle && (
+          <div
+            style={{
+              marginTop: 12,
+              fontSize: 14,
+              fontWeight: 600,
+              letterSpacing: 6,
+              textTransform: "uppercase" as const,
+              fontFamily: theme.resolvedFonts.body,
+              color: theme.colors.mutedText + "4D",
+            }}
+          >
+            {subtitle}
+          </div>
+        )}
       </AbsoluteFill>
     </AbsoluteFill>
   );

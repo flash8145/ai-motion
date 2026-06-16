@@ -78,32 +78,77 @@ export async function generateSceneGraph(
   }
 
   // Schema validation
-  const schemaResult = validateSchema(parsed);
+  let schemaResult = validateSchema(parsed);
+  let wasRepaired = false;
+  let repairLog: string[] = [];
+
   if (!schemaResult.valid) {
+    wasRepaired = true;
+    repairLog.push(...schemaResult.errors);
+    
     // Try auto-repair
     const repaired = await autoRepair(parsed, schemaResult.errors, provider);
-    return {
-      project: repaired.project,
-      wasRepaired: true,
-      repairLog: repaired.log
-    };
+    parsed = repaired.project;
+
+    // Validate repaired output
+    const secondSchemaResult = validateSchema(parsed);
+    if (!secondSchemaResult.valid) {
+      repairLog.push("Second schema validation failed, cleaning invalid optional properties...");
+      repairLog.push(...secondSchemaResult.errors);
+      parsed = cleanInvalidOptionalProperties(parsed, secondSchemaResult.errors);
+    }
   }
 
   // Semantic validation
-  const semanticResult = validateSceneGraph(parsed as VideoProject);
+  let semanticResult = validateSceneGraph(parsed as VideoProject);
   if (!semanticResult.valid) {
+    wasRepaired = true;
+    repairLog.push(...semanticResult.errors);
+    
     const repaired = await autoRepair(parsed, semanticResult.errors, provider);
-    return {
-      project: repaired.project,
-      wasRepaired: true,
-      repairLog: repaired.log
-    };
+    parsed = repaired.project;
+
+    // Validate repaired output
+    const secondSemanticResult = validateSceneGraph(parsed as VideoProject);
+    if (!secondSemanticResult.valid) {
+      repairLog.push("Second semantic validation failed, cleaning invalid optional properties...");
+      repairLog.push(...secondSemanticResult.errors);
+      parsed = cleanInvalidOptionalProperties(parsed, secondSemanticResult.errors);
+    }
   }
 
   return {
     project: parsed as VideoProject,
-    wasRepaired: false
+    wasRepaired,
+    repairLog: wasRepaired ? repairLog : undefined
   };
+}
+
+function cleanInvalidOptionalProperties(project: any, errors: string[]): any {
+  // Deep clone project to avoid mutating the original object
+  const cleaned = JSON.parse(JSON.stringify(project));
+  
+  for (const error of errors) {
+    // AJV errors look like: "/scenes/0/keyframes: must be array" or similar
+    const match = error.match(/^\/scenes\/(\d+)\/([a-zA-Z0-9_]+)/);
+    if (match) {
+      const sceneIndex = parseInt(match[1], 10);
+      const propertyName = match[2];
+      
+      // Only delete optional top-level properties of the scene
+      const optionalProperties = ["keyframes", "camera", "staggerGroup", "textLayer", "transitionIn", "overlays"];
+      if (
+        optionalProperties.includes(propertyName) &&
+        cleaned.scenes &&
+        cleaned.scenes[sceneIndex] &&
+        cleaned.scenes[sceneIndex][propertyName] !== undefined
+      ) {
+        delete cleaned.scenes[sceneIndex][propertyName];
+      }
+    }
+  }
+  
+  return cleaned;
 }
 
 function buildUserPrompt(request: GenerationRequest): string {

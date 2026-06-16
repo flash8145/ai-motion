@@ -35,9 +35,6 @@ import { TiltedCardCarousel } from "../scenes/TiltedCardCarousel";
 import { CircleMotifTransition } from "../scenes/CircleMotifTransition";
 import { LogoRevealOutro } from "../scenes/LogoRevealOutro";
 
-// ── Persistent overlay ───────────────────────────────────────────
-import { SocialBadge } from "../components/SocialBadge";
-
 // ── Overlay components ───────────────────────────────────────────
 import { TextOverlay } from "../overlays/TextOverlay";
 import { CursorOverlay } from "../overlays/CursorOverlay";
@@ -402,6 +399,8 @@ function renderScene(scene: Scene): React.ReactNode {
       return (
         <LogoRevealOutro
           startFrame={props.startFrame as number | undefined}
+          title={props.title as string | undefined}
+          subtitle={props.subtitle as string | undefined}
         />
       );
 
@@ -558,9 +557,6 @@ export const VideoProject: React.FC<VideoProjectProps> = ({ project }) => {
             </SceneWrapper>
           </Sequence>
         ))}
-
-        {/* Persistent social badge overlay (rendered above all scenes) */}
-        <SocialBadge />
 
         {/* Audio track */}
         {audio?.musicUrl && (

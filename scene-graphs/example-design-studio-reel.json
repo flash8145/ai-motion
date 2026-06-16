@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "metadata": {
-    "title": "Sandy Design Studio - Instagram Reel",
+    "title": "Design Studio - Promo Reel",
     "width": 1280,
     "height": 720,
     "fps": 30,
@@ -95,7 +95,9 @@
       "durationFrames": 120,
       "transitionIn": { "type": "fade", "durationFrames": 20 },
       "props": {
-        "startFrame": 5
+        "startFrame": 5,
+        "title": "DESIGN",
+        "subtitle": "STUDIO"
       }
     }
   ]

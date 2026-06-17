@@ -189,7 +189,7 @@ export const RemotionRoot: React.FC = () => {
         id="VideoProject"
         component={VideoProject}
         durationInFrames={
-          defaultProject.metadata.fps * defaultProject.metadata.totalDurationSec
+          Math.round(defaultProject.metadata.fps * defaultProject.metadata.totalDurationSec)
         }
         fps={defaultProject.metadata.fps}
         width={defaultProject.metadata.width}
@@ -213,7 +213,7 @@ export const RemotionRoot: React.FC = () => {
         id="FullTestReel"
         component={VideoProject}
         durationInFrames={
-          fullTestReelProject.metadata.fps * fullTestReelProject.metadata.totalDurationSec
+          Math.round(fullTestReelProject.metadata.fps * fullTestReelProject.metadata.totalDurationSec)
         }
         fps={fullTestReelProject.metadata.fps}
         width={fullTestReelProject.metadata.width}
@@ -226,7 +226,7 @@ export const RemotionRoot: React.FC = () => {
         id="DarkNeonReel"
         component={VideoProject}
         durationInFrames={
-          darkNeonReelProject.metadata.fps * darkNeonReelProject.metadata.totalDurationSec
+          Math.round(darkNeonReelProject.metadata.fps * darkNeonReelProject.metadata.totalDurationSec)
         }
         fps={darkNeonReelProject.metadata.fps}
         width={darkNeonReelProject.metadata.width}
@@ -239,7 +239,7 @@ export const RemotionRoot: React.FC = () => {
         id="YouMotion-CleanOpener"
         component={VideoProject}
         durationInFrames={
-          youmotionCleanOpenerProject.metadata.fps * youmotionCleanOpenerProject.metadata.totalDurationSec
+          Math.round(youmotionCleanOpenerProject.metadata.fps * youmotionCleanOpenerProject.metadata.totalDurationSec)
         }
         fps={youmotionCleanOpenerProject.metadata.fps}
         width={youmotionCleanOpenerProject.metadata.width}
@@ -252,7 +252,7 @@ export const RemotionRoot: React.FC = () => {
         id="HeyLemon-Style"
         component={VideoProject}
         durationInFrames={
-          heylemonStyleProject.metadata.fps * heylemonStyleProject.metadata.totalDurationSec
+          Math.round(heylemonStyleProject.metadata.fps * heylemonStyleProject.metadata.totalDurationSec)
         }
         fps={heylemonStyleProject.metadata.fps}
         width={heylemonStyleProject.metadata.width}

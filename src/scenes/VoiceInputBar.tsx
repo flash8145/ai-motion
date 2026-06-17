@@ -13,10 +13,47 @@ interface VoiceInputBarProps {
   headline?: string;
   sectionLabel?: string;
   promptText?: string;
+  appIcon?: string;
   headlineStart?: number;
   labelStart?: number;
   barStart?: number;
 }
+
+const renderAppIcon = (icon: string) => {
+  if (icon === "🌸") {
+    return (
+      <div style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        fontSize: "inherit",
+        lineHeight: 1,
+      }}>
+        🌸
+      </div>
+    );
+  }
+  // Custom fallback for Lemon logo: yellow square with white flower
+  if (icon === "lemon" || icon === "Lemon") {
+    return (
+      <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%" }}>
+        <svg width="100%" height="100%" viewBox="0 0 100 100" style={{ borderRadius: "20%" }}>
+          <rect width="100" height="100" rx="20" fill="#FFC93C" />
+          <circle cx="50" cy="50" r="12" fill="#FFF" />
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+            const rad = (angle * Math.PI) / 180;
+            const cx = 50 + 26 * Math.cos(rad);
+            const cy = 50 + 26 * Math.sin(rad);
+            return <circle key={angle} cx={cx} cy={cy} r="10" fill="#FFF" />;
+          })}
+        </svg>
+      </div>
+    );
+  }
+  return <span style={{ fontSize: "inherit", lineHeight: 1 }}>{icon}</span>;
+};
 
 /**
  * VoiceInputBar — HeyLemon-style scene showing the voice input interface.
@@ -27,6 +64,7 @@ export const VoiceInputBar: React.FC<VoiceInputBarProps> = ({
   headline = "Control your entire computer\nwithout touching it.",
   sectionLabel = "Describe your task",
   promptText = "Can you please summarize this for me?",
+  appIcon = "🌸",
   headlineStart = 5,
   labelStart = 10,
   barStart = 20,
@@ -74,6 +112,9 @@ export const VoiceInputBar: React.FC<VoiceInputBarProps> = ({
 
   // Waveform bars animation
   const waveHeights = [0.4, 0.9, 0.6, 1.0, 0.7, 0.5, 0.85, 0.65, 0.45, 0.8];
+
+  // Animate the background glow behind the bar (pulse effect)
+  const glowPulse = 0.94 + 0.06 * Math.sin(frame * 0.12);
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000000" }}>
@@ -141,6 +182,8 @@ export const VoiceInputBar: React.FC<VoiceInputBarProps> = ({
             height: 110,
             background: "linear-gradient(90deg, rgba(255,180,80,0.55) 0%, rgba(255,140,60,0.45) 50%, rgba(255,160,80,0.55) 100%)",
             pointerEvents: "none",
+            transform: `scaleY(${glowPulse})`,
+            opacity: 0.9,
           }}
         />
 
@@ -187,7 +230,9 @@ export const VoiceInputBar: React.FC<VoiceInputBarProps> = ({
           >
             {/* Top row: icon + waveform */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-              <span style={{ fontSize: 22 }}>🌸</span>
+              <div style={{ width: 22, height: 22, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {renderAppIcon(appIcon)}
+              </div>
               {/* Waveform */}
               <div style={{ display: "flex", alignItems: "center", gap: 3, height: 28 }}>
                 {waveHeights.map((h, i) => {

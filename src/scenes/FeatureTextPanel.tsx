@@ -16,10 +16,47 @@ interface FeatureTextPanelProps {
   voiceLabel?: string;
   voiceText?: string;
   barGradientColor?: string;
+  appIcon?: string;
   featureStart?: number;
   barStart?: number;
   headlineStart?: number;
 }
+
+const renderAppIcon = (icon: string) => {
+  if (icon === "🌸") {
+    return (
+      <div style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        fontSize: "inherit",
+        lineHeight: 1,
+      }}>
+        🌸
+      </div>
+    );
+  }
+  // Custom fallback for Lemon logo: yellow square with white flower
+  if (icon === "lemon" || icon === "Lemon") {
+    return (
+      <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%" }}>
+        <svg width="100%" height="100%" viewBox="0 0 100 100" style={{ borderRadius: "20%" }}>
+          <rect width="100" height="100" rx="20" fill="#FFC93C" />
+          <circle cx="50" cy="50" r="12" fill="#FFF" />
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+            const rad = (angle * Math.PI) / 180;
+            const cx = 50 + 26 * Math.cos(rad);
+            const cy = 50 + 26 * Math.sin(rad);
+            return <circle key={angle} cx={cx} cy={cy} r="10" fill="#FFF" />;
+          })}
+        </svg>
+      </div>
+    );
+  }
+  return <span style={{ fontSize: "inherit", lineHeight: 1 }}>{icon}</span>;
+};
 
 /**
  * FeatureTextPanel — Large bold text describing a feature fills most of
@@ -31,6 +68,7 @@ export const FeatureTextPanel: React.FC<FeatureTextPanelProps> = ({
   featureText = "Then turn that research\ninto polished slides,\nreports and more",
   voiceText = "Great. Add those suggestions to the research doc and turn",
   barGradientColor = "#ff9a5c",
+  appIcon = "🌸",
   featureStart = 8,
   barStart = 22,
   headlineStart = 5,
@@ -65,6 +103,9 @@ export const FeatureTextPanel: React.FC<FeatureTextPanelProps> = ({
   const displayText = voiceText.slice(0, charsVisible);
   const cursorVisible = frame % 18 < 10;
   const waveHeights = [0.5, 0.85, 0.65, 1.0, 0.75, 0.55, 0.9, 0.6];
+
+  // Animate the background glow behind the bar (pulse effect)
+  const glowPulse = 0.92 + 0.08 * Math.sin(frame * 0.12);
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
@@ -168,6 +209,8 @@ export const FeatureTextPanel: React.FC<FeatureTextPanelProps> = ({
                 background: `linear-gradient(90deg, transparent 0%, ${barGradientColor}44 25%, ${barGradientColor}44 75%, transparent 100%)`,
                 borderRadius: 14,
                 pointerEvents: "none",
+                transform: `scale(${glowPulse})`,
+                opacity: 0.9,
               }}
             />
             {/* Dark pill */}
@@ -177,13 +220,15 @@ export const FeatureTextPanel: React.FC<FeatureTextPanelProps> = ({
                 borderRadius: 16,
                 padding: "14px 18px",
                 display: "flex",
-                alignItems: "flex-start",
+                alignItems: "center",
                 gap: 12,
                 position: "relative",
                 boxShadow: "0 6px 28px rgba(0,0,0,0.2)",
               }}
             >
-              <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>🌸</span>
+              <div style={{ width: 18, height: 18, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {renderAppIcon(appIcon)}
+              </div>
               <span style={{ flex: 1, fontSize: 15, color: "#fff", fontFamily: "Inter, sans-serif", lineHeight: 1.5, fontWeight: 400 }}>
                 {displayText}
                 {cursorVisible && charsVisible < voiceText.length && (

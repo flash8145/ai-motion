@@ -836,6 +836,7 @@ function renderScene(scene: Scene): React.ReactNode {
           headline={props.headline as string | undefined}
           sectionLabel={props.sectionLabel as string | undefined}
           promptText={props.promptText as string | undefined}
+          appIcon={props.appIcon as string | undefined}
           headlineStart={props.headlineStart as number | undefined}
           labelStart={props.labelStart as number | undefined}
           barStart={props.barStart as number | undefined}
@@ -858,6 +859,8 @@ function renderScene(scene: Scene): React.ReactNode {
       return (
         <ScreenRecordingMockup
           headline={props.headline as string | undefined}
+          subHeadline={props.subHeadline as string | undefined}
+          appIcon={props.appIcon as string | undefined}
           deviceType={props.deviceType as "macbook" | "iphone" | undefined}
           screenshotSrc={props.screenshotSrc as string | undefined}
           voiceText={props.voiceText as string | undefined}
@@ -875,6 +878,7 @@ function renderScene(scene: Scene): React.ReactNode {
           featureText={props.featureText as string | undefined}
           voiceText={props.voiceText as string | undefined}
           barGradientColor={props.barGradientColor as string | undefined}
+          appIcon={props.appIcon as string | undefined}
           featureStart={props.featureStart as number | undefined}
           barStart={props.barStart as number | undefined}
           headlineStart={props.headlineStart as number | undefined}

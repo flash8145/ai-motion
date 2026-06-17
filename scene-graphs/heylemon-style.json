@@ -5,7 +5,7 @@
     "width": 720,
     "height": 1280,
     "fps": 30,
-    "totalDurationSec": 42
+    "totalDurationSec": 25.33333
   },
   "theme": {
     "stylePreset": "Apple",
@@ -111,6 +111,7 @@
       "transitionIn": { "type": "fade", "durationFrames": 10 },
       "props": {
         "headline": "Control your entire computer\nwithout touching it.",
+        "subHeadline": "Reply to emails 9x faster",
         "deviceType": "macbook",
         "voiceText": "Hey Lemon, I forgot to do the report he's asking for",
         "barGradientColor": "#ff9a5c",

@@ -49,6 +49,8 @@ import {
 // ── Scene graph JSON imports ─────────────────────────────────────
 import designStudioReel from "../scene-graphs/example-design-studio-reel.json";
 import fullTestReel from "../scene-graphs/full-test-reel.json";
+import darkNeonReel from "../scene-graphs/dark-neon-reel.json";
+import youmotionCleanOpener from "../scene-graphs/youmotion-clean-opener.json";
 
 // ── Default props for the Remotion Studio preview ────────────────
 const defaultTheme = getPreset("ModernSaaS");
@@ -169,6 +171,12 @@ const designStudioProject = designStudioReel as unknown as VideoProjectType;
 // ── Full Platform Test Reel project ──────────────────────────────
 const fullTestReelProject = fullTestReel as unknown as VideoProjectType;
 
+// ── Dark Neon Reel project ────────────────────────────────────────
+const darkNeonReelProject = darkNeonReel as unknown as VideoProjectType;
+
+// ── YouMotion Clean Opener project ─────────────────────────────────
+const youmotionCleanOpenerProject = youmotionCleanOpener as unknown as VideoProjectType;
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -207,6 +215,32 @@ export const RemotionRoot: React.FC = () => {
         width={fullTestReelProject.metadata.width}
         height={fullTestReelProject.metadata.height}
         defaultProps={{ project: fullTestReelProject }}
+      />
+
+      {/* ── Dark Neon Reel ──────────────────────────────────────── */}
+      <Composition
+        id="DarkNeonReel"
+        component={VideoProject}
+        durationInFrames={
+          darkNeonReelProject.metadata.fps * darkNeonReelProject.metadata.totalDurationSec
+        }
+        fps={darkNeonReelProject.metadata.fps}
+        width={darkNeonReelProject.metadata.width}
+        height={darkNeonReelProject.metadata.height}
+        defaultProps={{ project: darkNeonReelProject }}
+      />
+
+      {/* ── YouMotion Clean Opener ───────────────────────────────── */}
+      <Composition
+        id="YouMotion-CleanOpener"
+        component={VideoProject}
+        durationInFrames={
+          youmotionCleanOpenerProject.metadata.fps * youmotionCleanOpenerProject.metadata.totalDurationSec
+        }
+        fps={youmotionCleanOpenerProject.metadata.fps}
+        width={youmotionCleanOpenerProject.metadata.width}
+        height={youmotionCleanOpenerProject.metadata.height}
+        defaultProps={{ project: youmotionCleanOpenerProject }}
       />
 
       {/* ── Gemini Flow Demo Compositions ───────────────────────── */}

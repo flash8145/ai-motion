@@ -1,0 +1,264 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "YouMotion Clean Opener - Vertical Reel",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "totalDurationSec": 41
+  },
+  "theme": {
+    "stylePreset": "Midnight",
+    "colors": {
+      "background": "#000000",
+      "surface": "#121214",
+      "primary": "#0A84FF",
+      "secondary": "#5E5CE6",
+      "text": "#FFFFFF",
+      "mutedText": "#8E8E93",
+      "accent": "#FF375F",
+      "border": "rgba(255, 255, 255, 0.08)",
+      "charts": ["#0A84FF", "#30D158", "#FF9F0A"]
+    },
+    "typography": {
+      "headingFont": "Inter",
+      "bodyFont": "Inter",
+      "monoFont": "IBM Plex Mono"
+    },
+    "glassmorphism": true,
+    "borderRadius": 24
+  },
+  "scenes": [
+    {
+      "id": "daily-reveal",
+      "type": "TitleReveal",
+      "durationFrames": 30,
+      "transitionIn": { "type": "fade", "durationFrames": 8 },
+      "props": {
+        "headline": "Daily",
+        "headlineStart": 2,
+        "fontSize": 90
+      }
+    },
+    {
+      "id": "daily-dose-reveal",
+      "type": "TitleReveal",
+      "durationFrames": 30,
+      "transitionIn": { "type": "none", "durationFrames": 0 },
+      "props": {
+        "headline": "Daily Dose",
+        "headlineStart": 0,
+        "fontSize": 90
+      }
+    },
+    {
+      "id": "pill-vitamins-card",
+      "type": "CleanCardPromo",
+      "durationFrames": 60,
+      "transitionIn": { "type": "zoom", "durationFrames": 12 },
+      "props": {
+        "headline": "Of Vitamins",
+        "cardWidth": 580,
+        "cardHeight": 150,
+        "icon": "none",
+        "hasBorderGlow": true,
+        "borderGlowSpeed": 3
+      }
+    },
+    {
+      "id": "dont-reveal",
+      "type": "TitleReveal",
+      "durationFrames": 30,
+      "transitionIn": { "type": "fade", "durationFrames": 8 },
+      "props": {
+        "headline": "Don't",
+        "headlineStart": 2,
+        "fontSize": 90
+      }
+    },
+    {
+      "id": "dont-skip-card",
+      "type": "CleanCardPromo",
+      "durationFrames": 90,
+      "transitionIn": { "type": "zoom", "durationFrames": 12 },
+      "props": {
+        "headline": "Don't Skip",
+        "cardWidth": 580,
+        "cardHeight": 160,
+        "icon": "star",
+        "iconPosition": "right",
+        "hasBorderGlow": true,
+        "borderGlowSpeed": 4
+      }
+    },
+    {
+      "id": "aesthetic-therapy-card",
+      "type": "CleanCardPromo",
+      "durationFrames": 90,
+      "transitionIn": { "type": "slide-up", "durationFrames": 15 },
+      "props": {
+        "headline": "Aesthetic Therapy",
+        "cardWidth": 720,
+        "cardHeight": 220,
+        "icon": "none",
+        "hasBorderGlow": true,
+        "borderGlowSpeed": 2
+      }
+    },
+    {
+      "id": "plus-highlight-target",
+      "type": "CleanCardPromo",
+      "durationFrames": 30,
+      "transitionIn": { "type": "zoom", "durationFrames": 8 },
+      "props": {
+        "cardWidth": 180,
+        "cardHeight": 180,
+        "icon": "plus",
+        "hasBorderGlow": true,
+        "borderGlowSpeed": 5
+      }
+    },
+    {
+      "id": "dots-menu-button",
+      "type": "CleanCardPromo",
+      "durationFrames": 30,
+      "transitionIn": { "type": "zoom", "durationFrames": 8 },
+      "props": {
+        "cardWidth": 180,
+        "cardHeight": 180,
+        "icon": "dots",
+        "hasBorderGlow": true,
+        "borderGlowSpeed": 3
+      }
+    },
+    {
+      "id": "without-distraction-orbit",
+      "type": "CleanCardPromo",
+      "durationFrames": 60,
+      "transitionIn": { "type": "fade", "durationFrames": 10 },
+      "props": {
+        "headline": "Without Distraction",
+        "icon": "circle-ring",
+        "iconPosition": "orbit"
+      }
+    },
+    {
+      "id": "eye-focused-chill-mask",
+      "type": "EyeOutlineScene",
+      "durationFrames": 150,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "textA": "Focused",
+        "textB": "And Chill",
+        "switchFrame": 75,
+        "drawDurationFrames": 45
+      }
+    },
+    {
+      "id": "natural-rhythm-liquid",
+      "type": "ShaderBackground3D",
+      "durationFrames": 60,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "variant": "liquid-chrome",
+        "heading": "In A Natural Rhythm",
+        "speed": 1.5,
+        "headingStart": 10
+      }
+    },
+    {
+      "id": "giving-space-draw-path",
+      "type": "PathDrawScene",
+      "durationFrames": 60,
+      "transitionIn": { "type": "fade", "durationFrames": 12 },
+      "props": {
+        "heading": "Giving Space",
+        "headingStart": 5,
+        "paths": [
+          {
+            "d": "M 150 960 L 930 960",
+            "color": "#FF375F",
+            "strokeWidth": 4,
+            "drawDurationFrames": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "giving-space-neon-card",
+      "type": "CleanCardPromo",
+      "durationFrames": 90,
+      "transitionIn": { "type": "zoom", "durationFrames": 12 },
+      "props": {
+        "headline": "Giving Space",
+        "cardWidth": 580,
+        "cardHeight": 150,
+        "icon": "none"
+      }
+    },
+    {
+      "id": "thoughts-neon-card",
+      "type": "CleanCardPromo",
+      "durationFrames": 60,
+      "transitionIn": { "type": "slide-left", "durationFrames": 12 },
+      "props": {
+        "headline": "To The Thoughts",
+        "cardWidth": 680,
+        "cardHeight": 150,
+        "icon": "none"
+      }
+    },
+    {
+      "id": "moments-threads-wave",
+      "type": "ShaderBackground3D",
+      "durationFrames": 90,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "variant": "threads",
+        "heading": "And Moments",
+        "speed": 0.8,
+        "colorA": "#080808",
+        "colorB": "#FF375F",
+        "headingStart": 15
+      }
+    },
+    {
+      "id": "outro-gradient-sweep",
+      "type": "ShaderBackground3D",
+      "durationFrames": 90,
+      "transitionIn": { "type": "fade", "durationFrames": 15 },
+      "props": {
+        "variant": "aurora",
+        "speed": 1.0,
+        "colorA": "#080808",
+        "colorB": "#0AFFEF"
+      }
+    },
+    {
+      "id": "outro-branding-logo",
+      "type": "LogoRevealOutro",
+      "durationFrames": 90,
+      "transitionIn": { "type": "zoom", "durationFrames": 15 },
+      "props": {
+        "title": "youmotion",
+        "subtitle": "yourmotion.com",
+        "startFrame": 5
+      }
+    },
+    {
+      "id": "website-mockup-showcase",
+      "type": "DashboardShowcase",
+      "durationFrames": 90,
+      "transitionIn": { "type": "slide-up", "durationFrames": 15 },
+      "props": {
+        "url": "https://youmotion.com",
+        "browserWidth": 800,
+        "browserHeight": 1400,
+        "cursorKeyframes": [
+          { "frame": 15, "x": 540, "y": 800 },
+          { "frame": 45, "x": 680, "y": 620, "click": true }
+        ]
+      }
+    }
+  ]
+}

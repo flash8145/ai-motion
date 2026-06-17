@@ -62,6 +62,14 @@ import { ClickSpark, type SparkTrigger } from "../scenes/ClickSpark";
 import { PixelTransition } from "../scenes/PixelTransition";
 import { ElectricBorderOverlay } from "../overlays/ElectricBorderOverlay";
 
+// ── Dark Neon Scenes ─────────────────────────────────────────────
+import { NeonTextReveal } from "../scenes/NeonTextReveal";
+import { OrbitalCircles } from "../scenes/OrbitalCircles";
+import { NeonWaveLines, type NeonWaveLine } from "../scenes/NeonWaveLines";
+import { AppLogoReveal } from "../scenes/AppLogoReveal";
+import { CleanCardPromo } from "../scenes/CleanCardPromo";
+import { EyeOutlineScene } from "../scenes/EyeOutlineScene";
+
 // ── Overlay components ───────────────────────────────────────────
 import { TextOverlay } from "../overlays/TextOverlay";
 import { CursorOverlay } from "../overlays/CursorOverlay";
@@ -689,6 +697,101 @@ function renderScene(scene: Scene): React.ReactNode {
           durationFrames={props.durationFrames as number | undefined}
           startFrame={props.startFrame as number | undefined}
           seed={props.seed as number | undefined}
+        />
+      );
+
+    case "NeonTextReveal":
+      return (
+        <NeonTextReveal
+          text={(props.text as string) ?? "Hello"}
+          fontSize={props.fontSize as number | undefined}
+          fontWeight={props.fontWeight as number | undefined}
+          textColor={props.textColor as string | undefined}
+          glowColor={props.glowColor as string | undefined}
+          glowBlur={props.glowBlur as number | undefined}
+          cursorColor={props.cursorColor as string | undefined}
+          charStaggerFrames={props.charStaggerFrames as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          cursorSize={props.cursorSize as number | undefined}
+        />
+      );
+
+    case "OrbitalCircles":
+      return (
+        <OrbitalCircles
+          circleCount={props.circleCount as number | undefined}
+          ringRadius={props.ringRadius as number | undefined}
+          circleSize={props.circleSize as number | undefined}
+          strokeColor={props.strokeColor as string | undefined}
+          strokeWidth={props.strokeWidth as number | undefined}
+          activeIndex={props.activeIndex as number | undefined}
+          eclipseColorA={props.eclipseColorA as string | undefined}
+          eclipseColorB={props.eclipseColorB as string | undefined}
+          centerText={props.centerText as string | undefined}
+          centerTextColor={props.centerTextColor as string | undefined}
+          centerTextSize={props.centerTextSize as number | undefined}
+          staggerFrames={props.staggerFrames as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+        />
+      );
+
+    case "NeonWaveLines":
+      return (
+        <NeonWaveLines
+          waves={props.waves as NeonWaveLine[] | undefined}
+          canvasWidth={props.canvasWidth as number | undefined}
+          canvasHeight={props.canvasHeight as number | undefined}
+          glowBlur={props.glowBlur as number | undefined}
+          centerY={props.centerY as number | undefined}
+        />
+      );
+
+    case "AppLogoReveal":
+      return (
+        <AppLogoReveal
+          logoSrc={(props.logoSrc as string) ?? ""}
+          logoSize={props.logoSize as number | undefined}
+          logoStartFrame={props.logoStartFrame as number | undefined}
+          logoGlowColor={props.logoGlowColor as string | undefined}
+          label={props.label as string | undefined}
+          labelColor={props.labelColor as string | undefined}
+          labelSize={props.labelSize as number | undefined}
+          labelStartFrame={props.labelStartFrame as number | undefined}
+          labelStagger={props.labelStagger as number | undefined}
+          bottomText={props.bottomText as string | undefined}
+          bottomTextColor={props.bottomTextColor as string | undefined}
+          bottomTextSize={props.bottomTextSize as number | undefined}
+          bottomTextStartFrame={props.bottomTextStartFrame as number | undefined}
+        />
+      );
+
+    case "CleanCardPromo":
+      return (
+        <CleanCardPromo
+          headline={props.headline as string | undefined}
+          subtitle={props.subtitle as string | undefined}
+          cardWidth={props.cardWidth as number | undefined}
+          cardHeight={props.cardHeight as number | undefined}
+          hasBorderGlow={props.hasBorderGlow as boolean | undefined}
+          borderGlowSpeed={props.borderGlowSpeed as number | undefined}
+          icon={props.icon as "none" | "star" | "plus" | "dots" | "circle-ring" | undefined}
+          iconPosition={props.iconPosition as "top" | "left" | "right" | "orbit" | undefined}
+          startFrame={props.startFrame as number | undefined}
+          themeBackground={props.themeBackground as boolean | undefined}
+          glowColor={props.glowColor as string | undefined}
+        />
+      );
+
+    case "EyeOutlineScene":
+      return (
+        <EyeOutlineScene
+          textA={(props.textA as string) ?? ""}
+          textB={props.textB as string | undefined}
+          switchFrame={props.switchFrame as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          drawDurationFrames={props.drawDurationFrames as number | undefined}
+          borderColor={props.borderColor as string | undefined}
+          capsuleColor={props.capsuleColor as string | undefined}
         />
       );
 

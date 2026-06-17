@@ -61,6 +61,14 @@ import { VariableProximity } from "../scenes/VariableProximity";
 import { ClickSpark } from "../scenes/ClickSpark";
 import { PixelTransition } from "../scenes/PixelTransition";
 
+// ── Dark Neon Scenes ─────────────────────────────────────────────
+import { NeonTextReveal } from "../scenes/NeonTextReveal";
+import { OrbitalCircles } from "../scenes/OrbitalCircles";
+import { NeonWaveLines } from "../scenes/NeonWaveLines";
+import { AppLogoReveal } from "../scenes/AppLogoReveal";
+import { CleanCardPromo } from "../scenes/CleanCardPromo";
+import { EyeOutlineScene } from "../scenes/EyeOutlineScene";
+
 /**
  * Master registry of all available scene components.
  * Keys must match the `type` field in Scene Graph JSON.
@@ -121,6 +129,14 @@ export const SceneRegistry: Record<string, React.FC<any>> = {
   VariableProximity,
   ClickSpark,
   PixelTransition,
+
+  // Phase 8 — Dark Neon scenes
+  NeonTextReveal,
+  OrbitalCircles,
+  NeonWaveLines,
+  AppLogoReveal,
+  CleanCardPromo,
+  EyeOutlineScene,
 };
 
 export type SceneRegistryKey = keyof typeof SceneRegistry;

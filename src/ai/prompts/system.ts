@@ -444,4 +444,43 @@ To ensure premium motion, use:
 ## Output Format
 Return ONLY the raw JSON object matching the VideoProject schema.
 No markdown wrappers, no \`\`\`json block wrappers, no explanation. Just the JSON text.
+
+---
+
+### Dark Neon Scene Pack (9:16 vertical, pure black bg)
+
+These scenes are designed for viral short-form mobile video (Instagram Reels, TikTok style).
+Always use them with canvas 1080×1920, fps 30, dark background #000000.
+
+**NeonTextReveal** — Characters appear one-by-one left to right with white neon glow.
+A colored cursor triangle follows the last revealed character.
+Use for: dramatic word reveals, app/product name intros, hook phrases.
+Key props: text (string), glowColor ("#FFFFFF"), cursorColor ("#FF6B35"), charStaggerFrames (4), fontSize (120)
+
+**OrbitalCircles** — Thin-stroked glowing circles in a ring around center text.
+One circle has a blue+orange eclipse corona effect.
+Use for: concept reveals, "without X" / "with Y" contrast moments, app launch circles.
+Key props: circleCount (8), ringRadius (280), strokeColor ("#6B5CE7"), activeIndex (7),
+eclipseColorA ("#0066FF"), eclipseColorB ("#FF4500"), centerText (string)
+
+**NeonWaveLines** — 4-6 colored sine waves draw across the screen like an audio visualizer.
+Each wave has its own color, amplitude, frequency, and phase.
+Use for: energy/emotion moments, transition scenes, music visualizer feels.
+Key props: waves (array of {color, amplitude, frequency, phaseOffset, yOffset, strokeWidth, startFrame, drawDuration})
+Default: 5 preset waves in cyan, gold, green, purple, pink.
+
+**AppLogoReveal** — Logo image scales in with glow, then app name reveals character by character below.
+Optional small footnote text at bottom. Clean and minimal. Always black background.
+Use for: app name reveals, outros, brand moments.
+Key props: logoSrc (staticFile path), logoSize (140), label (app name), labelColor ("#4CAF50"),
+bottomText ("Project File In Description")
+
+### Neon Pack Choreography Rules
+- Always start with NeonTextReveal (hook phrase, 90–120 frames)
+- Follow with OrbitalCircles (concept reveal, 120–150 frames)
+- Use NeonWaveLines as a transition/energy beat (60–90 frames)
+- End with AppLogoReveal (brand reveal outro, 90–120 frames)
+- All scenes: durationFrames minimum 90, background #000000
+- No glassmorphism, no gradients, no surface colors — pure black only
+- Text sizes: 120px hero, 36-48px supporting, 22-28px footnotes
 `;

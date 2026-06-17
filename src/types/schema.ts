@@ -59,7 +59,14 @@ export type SceneType =
   | "TrueFocus"
   | "VariableProximity"
   | "ClickSpark"
-  | "PixelTransition";
+  | "PixelTransition"
+  // Dark Neon Pack
+  | "NeonTextReveal"
+  | "OrbitalCircles"
+  | "NeonWaveLines"
+  | "AppLogoReveal"
+  | "CleanCardPromo"
+  | "EyeOutlineScene";
 
 // ─── Transition Types ────────────────────────────────────────────
 export type TransitionType =

@@ -1,0 +1,105 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Dark Neon Test Reel",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "totalDurationSec": 16
+  },
+  "theme": {
+    "stylePreset": "Futuristic",
+    "colors": {
+      "background": "#000000",
+      "surface": "#0A0A0A",
+      "primary": "#6B5CE7",
+      "secondary": "#00FFFF",
+      "text": "#FFFFFF",
+      "mutedText": "#888888",
+      "accent": "#FF6B35",
+      "border": "rgba(255,255,255,0.05)",
+      "charts": ["#00FFFF", "#FFD700", "#00FF88", "#CC66FF", "#FF66CC"]
+    },
+    "typography": {
+      "headingFont": "Inter",
+      "bodyFont": "Inter",
+      "monoFont": "Fira Code"
+    },
+    "glassmorphism": false,
+    "borderRadius": 0
+  },
+  "scenes": [
+    {
+      "id": "neon-text-hook",
+      "type": "NeonTextReveal",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 8 },
+      "props": {
+        "text": "Don't Skip",
+        "fontSize": 110,
+        "fontWeight": 300,
+        "textColor": "#FFFFFF",
+        "glowColor": "#FFFFFF",
+        "glowBlur": 20,
+        "cursorColor": "#FF6B35",
+        "charStaggerFrames": 5,
+        "startFrame": 8,
+        "cursorSize": 40
+      }
+    },
+    {
+      "id": "orbital-concept",
+      "type": "OrbitalCircles",
+      "durationFrames": 150,
+      "transitionIn": { "type": "fade", "durationFrames": 12 },
+      "props": {
+        "circleCount": 8,
+        "ringRadius": 280,
+        "circleSize": 90,
+        "strokeColor": "#6B5CE7",
+        "strokeWidth": 1.5,
+        "activeIndex": 7,
+        "eclipseColorA": "#0066FF",
+        "eclipseColorB": "#FF4500",
+        "centerText": "Without Distraction",
+        "centerTextColor": "#FFFFFF",
+        "centerTextSize": 34,
+        "staggerFrames": 8,
+        "startFrame": 5
+      }
+    },
+    {
+      "id": "wave-energy",
+      "type": "NeonWaveLines",
+      "durationFrames": 90,
+      "transitionIn": { "type": "fade", "durationFrames": 10 },
+      "props": {
+        "canvasWidth": 1080,
+        "canvasHeight": 1920,
+        "glowBlur": 5,
+        "centerY": 960
+      }
+    },
+    {
+      "id": "logo-outro",
+      "type": "AppLogoReveal",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 10 },
+      "props": {
+        "logoSrc": "gmail-logo.png",
+        "logoSize": 140,
+        "logoStartFrame": 8,
+        "logoGlowColor": "rgba(255,255,255,0.12)",
+        "label": "Gmail",
+        "labelColor": "#4CAF50",
+        "labelSize": 28,
+        "labelStartFrame": 28,
+        "labelStagger": 3,
+        "bottomText": "Project File In Description",
+        "bottomTextColor": "#888888",
+        "bottomTextSize": 22,
+        "bottomTextStartFrame": 65
+      }
+    }
+  ]
+}

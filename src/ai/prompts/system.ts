@@ -344,13 +344,49 @@ Each scene must have:
     - "title": string (optional)
     - "titleStartFrame": integer (optional)
 
-35. **ShaderBackground3D** — use for an animated GLSL VFX background (gradient flow, light rays, or grain noise) as a full scene, optionally with a heading on top.
-    - "variant": "gradient-flow" | "light-rays" | "grain-noise" (optional, default "gradient-flow")
+35. **ShaderBackground3D** — use for an animated GLSL VFX background as a full scene, optionally with a heading on top.
+    - "variant": "gradient-flow" | "light-rays" | "grain-noise" | "aurora" | "metaballs" (optional, default "gradient-flow")
     - "colorA": string (optional)
     - "colorB": string (optional)
     - "speed": number (optional, default 1)
     - "heading": string (optional)
     - "headingStart": integer (optional)
+
+36. **GlitchTextReveal** — use for a tech/cyberpunk-style headline reveal (RGB-channel-split glitch settling into clean text).
+    - "headline": string (required)
+    - "subtitle": string (optional)
+    - "startFrame": integer (optional)
+    - "glitchDurationFrames": integer (optional, default 35)
+    - "fontSize": number (optional, default 88)
+    - "color": string (optional)
+
+37. **ShinyTextSweep** — use for a premium metallic shine sweeping across a headline (e.g. behind a CTA or hero statement).
+    - "text": string (required)
+    - "subtitle": string (optional)
+    - "startFrame": integer (optional)
+    - "sweepDurationFrames": integer (optional, default 45)
+    - "loop": boolean (optional, default false — set true for an ongoing ambient shimmer)
+    - "loopGapFrames": integer (optional, default 60)
+    - "fontSize": number (optional, default 88)
+    - "baseColor": string (optional)
+    - "shineColor": string (optional, default "#FFFFFF")
+
+38. **DecryptText** — use for a "decrypting" / terminal-style text reveal where characters scramble through random glyphs before resolving.
+    - "text": string (required)
+    - "subtitle": string (optional)
+    - "startFrame": integer (optional)
+    - "scrambleDurationFrames": integer (optional, default 25)
+    - "charStagger": integer (optional, default 2)
+    - "fontSize": number (optional, default 72)
+    - "color": string (optional)
+
+39. **LogoMarquee** — use for an infinitely-scrolling "trusted by" / partner-logos strip.
+    - "items": array of strings (required, company names or short labels — logos are not rendered as images, only text labels)
+    - "heading": string (optional, e.g. "Trusted by teams at")
+    - "speed": number (optional, default 2 — pixels per frame)
+    - "itemGap": number (optional, default 80)
+    - "fontSize": number (optional, default 36)
+    - "direction": "left" | "right" (optional, default "left")
 
 ---
 

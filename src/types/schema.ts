@@ -51,7 +51,15 @@ export type SceneType =
   | "ParticleField"
   | "GlobeAnimation"
   | "LogoExtrude3D"
-  | "ShaderBackground3D";
+  | "ShaderBackground3D"
+  | "GlitchTextReveal"
+  | "ShinyTextSweep"
+  | "DecryptText"
+  | "LogoMarquee"
+  | "TrueFocus"
+  | "VariableProximity"
+  | "ClickSpark"
+  | "PixelTransition";
 
 // ─── Transition Types ────────────────────────────────────────────
 export type TransitionType =
@@ -62,7 +70,7 @@ export type TransitionType =
   | "none";
 
 // ─── Overlay Types ───────────────────────────────────────────────
-export type OverlayType = "text" | "cursor" | "badge" | "arrow" | "zoom-focus";
+export type OverlayType = "text" | "cursor" | "badge" | "arrow" | "zoom-focus" | "electric-border";
 
 // ─── Overlay Animation Types ─────────────────────────────────────
 export type OverlayAnimationType = "pop" | "fade" | "draw-path" | "float";

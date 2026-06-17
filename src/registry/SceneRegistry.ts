@@ -51,6 +51,16 @@ import { GlobeAnimation } from "../scenes/GlobeAnimation";
 import { LogoExtrude3D } from "../scenes/LogoExtrude3D";
 import { ShaderBackground3D } from "../scenes/ShaderBackground3D";
 
+// ── Effect Library Scenes ────────────────────────────────────────
+import { GlitchTextReveal } from "../scenes/GlitchTextReveal";
+import { ShinyTextSweep } from "../scenes/ShinyTextSweep";
+import { DecryptText } from "../scenes/DecryptText";
+import { LogoMarquee } from "../scenes/LogoMarquee";
+import { TrueFocus } from "../scenes/TrueFocus";
+import { VariableProximity } from "../scenes/VariableProximity";
+import { ClickSpark } from "../scenes/ClickSpark";
+import { PixelTransition } from "../scenes/PixelTransition";
+
 /**
  * Master registry of all available scene components.
  * Keys must match the `type` field in Scene Graph JSON.
@@ -101,6 +111,16 @@ export const SceneRegistry: Record<string, React.FC<any>> = {
   GlobeAnimation,
   LogoExtrude3D,
   ShaderBackground3D,
+
+  // Phase 7 — Effect library scenes
+  GlitchTextReveal,
+  ShinyTextSweep,
+  DecryptText,
+  LogoMarquee,
+  TrueFocus,
+  VariableProximity,
+  ClickSpark,
+  PixelTransition,
 };
 
 export type SceneRegistryKey = keyof typeof SceneRegistry;

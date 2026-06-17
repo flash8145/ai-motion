@@ -51,6 +51,17 @@ import { GlobeAnimation, type GlobePin, type GlobeArc } from "../scenes/GlobeAni
 import { LogoExtrude3D } from "../scenes/LogoExtrude3D";
 import { ShaderBackground3D } from "../scenes/ShaderBackground3D";
 
+// ── Effect Library Scenes ────────────────────────────────────────
+import { GlitchTextReveal } from "../scenes/GlitchTextReveal";
+import { ShinyTextSweep } from "../scenes/ShinyTextSweep";
+import { DecryptText } from "../scenes/DecryptText";
+import { LogoMarquee } from "../scenes/LogoMarquee";
+import { TrueFocus } from "../scenes/TrueFocus";
+import { VariableProximity } from "../scenes/VariableProximity";
+import { ClickSpark, type SparkTrigger } from "../scenes/ClickSpark";
+import { PixelTransition } from "../scenes/PixelTransition";
+import { ElectricBorderOverlay } from "../overlays/ElectricBorderOverlay";
+
 // ── Overlay components ───────────────────────────────────────────
 import { TextOverlay } from "../overlays/TextOverlay";
 import { CursorOverlay } from "../overlays/CursorOverlay";
@@ -553,12 +564,131 @@ function renderScene(scene: Scene): React.ReactNode {
     case "ShaderBackground3D":
       return (
         <ShaderBackground3D
-          variant={props.variant as "gradient-flow" | "light-rays" | "grain-noise" | undefined}
+          variant={
+            props.variant as
+              | "gradient-flow"
+              | "light-rays"
+              | "grain-noise"
+              | "aurora"
+              | "metaballs"
+              | "liquid-chrome"
+              | "balatro"
+              | "threads"
+              | undefined
+          }
           colorA={props.colorA as string | undefined}
           colorB={props.colorB as string | undefined}
           speed={props.speed as number | undefined}
           heading={props.heading as string | undefined}
           headingStart={props.headingStart as number | undefined}
+        />
+      );
+
+    case "GlitchTextReveal":
+      return (
+        <GlitchTextReveal
+          headline={(props.headline as string) ?? ""}
+          subtitle={props.subtitle as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          glitchDurationFrames={props.glitchDurationFrames as number | undefined}
+          fontSize={props.fontSize as number | undefined}
+          color={props.color as string | undefined}
+        />
+      );
+
+    case "ShinyTextSweep":
+      return (
+        <ShinyTextSweep
+          text={(props.text as string) ?? ""}
+          subtitle={props.subtitle as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          sweepDurationFrames={props.sweepDurationFrames as number | undefined}
+          loop={props.loop as boolean | undefined}
+          loopGapFrames={props.loopGapFrames as number | undefined}
+          fontSize={props.fontSize as number | undefined}
+          baseColor={props.baseColor as string | undefined}
+          shineColor={props.shineColor as string | undefined}
+        />
+      );
+
+    case "DecryptText":
+      return (
+        <DecryptText
+          text={(props.text as string) ?? ""}
+          subtitle={props.subtitle as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          scrambleDurationFrames={props.scrambleDurationFrames as number | undefined}
+          charStagger={props.charStagger as number | undefined}
+          fontSize={props.fontSize as number | undefined}
+          color={props.color as string | undefined}
+          sequential={props.sequential as boolean | undefined}
+          revealDirection={props.revealDirection as "start" | "end" | "center" | undefined}
+          useOriginalCharsOnly={props.useOriginalCharsOnly as boolean | undefined}
+          characters={props.characters as string | undefined}
+        />
+      );
+
+    case "LogoMarquee":
+      return (
+        <LogoMarquee
+          items={(props.items as string[]) ?? []}
+          heading={props.heading as string | undefined}
+          speed={props.speed as number | undefined}
+          itemGap={props.itemGap as number | undefined}
+          fontSize={props.fontSize as number | undefined}
+          direction={props.direction as "left" | "right" | undefined}
+        />
+      );
+
+    case "TrueFocus":
+      return (
+        <TrueFocus
+          sentence={(props.sentence as string) ?? ""}
+          startFrame={props.startFrame as number | undefined}
+          wordDurationFrames={props.wordDurationFrames as number | undefined}
+          blurAmount={props.blurAmount as number | undefined}
+          fontSize={props.fontSize as number | undefined}
+          borderColor={props.borderColor as string | undefined}
+          glowColor={props.glowColor as string | undefined}
+        />
+      );
+
+    case "VariableProximity":
+      return (
+        <VariableProximity
+          label={(props.label as string) ?? ""}
+          startFrame={props.startFrame as number | undefined}
+          sweepDurationInFrames={props.sweepDurationInFrames as number | undefined}
+          fromWeight={props.fromWeight as number | undefined}
+          toWeight={props.toWeight as number | undefined}
+          fromWidth={props.fromWidth as number | undefined}
+          toWidth={props.toWidth as number | undefined}
+          radius={props.radius as number | undefined}
+          fontSize={props.fontSize as number | undefined}
+        />
+      );
+
+    case "ClickSpark":
+      return (
+        <ClickSpark
+          triggers={props.triggers as SparkTrigger[]}
+          sparkColor={props.sparkColor as string | undefined}
+          sparkSize={props.sparkSize as number | undefined}
+          sparkRadius={props.sparkRadius as number | undefined}
+          sparkCount={props.sparkCount as number | undefined}
+          durationFrames={props.durationFrames as number | undefined}
+        />
+      );
+
+    case "PixelTransition":
+      return (
+        <PixelTransition
+          SceneA={renderScene(props.sceneA as Scene)}
+          SceneB={renderScene(props.sceneB as Scene)}
+          gridSize={props.gridSize as number | undefined}
+          durationFrames={props.durationFrames as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          seed={props.seed as number | undefined}
         />
       );
 
@@ -638,6 +768,17 @@ function renderOverlays(overlays: OverlayLayer[]): React.ReactNode[] {
             startFrame={overlay.startTimeFrame}
             durationFrames={overlay.durationFrames}
             label={props.label as string | undefined}
+          />
+        );
+
+      case "electric-border":
+        return (
+          <ElectricBorderOverlay
+            key={overlay.id}
+            position={overlay.position}
+            startFrame={overlay.startTimeFrame}
+            durationFrames={overlay.durationFrames}
+            color={props.color as string | undefined}
           />
         );
 

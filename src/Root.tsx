@@ -29,6 +29,22 @@ import {
   LogoExtrude3DDemo,
   ShaderBackground3DDemo,
 } from "./demo/ThreeDScenesDemo";
+import {
+  GlitchTextRevealDemo,
+  ShinyTextSweepDemo,
+  DecryptTextDemo,
+  LogoMarqueeDemo,
+  AuroraBackgroundDemo,
+  MetaballsBackgroundDemo,
+  LiquidChromeBackgroundDemo,
+  BalatroBackgroundDemo,
+  ThreadsBackgroundDemo,
+  TrueFocusDemo,
+  VariableProximityDemo,
+  ClickSparkDemo,
+  PixelTransitionDemo,
+  ElectricBorderOverlayDemo,
+} from "./demo/EffectLibraryDemo";
 
 // ── Scene graph JSON imports ─────────────────────────────────────
 import designStudioReel from "../scene-graphs/example-design-studio-reel.json";
@@ -354,6 +370,120 @@ export const RemotionRoot: React.FC = () => {
         id="Demo-ShaderBackground3D"
         component={ShaderBackground3DDemo}
         durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* ── Effect Library Demo Compositions ────────────────────── */}
+      <Composition
+        id="Demo-GlitchTextReveal"
+        component={GlitchTextRevealDemo}
+        durationInFrames={90}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-ShinyTextSweep"
+        component={ShinyTextSweepDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-DecryptText"
+        component={DecryptTextDemo}
+        durationInFrames={90}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-LogoMarquee"
+        component={LogoMarqueeDemo}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-AuroraBackground"
+        component={AuroraBackgroundDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-MetaballsBackground"
+        component={MetaballsBackgroundDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-LiquidChromeBackground"
+        component={LiquidChromeBackgroundDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-BalatroBackground"
+        component={BalatroBackgroundDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-ThreadsBackground"
+        component={ThreadsBackgroundDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-TrueFocus"
+        component={TrueFocusDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-VariableProximity"
+        component={VariableProximityDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-ClickSpark"
+        component={ClickSparkDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-PixelTransition"
+        component={PixelTransitionDemo}
+        durationInFrames={120}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Demo-ElectricBorderOverlay"
+        component={ElectricBorderOverlayDemo}
+        durationInFrames={150}
         fps={30}
         width={1920}
         height={1080}

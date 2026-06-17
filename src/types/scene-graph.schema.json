@@ -140,7 +140,11 @@
             "ParticleField",
             "GlobeAnimation",
             "LogoExtrude3D",
-            "ShaderBackground3D"
+            "ShaderBackground3D",
+            "GlitchTextReveal",
+            "ShinyTextSweep",
+            "DecryptText",
+            "LogoMarquee"
           ]
         },
         "durationFrames": { "type": "integer", "minimum": 1 },
@@ -178,7 +182,7 @@
         "id": { "type": "string", "minLength": 1 },
         "type": {
           "type": "string",
-          "enum": ["text", "cursor", "badge", "arrow", "zoom-focus"]
+          "enum": ["text", "cursor", "badge", "arrow", "zoom-focus", "electric-border"]
         },
         "startTimeFrame": { "type": "integer", "minimum": 0 },
         "durationFrames": { "type": "integer", "minimum": 1 },

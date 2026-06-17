@@ -70,6 +70,15 @@ import { AppLogoReveal } from "../scenes/AppLogoReveal";
 import { CleanCardPromo } from "../scenes/CleanCardPromo";
 import { EyeOutlineScene } from "../scenes/EyeOutlineScene";
 
+// ── Phase 1 App Demo Scenes ──────────────────────────────────────
+import { AppDemoHero } from "../scenes/AppDemoHero";
+import { NotificationStack } from "../scenes/NotificationStack";
+import { VoiceInputBar } from "../scenes/VoiceInputBar";
+import { AppIconOrbit } from "../scenes/AppIconOrbit";
+import { ScreenRecordingMockup } from "../scenes/ScreenRecordingMockup";
+import { FeatureTextPanel } from "../scenes/FeatureTextPanel";
+import { AppDemoOutro } from "../scenes/AppDemoOutro";
+
 // ── Overlay components ───────────────────────────────────────────
 import { TextOverlay } from "../overlays/TextOverlay";
 import { CursorOverlay } from "../overlays/CursorOverlay";
@@ -126,24 +135,24 @@ function renderScene(scene: Scene): React.ReactNode {
           browserHeight={props.browserHeight as number | undefined}
           cursorKeyframes={
             props.cursorKeyframes as
-              | Array<{
-                  frame: number;
-                  x: number;
-                  y: number;
-                  click?: boolean;
-                }>
-              | undefined
+            | Array<{
+              frame: number;
+              x: number;
+              y: number;
+              click?: boolean;
+            }>
+            | undefined
           }
           enterFrame={props.enterFrame as number | undefined}
           highlights={
             props.highlights as
-              | Array<{
-                  text: string;
-                  x: number;
-                  y: number;
-                  showAtFrame: number;
-                }>
-              | undefined
+            | Array<{
+              text: string;
+              x: number;
+              y: number;
+              showAtFrame: number;
+            }>
+            | undefined
           }
         />
       );
@@ -261,10 +270,10 @@ function renderScene(scene: Scene): React.ReactNode {
         <SplitScreen
           layout={
             props.layout as
-              | "image-left"
-              | "image-right"
-              | "text-only"
-              | undefined
+            | "image-left"
+            | "image-right"
+            | "text-only"
+            | undefined
           }
           headline={(props.headline as string) ?? "Headline"}
           description={props.description as string | undefined}
@@ -574,15 +583,15 @@ function renderScene(scene: Scene): React.ReactNode {
         <ShaderBackground3D
           variant={
             props.variant as
-              | "gradient-flow"
-              | "light-rays"
-              | "grain-noise"
-              | "aurora"
-              | "metaballs"
-              | "liquid-chrome"
-              | "balatro"
-              | "threads"
-              | undefined
+            | "gradient-flow"
+            | "light-rays"
+            | "grain-noise"
+            | "aurora"
+            | "metaballs"
+            | "liquid-chrome"
+            | "balatro"
+            | "threads"
+            | undefined
           }
           colorA={props.colorA as string | undefined}
           colorB={props.colorB as string | undefined}
@@ -792,6 +801,99 @@ function renderScene(scene: Scene): React.ReactNode {
           drawDurationFrames={props.drawDurationFrames as number | undefined}
           borderColor={props.borderColor as string | undefined}
           capsuleColor={props.capsuleColor as string | undefined}
+        />
+      );
+
+    case "AppDemoHero":
+      return (
+        <AppDemoHero
+          brandName={props.brandName as string | undefined}
+          brandLogo={props.brandLogo as string | undefined}
+          headline={props.headline as string | undefined}
+          appIcon={props.appIcon as string | undefined}
+          appIconBg={props.appIconBg as string | undefined}
+          headlineStart={props.headlineStart as number | undefined}
+          appIconStart={props.appIconStart as number | undefined}
+        />
+      );
+
+    case "NotificationStack":
+      return (
+        <NotificationStack
+          headline={props.headline as string | undefined}
+          appName={props.appName as string | undefined}
+          appTagline={props.appTagline as string | undefined}
+          appIcon={props.appIcon as string | undefined}
+          notifications={props.notifications as Array<{ text: string; icon?: string }> | undefined}
+          cardsStart={props.cardsStart as number | undefined}
+          headlineStart={props.headlineStart as number | undefined}
+        />
+      );
+
+    case "VoiceInputBar":
+      return (
+        <VoiceInputBar
+          headline={props.headline as string | undefined}
+          sectionLabel={props.sectionLabel as string | undefined}
+          promptText={props.promptText as string | undefined}
+          headlineStart={props.headlineStart as number | undefined}
+          labelStart={props.labelStart as number | undefined}
+          barStart={props.barStart as number | undefined}
+        />
+      );
+
+    case "AppIconOrbit":
+      return (
+        <AppIconOrbit
+          headline={props.headline as string | undefined}
+          sectionHeadline={props.sectionHeadline as string | undefined}
+          icons={props.icons as Array<{ emoji: string; bg: string; label?: string }> | undefined}
+          iconsStart={props.iconsStart as number | undefined}
+          headlineStart={props.headlineStart as number | undefined}
+          labelStart={props.labelStart as number | undefined}
+        />
+      );
+
+    case "ScreenRecordingMockup":
+      return (
+        <ScreenRecordingMockup
+          headline={props.headline as string | undefined}
+          deviceType={props.deviceType as "macbook" | "iphone" | undefined}
+          screenshotSrc={props.screenshotSrc as string | undefined}
+          voiceText={props.voiceText as string | undefined}
+          barGradientColor={props.barGradientColor as string | undefined}
+          screenshotStart={props.screenshotStart as number | undefined}
+          barStart={props.barStart as number | undefined}
+          headlineStart={props.headlineStart as number | undefined}
+        />
+      );
+
+    case "FeatureTextPanel":
+      return (
+        <FeatureTextPanel
+          headline={props.headline as string | undefined}
+          featureText={props.featureText as string | undefined}
+          voiceText={props.voiceText as string | undefined}
+          barGradientColor={props.barGradientColor as string | undefined}
+          featureStart={props.featureStart as number | undefined}
+          barStart={props.barStart as number | undefined}
+          headlineStart={props.headlineStart as number | undefined}
+        />
+      );
+
+    case "AppDemoOutro":
+      return (
+        <AppDemoOutro
+          appName={props.appName as string | undefined}
+          appIcon={props.appIcon as string | undefined}
+          tagline={props.tagline as string | undefined}
+          ctaText={props.ctaText as string | undefined}
+          subText={props.subText as string | undefined}
+          brandName={props.brandName as string | undefined}
+          appIconBg={props.appIconBg as string | undefined}
+          iconStart={props.iconStart as number | undefined}
+          textStart={props.textStart as number | undefined}
+          ctaStart={props.ctaStart as number | undefined}
         />
       );
 

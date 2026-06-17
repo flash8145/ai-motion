@@ -1,0 +1,156 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "App Demo - HeyLemon Style",
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "totalDurationSec": 42
+  },
+  "theme": {
+    "stylePreset": "Apple",
+    "colors": {
+      "background": "#000000",
+      "surface": "#1a1a1a",
+      "primary": "#111111",
+      "secondary": "#555555",
+      "text": "#ffffff",
+      "mutedText": "#888888",
+      "accent": "#ff9a5c",
+      "border": "rgba(255,255,255,0.08)",
+      "charts": ["#111", "#555", "#888", "#aaa", "#ccc"]
+    },
+    "typography": {
+      "headingFont": "Inter",
+      "bodyFont": "Inter",
+      "monoFont": "Fira Code"
+    },
+    "glassmorphism": false,
+    "borderRadius": 16
+  },
+  "scenes": [
+    {
+      "id": "scene-01-hero",
+      "type": "AppDemoHero",
+      "durationFrames": 90,
+      "transitionIn": { "type": "fade", "durationFrames": 12 },
+      "props": {
+        "brandName": "techinsixty",
+        "brandLogo": "⑥",
+        "headline": "Control your entire computer\nwithout touching it.",
+        "appIcon": "🌸",
+        "appIconBg": "#1a1a1a",
+        "headlineStart": 8,
+        "appIconStart": 22
+      }
+    },
+    {
+      "id": "scene-02-notifications",
+      "type": "NotificationStack",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 10 },
+      "props": {
+        "headline": "Control your entire computer\nwithout touching it.",
+        "appName": "Lemon",
+        "appTagline": "Turn what you say\ninto what gets done",
+        "appIcon": "🌸",
+        "notifications": [
+          { "text": "Done! Your email reply is ready for review.", "icon": "🌸" },
+          { "text": "Fixed: I've rewritten your Slack message to be more concise.", "icon": "🌸" },
+          { "text": "Found it: The report is in your Downloads folder.", "icon": "🌸" },
+          { "text": "Search Complete: Here are your restaurant recommendations.", "icon": "🌸" },
+          { "text": "Updated: I've saved your writing preferences.", "icon": "🌸" }
+        ],
+        "headlineStart": 3,
+        "cardsStart": 8
+      }
+    },
+    {
+      "id": "scene-03-voice-input",
+      "type": "VoiceInputBar",
+      "durationFrames": 100,
+      "transitionIn": { "type": "fade", "durationFrames": 10 },
+      "props": {
+        "headline": "Control your entire computer\nwithout touching it.",
+        "sectionLabel": "Describe your task",
+        "promptText": "Can you please summarize this for me?",
+        "headlineStart": 3,
+        "labelStart": 8,
+        "barStart": 18
+      }
+    },
+    {
+      "id": "scene-04-icon-orbit",
+      "type": "AppIconOrbit",
+      "durationFrames": 110,
+      "transitionIn": { "type": "fade", "durationFrames": 10 },
+      "props": {
+        "headline": "Control your entire computer\nwithout touching it.",
+        "sectionHeadline": "Lemon works everywhere\nyou do",
+        "icons": [
+          { "emoji": "N", "bg": "#ffffff", "label": "Notion" },
+          { "emoji": "📧", "bg": "#EA4335", "label": "Gmail" },
+          { "emoji": "🌐", "bg": "#4285F4", "label": "Chrome" },
+          { "emoji": "M", "bg": "#0A2540", "label": "Teams" },
+          { "emoji": "🤖", "bg": "#10a37f", "label": "ChatGPT" },
+          { "emoji": "📁", "bg": "#4285F4", "label": "Drive" },
+          { "emoji": "#", "bg": "#4A154B", "label": "Slack" },
+          { "emoji": "📅", "bg": "#1a73e8", "label": "Calendar" },
+          { "emoji": "💬", "bg": "#25D366", "label": "Messages" },
+          { "emoji": "📝", "bg": "#FF6B00", "label": "Docs" }
+        ],
+        "headlineStart": 3,
+        "labelStart": 6,
+        "iconsStart": 12
+      }
+    },
+    {
+      "id": "scene-05-screen-mockup",
+      "type": "ScreenRecordingMockup",
+      "durationFrames": 110,
+      "transitionIn": { "type": "fade", "durationFrames": 10 },
+      "props": {
+        "headline": "Control your entire computer\nwithout touching it.",
+        "deviceType": "macbook",
+        "voiceText": "Hey Lemon, I forgot to do the report he's asking for",
+        "barGradientColor": "#ff9a5c",
+        "headlineStart": 3,
+        "screenshotStart": 8,
+        "barStart": 20
+      }
+    },
+    {
+      "id": "scene-06-feature-text",
+      "type": "FeatureTextPanel",
+      "durationFrames": 110,
+      "transitionIn": { "type": "fade", "durationFrames": 10 },
+      "props": {
+        "headline": "Control your entire computer\nwithout touching it.",
+        "featureText": "Then turn that research\ninto polished slides,\nreports and more",
+        "voiceText": "Great. Add those suggestions to the research doc and turn it into slides",
+        "barGradientColor": "#ff9a5c",
+        "headlineStart": 3,
+        "featureStart": 8,
+        "barStart": 24
+      }
+    },
+    {
+      "id": "scene-07-outro",
+      "type": "AppDemoOutro",
+      "durationFrames": 120,
+      "transitionIn": { "type": "fade", "durationFrames": 14 },
+      "props": {
+        "appName": "Lemon",
+        "appIcon": "🌸",
+        "tagline": "Your voice. Your computer.\nYour way.",
+        "ctaText": "Try Lemon Free",
+        "subText": "Available on macOS",
+        "brandName": "techinsixty",
+        "appIconBg": "#1a1a1a",
+        "iconStart": 6,
+        "textStart": 18,
+        "ctaStart": 32
+      }
+    }
+  ]
+}

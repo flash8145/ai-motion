@@ -51,6 +51,7 @@ import designStudioReel from "../scene-graphs/example-design-studio-reel.json";
 import fullTestReel from "../scene-graphs/full-test-reel.json";
 import darkNeonReel from "../scene-graphs/dark-neon-reel.json";
 import youmotionCleanOpener from "../scene-graphs/youmotion-clean-opener.json";
+import heylemonStyle from "../scene-graphs/heylemon-style.json";
 
 // ── Default props for the Remotion Studio preview ────────────────
 const defaultTheme = getPreset("ModernSaaS");
@@ -177,6 +178,9 @@ const darkNeonReelProject = darkNeonReel as unknown as VideoProjectType;
 // ── YouMotion Clean Opener project ─────────────────────────────────
 const youmotionCleanOpenerProject = youmotionCleanOpener as unknown as VideoProjectType;
 
+// ── HeyLemon Style project ─────────────────────────────────────────
+const heylemonStyleProject = heylemonStyle as unknown as VideoProjectType;
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -241,6 +245,19 @@ export const RemotionRoot: React.FC = () => {
         width={youmotionCleanOpenerProject.metadata.width}
         height={youmotionCleanOpenerProject.metadata.height}
         defaultProps={{ project: youmotionCleanOpenerProject }}
+      />
+
+      {/* ── HeyLemon Style ───────────────────────────────────────── */}
+      <Composition
+        id="HeyLemon-Style"
+        component={VideoProject}
+        durationInFrames={
+          heylemonStyleProject.metadata.fps * heylemonStyleProject.metadata.totalDurationSec
+        }
+        fps={heylemonStyleProject.metadata.fps}
+        width={heylemonStyleProject.metadata.width}
+        height={heylemonStyleProject.metadata.height}
+        defaultProps={{ project: heylemonStyleProject }}
       />
 
       {/* ── Gemini Flow Demo Compositions ───────────────────────── */}

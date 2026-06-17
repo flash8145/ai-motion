@@ -66,7 +66,15 @@ export type SceneType =
   | "NeonWaveLines"
   | "AppLogoReveal"
   | "CleanCardPromo"
-  | "EyeOutlineScene";
+  | "EyeOutlineScene"
+  // App Demo Pack
+  | "AppDemoHero"
+  | "NotificationStack"
+  | "VoiceInputBar"
+  | "AppIconOrbit"
+  | "ScreenRecordingMockup"
+  | "FeatureTextPanel"
+  | "AppDemoOutro";
 
 // ─── Transition Types ────────────────────────────────────────────
 export type TransitionType =

@@ -58,7 +58,7 @@ Each scene must have:
 - "id": string (unique)
 - "type": string (one of the enum values below)
 - "durationFrames": integer (total duration of scene in 60fps frames)
-- "transitionIn": object (optional, with "type": "fade" | "slide-up" | "slide-left" | "zoom" | "none", "durationFrames": integer)
+- "transitionIn": object (optional, scene ENTRANCE transition — see "Scene Transitions" below). { "type": string, "durationFrames": integer, "params"?: object }
 - "props": object (specific props for that scene type)
 - "keyframes": array of Keyframe (optional)
 - "staggerGroup": object (optional)
@@ -82,7 +82,7 @@ Each scene must have:
 
 3. **DashboardShowcase**
    - "url": string (optional, URL text shown in browser address bar)
-   - "screenshotUrl": string (optional, image URL)
+   - "screenshotUrl": string (optional — reference a provided asset as "asset:<id>"; do NOT invent a URL)
    - "browserWidth": number (optional)
    - "browserHeight": number (optional)
    - "cursorKeyframes": array of objects: { "frame": integer, "x": number, "y": number, "click"?: boolean } (optional)
@@ -388,6 +388,73 @@ Each scene must have:
     - "fontSize": number (optional, default 36)
     - "direction": "left" | "right" (optional, default "left")
 
+### Typography Pack
+Premium text-driven scenes. All are theme-aware (use "backgroundColor" to override). Pair them with a Camera modifier (e.g. CameraPushIn) for extra polish.
+
+40. **SplitTextReveal** — words slide up from behind a mask, staggered. Editorial headline entrance.
+    - "text": string (required)
+    - "fontSize": number (optional, default 96), "fontWeight": number (optional, default 800)
+    - "color", "backgroundColor": string (optional)
+    - "wordStagger": number (optional, default 4), "startFrame": number (optional)
+    - "align": "left" | "center" (optional, default center)
+
+41. **WordCascade** — words tumble in one-by-one (drop + fade). Wrap a word in *asterisks* to accent it.
+    - "text": string (required), "accentColor": string (optional)
+    - "fontSize" (72), "fontWeight" (700), "color", "backgroundColor", "wordStagger" (5), "startFrame"
+
+42. **LetterMorph** — each letter materialises from blurred/scaled/rotated into sharp.
+    - "text": string (required)
+    - "fontSize" (110), "fontWeight" (700), "color", "backgroundColor", "letterStagger" (2.5), "startFrame"
+
+43. **GradientHeadline** — bold headline with animated gradient fill, revealed behind a wipe.
+    - "text": string (required), "subtitle": string (optional)
+    - "colors": string[] (optional, gradient stops), "angle": number (optional, default 100)
+    - "fontSize" (120), "fontWeight" (800), "backgroundColor", "startFrame"
+
+44. **KineticTypography** — punchy stacked lines with mixed size/weight, each springs in.
+    - "lines": array of { "text": string, "fontSize"?: number, "fontWeight"?: number, "color"?: string, "highlight"?: string (bg bar), "align"?: "left"|"center"|"right", "motion"?: "scale"|"slide"|"pop" } (required)
+    - "backgroundColor", "startFrame", "lineStagger" (8)
+
+45. **MaskedTextReveal** — a colored bar sweeps across, revealing the headline in its wake.
+    - "text": string (required), "barColor": string (optional)
+    - "fontSize" (104), "fontWeight" (800), "color", "backgroundColor", "direction": "left"|"right" (default left), "startFrame"
+
+46. **TextExplosion** — letters converge from a scattered spiral to form the word ("assemble"), or also blow apart before the scene ends ("explode").
+    - "text": string (required), "mode": "assemble"|"explode" (default assemble)
+    - "scatter": number (optional, px, default 700), "fontSize" (120), "fontWeight" (800), "color", "backgroundColor", "startFrame", "revealFrames" (26)
+
+47. **TypewriterPro** — types each line in sequence with a blinking caret; monospace by default.
+    - "lines": string[] (required)
+    - "charsPerFrame": number (optional, default 0.6), "linePause": number (optional, default 12)
+    - "cursorColor", "color", "backgroundColor": string (optional)
+    - "fontSize" (56), "fontWeight" (500), "mono": boolean (default true), "align": "left"|"center" (default left), "startFrame"
+
+### UI Pack (framing + themed atoms)
+IMPORTANT: this platform promotes the USER'S OWN product. Do NOT fake a generic dashboard/sidebar/table. Instead FRAME the user's real screenshot/recording (BrowserWindow) and use product-agnostic, brand-themed atoms for narrative beats. All atoms inherit the theme colors. Layer cursor overlays (human-cursor, click-ripple) over BrowserWindow to demo the real product.
+
+48. **BrowserWindow** — premium browser chrome that frames the user's real product screenshot OR screen recording.
+    - "mediaSrc": string — reference a provided asset as "asset:<id>" (see AVAILABLE ASSETS in the request). NEVER invent an image/video URL. Omit if no asset fits.
+    - "mediaType": "image" | "video" (auto-detected from the referenced asset; omit when using asset refs)
+    - "url": string (address bar, e.g. "app.acme.com"), "variant": "light"|"dark" (default dark)
+    - "widthFraction": number (0–1, default 0.8), "backgroundColor", "startFrame"
+    - For tall screenshots: "scrollFrom"/"scrollTo" (% of image height), "scrollStart"/"scrollEnd" (frames)
+
+49. **NotificationToast** — themed notification toasts sliding in as a stack.
+    - "notifications": array of { "title": string, "body"?: string, "icon"?: string (emoji), "appName"?: string, "accent"?: string } (required)
+    - "position": "center"|"top-right" (default center), "backgroundColor", "startFrame", "stagger" (12)
+
+50. **CommandPalette** — a ⌘K palette: query types in, results slide up, one highlights.
+    - "query": string, "placeholder": string, "results": array of { "label": string, "icon"?: string, "hint"?: string } (required)
+    - "activeIndex": number (highlighted row), "accentColor", "backgroundColor", "startFrame", "typeSpeed" (0.7)
+
+51. **SearchBar** — prominent search field typing a query with a suggestions dropdown.
+    - "query": string, "placeholder": string, "suggestions": string[], "heading": string (optional)
+    - "accentColor", "backgroundColor", "startFrame", "typeSpeed" (0.7)
+
+52. **ChatPanel** — AI chat conversation playing out message-by-message with a typing indicator.
+    - "messages": array of { "role": "user"|"assistant", "text": string } (required)
+    - "title": string (assistant name), "accentColor", "backgroundColor", "startFrame", "messageStagger" (24), "showTyping": boolean (default true)
+
 ---
 
 ## Detailed Easing, Keyframes, and Camera Configs
@@ -438,6 +505,140 @@ To ensure premium motion, use:
     "variableWeight": true
   }
   \`\`\`
+
+---
+
+## Scene Modifiers (Camera Moves)
+
+Any scene may declare a "modifiers" array to wrap it in cinematic camera moves.
+Modifiers transform the ENTIRE scene (including its overlays) and are the single
+biggest lever for a premium, non-AI-looking result — add a subtle camera move to
+almost every hero/product/text scene.
+
+Each modifier object:
+- "type": one of the modifier types below (required)
+- "startFrame": integer (optional, scene-local, default 0)
+- "durationFrames": integer (optional, default = to end of scene)
+- "easing": EasingConfig (optional, default smooth Apple deceleration)
+- "params": object (optional, type-specific — see below)
+
+Modifiers NEST in array order: the first entry is innermost, the last is
+outermost. You can stack e.g. a slow CameraParallax around a CameraPushIn.
+
+### Camera Modifier Types and their "params":
+- **CameraPushIn** — slow zoom IN. params: fromScale (1.0), toScale (1.15), originX (50), originY (50). Use originX/Y (0–100%) to zoom toward a focal point. Great default for hero & text scenes.
+- **CameraPullOut** — slow zoom OUT to reveal. params: fromScale (1.2), toScale (1.0), originX (50), originY (50). Good for openers/establishing shots.
+- **CameraDolly** — gliding move combining zoom + travel (e.g. a rising dolly-in). params: fromScale (1.0), toScale (1.12), fromX (0), toX (0), fromY (40), toY (0).
+- **CameraPan** — horizontal sweep. params: fromX (80), toX (-80), overscan (1.12).
+- **CameraTilt** — vertical sweep with subtle perspective. params: fromY (80), toY (-80), fromTilt (6), toTilt (-2), overscan (1.14), perspective (1400).
+- **CameraOrbit** — arcs around the content in 3D (rotateY/X). params: fromYaw (-14), toYaw (14), fromPitch (0), toPitch (0), overscan (1.16), perspective (1400). Premium for product/device scenes.
+- **CameraRackFocus** — focus pull via blur. params: fromBlur (14), toBlur (0), fromScale (1.03), toScale (1.0). Start blurred → snap sharp.
+- **CameraParallax** — gentle continuous floating drift (loops, not a one-shot). params: amplitudeX (40), amplitudeY (24), periodFrames (240), overscan (1.12). Use on backgrounds.
+- **CameraWhipPan** — fast directional snap with motion blur; keep it SHORT. params: distance (900), axis ("x"|"y"), maxBlur (40), overscan (1.18). Put a ~10–14 frame one at a scene's start for an energetic entrance.
+- **CameraFollowPath** — guided tour through waypoints. params: path (array of { frame, x, y, scale? }), overscan (1.1).
+
+### Lighting Modifier Types and their "params":
+Lighting modifiers composite light ON TOP of the scene (additive "screen" blend, except SpotlightReveal which darkens). Use them for the "Apple/Stripe" polish layer — one subtle light per hero/product scene goes a long way. Don't stack more than ~2.
+- **LightSweep** — a reflective band of light glides across the frame once. params: color (#FFFFFF), angle (20), bandWidth (12), intensity (0.6). Best as a one-shot accent over logos/products (set a short durationFrames, e.g. 40).
+- **VolumetricLight** — god rays radiating from a source point. params: originX (50), originY (0), color (#FFFFFF), rayDensity (7), rotateSpeed (8), intensity (0.35).
+- **MovingGlow** — soft glow blob drifting on a loop. params: color (#5B8CFF), radius (440), amplitudeX (24), amplitudeY (16), periodFrames (200), intensity (0.5).
+- **LensBloom** — pulsing overexposed bloom + anamorphic streak. params: originX (50), originY (45), color (#FFFFFF), radius (260), intensity (0.7), pulsePeriod (90), streak (1|0).
+- **EdgeLight** — rim light along edges. params: color (#FFFFFF), side ("all"|"top"|"bottom"|"left"|"right"), thickness (16), intensity (0.45), breathe (1|0).
+- **SpotlightReveal** — darkens everything except a growing/positioned spotlight; dramatic opener. params: originX (50), originY (50), fromRadius (0), toRadius (820), feather (240), darkness (0.88).
+- **LightLeakOverlay** — warm film light leaks bleeding from edges, flickering. params: colors (["#FF7A18","#FF3D6E","#FFD15C"]), intensity (0.5), driftPeriod (220), flicker (1|0).
+- **GradientWash** — drifting colour wash tint. params: colors (["#5B8CFF","#A66BFF","#FF6F91"]), angle (120), period (300), intensity (0.4), blend ("soft-light"|"overlay"|"screen").
+
+### Depth Modifier Types and their "params":
+Depth modifiers add 3D dimensionality. Foreground decoration (particles/shapes/glass) renders IN FRONT of the scene — keep opacity tasteful. PerspectiveWarp & DepthBlur transform/focus the scene itself.
+- **MultiLayerParallax** — virtual camera pan with scene + foreground orbs drifting at different rates. params: count (12), color (#FFFFFF), panAmplitude (40), panPeriod (260), overscan (1.1), intensity (0.4), seed (5).
+- **DepthBlur** — tilt-shift shallow depth-of-field; a sharp focus band, blurred edges. params: focusY (50), focusBand (34), blur (10), shape ("vertical"|"radial").
+- **ForegroundParticles** — soft bokeh drifting in the foreground. params: count (18), color (#FFFFFF), maxSize (90), speed (0.12), intensity (0.5), seed (1).
+- **FloatingElements** — crisp geometric shapes (rings/squares/plus) floating with parallax. params: count (10), colors (array), maxSize (70), speed (0.6), intensity (0.85), seed (7).
+- **GlassDepthLayers** — frosted translucent glass panels stacked at depth, scene visible through them. params: layerCount (3), blur (12), tint ("rgba(255,255,255,0.07)"), borderColor, radius (28), parallax (16), seed (3). Pairs well with glassmorphism themes.
+- **PerspectiveWarp** — tilts the whole scene plane in 3D and settles. params: rotateX (8), rotateY (-12), perspective (1200), scale (1.06), settle (1|0).
+
+### Motion Design Modifier Types and their "params":
+Decorative neon/tech accents composited over the scene (additive "screen" blend). They dramatically raise perceived quality on dark/neon styles — use 1–2, with the theme's accent color. Keep tasteful.
+- **GlowFrame** — glowing neon border with a light arc travelling the perimeter. params: color, inset (40), thickness (3), radius (28), glow (24), pulse (1|0), travelPeriod (90).
+- **NeonLine** — glowing lines that draw in and flicker. params: lines (array of { orientation "h"|"v", pos %, start %, length %, color, thickness, glow, drawFrames, delay }).
+- **EnergyWave** — glowing SVG sine wavefronts that ripple and sweep. params: color, waveCount (2), amplitude (60), frequency (1.4), thickness (3), speed (0.06), sweep (1|0).
+- **LightRibbon** — soft aurora-like ribbon drifting across. params: colorA, colorB, yPos (50), amplitude (70), thickness (120), frequency (1.1), speed (0.05), softness (24), opacity (0.55).
+- **PulseRing** — concentric beacon rings expanding on a loop. params: originX (50), originY (50), color, ringCount (3), period (60), maxRadius (420), thickness (3).
+- **OrbitingDots** — glowing dots orbiting a tilted ellipse with depth. params: originX (50), originY (50), count (6), radiusX (260), radiusY (90), speed (0.03), color, dotSize (16), showOrbit (1|0).
+- **GridPulse** — tech grid with a glow travelling across it. params: cell (60), lineColor, glowColor, lineOpacity (0.18), period (200).
+- **ScanLine** — bright scanning bar sweeping with a trailing glow. params: color, direction ("vertical"|"horizontal"), thickness (4), period (90), trail (180), glow (24), crt (0|1).
+
+Example:
+\`\`\`json
+"modifiers": [
+  { "type": "CameraPushIn", "params": { "toScale": 1.12, "originX": 50, "originY": 40 } }
+]
+\`\`\`
+
+---
+
+## Scene Transitions
+
+Set "transitionIn" on a scene to control how it ENTERS (each scene plays back-to-back, so this is the entrance effect). Keep durations snappy (12–24 frames). Rich types accept a "params" object.
+
+Legacy (simple): "fade", "slide-up", "slide-left", "zoom", "none".
+
+Rich (component-based):
+- **scale** — scales in with overshoot. params: from (0.5), overshoot (1|0).
+- **slide** — slides in from any direction. params: direction ("up"|"down"|"left"|"right"), fade (1|0).
+- **blur** — resolves out of a heavy blur. params: blur (26), scaleFrom (1.04).
+- **morph** — oversized/blurred/skewed state morphs into place. params: scaleFrom (1.25), blur (18), skew (6).
+- **grid** — revealed behind a grid of tiles popping away (mosaic). params: rows (4), cols (7), color (defaults theme bg), stagger (3).
+- **portal** — revealed through an expanding circular portal with a glowing ring. params: originX (50), originY (50), ringColor, ringWidth (10).
+- **card-flip** — flips in on a 3D axis. params: axis ("y"|"x"), from (-90), perspective (1600).
+- **page-turn** — swings in like a turning page hinged at an edge. params: hinge ("left"|"right"), from (105), perspective (2000).
+
+Example:
+\`\`\`json
+"transitionIn": { "type": "portal", "durationFrames": 22, "params": { "ringColor": "#5B8CFF" } }
+\`\`\`
+
+---
+
+## Scene Overlays
+
+Any scene may carry an "overlays" array of elements composited on top of it
+(inside the same scene timing). Each overlay:
+- "id": string (unique, required)
+- "type": overlay type (required)
+- "startTimeFrame": integer (scene-local frame it appears)
+- "durationFrames": integer
+- "position": { "x": number, "y": number, "width"?: number, "height"?: number } — ABSOLUTE pixels in the composition (e.g. 0–1080 / 0–1920)
+- "animation": { "type": "pop"|"fade"|"draw-path"|"float", "durationFrames": integer }
+- "props": object (type-specific, below)
+
+Existing overlay types: "text", "cursor", "badge", "arrow", "zoom-focus", "electric-border".
+
+### Cursor Pack (for SaaS / product / AI-agent demos)
+Layer these over a UI scene (DashboardShowcase, InteractiveCodeMockup, ScreenRecordingMockup, etc). Positions/paths are ABSOLUTE pixels. Cursor "path" waypoints are { "x", "y", "atFrame"?: relative-to-overlay-start, "click"?: boolean, "label"?: string }; omit atFrame to auto-space evenly across durationFrames.
+- **human-cursor** — realistic pointer gliding between waypoints, pressing on clicks. props: path (array of waypoints), color, size (24), rippleColor. Set "click": true on a waypoint to click there.
+- **ai-command-cursor** — glowing AI cursor trailing a typed command pill; for voice/agent control demos. props: path, command (string, types out), accentColor, size.
+- **multi-cursor** — multiple labelled cursors (Figma multiplayer). props: cursors (array of { path, label, color }), size.
+- **drag-and-drop** — cursor grabs an item and drags it. props: from { x, y }, to { x, y }, item { label?, width?, height?, color? }, cursorColor.
+- **highlight-cursor** — cursor drag-selects a region with a glowing marquee. props: box { x, y, width, height }, color, label, cursorColor.
+- **click-ripple** — expanding ripple rings at click points (pure feedback). props: clicks (array of { x, y, atFrame? }), color, maxSize (70), rings (2), dot (true).
+
+Overlay example:
+\`\`\`json
+"overlays": [
+  {
+    "id": "cur1", "type": "human-cursor",
+    "startTimeFrame": 10, "durationFrames": 90,
+    "position": { "x": 0, "y": 0 },
+    "animation": { "type": "fade", "durationFrames": 8 },
+    "props": { "path": [
+      { "x": 200, "y": 600 },
+      { "x": 760, "y": 320, "click": true, "label": "Open" },
+      { "x": 980, "y": 540 }
+    ] }
+  }
+]
+\`\`\`
 
 ---
 

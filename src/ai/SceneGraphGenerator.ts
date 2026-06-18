@@ -5,6 +5,7 @@ import { FEW_SHOT_EXAMPLES } from "./prompts/fewShot";
 import { validateSchema } from "../validation/validateSchema";
 import { validateSceneGraph } from "../validation/validateSceneGraph";
 import { autoRepair } from "./repair/autoRepair";
+import { injectAssets, buildAssetManifest } from "./assets/injectAssets";
 import type { VideoProject } from "../types/schema";
 import type { GenerationRequest, GenerationResult } from "./types";
 
@@ -117,8 +118,12 @@ export async function generateSceneGraph(
     }
   }
 
+  // Inject the user's real product media by id ("asset:<id>" → real URL),
+  // and auto-assign any leftover assets to media-hungry scenes.
+  const project = injectAssets(parsed as VideoProject, request.assets);
+
   return {
-    project: parsed as VideoProject,
+    project,
     wasRepaired,
     repairLog: wasRepaired ? repairLog : undefined
   };
@@ -154,6 +159,7 @@ function cleanInvalidOptionalProperties(project: unknown, errors: string[]): unk
 }
 
 function buildUserPrompt(request: GenerationRequest): string {
+  const manifest = buildAssetManifest(request.assets);
   return `
 Create a premium motion graphics video for:
 
@@ -162,7 +168,7 @@ BRIEF: ${request.brief}
 STYLE: ${request.style ?? "apple"}
 DURATION: ${request.duration ?? 20} seconds
 ASPECT RATIO: ${request.aspectRatio ?? "16:9"}
-
+${manifest ? `\n${manifest}\n` : ""}
 Requirements:
 - Use ${request.style === "apple" ? "Apple" : "Google"} motion design language
 - 60fps

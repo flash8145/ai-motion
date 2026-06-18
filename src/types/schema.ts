@@ -74,18 +74,98 @@ export type SceneType =
   | "AppIconOrbit"
   | "ScreenRecordingMockup"
   | "FeatureTextPanel"
-  | "AppDemoOutro";
+  | "AppDemoOutro"
+  // Typography Pack
+  | "SplitTextReveal"
+  | "WordCascade"
+  | "LetterMorph"
+  | "GradientHeadline"
+  | "KineticTypography"
+  | "MaskedTextReveal"
+  | "TextExplosion"
+  | "TypewriterPro"
+  // UI Pack (framing + themed atoms)
+  | "BrowserWindow"
+  | "NotificationToast"
+  | "CommandPalette"
+  | "SearchBar"
+  | "ChatPanel";
+
+// ─── Modifier Types ──────────────────────────────────────────────
+// Modifiers wrap a scene (and its overlays) to apply camera moves,
+// lighting, depth, and post effects. Unlike scenes they never render
+// standalone — they transform whatever they contain.
+export type ModifierType =
+  // Camera
+  | "CameraPushIn"
+  | "CameraPullOut"
+  | "CameraDolly"
+  | "CameraPan"
+  | "CameraTilt"
+  | "CameraOrbit"
+  | "CameraRackFocus"
+  | "CameraParallax"
+  | "CameraWhipPan"
+  | "CameraFollowPath"
+  // Lighting
+  | "LightSweep"
+  | "VolumetricLight"
+  | "MovingGlow"
+  | "LensBloom"
+  | "EdgeLight"
+  | "SpotlightReveal"
+  | "LightLeakOverlay"
+  | "GradientWash"
+  // Depth
+  | "MultiLayerParallax"
+  | "DepthBlur"
+  | "ForegroundParticles"
+  | "FloatingElements"
+  | "GlassDepthLayers"
+  | "PerspectiveWarp"
+  // Motion design
+  | "GlowFrame"
+  | "NeonLine"
+  | "EnergyWave"
+  | "LightRibbon"
+  | "PulseRing"
+  | "OrbitingDots"
+  | "GridPulse"
+  | "ScanLine";
 
 // ─── Transition Types ────────────────────────────────────────────
 export type TransitionType =
+  // Legacy style-based (animation/transitions.ts)
   | "fade"
   | "slide-up"
   | "slide-left"
   | "zoom"
-  | "none";
+  | "none"
+  // Rich component-based entrance transitions (transitions/)
+  | "morph"
+  | "scale"
+  | "slide"
+  | "blur"
+  | "grid"
+  | "portal"
+  | "card-flip"
+  | "page-turn";
 
 // ─── Overlay Types ───────────────────────────────────────────────
-export type OverlayType = "text" | "cursor" | "badge" | "arrow" | "zoom-focus" | "electric-border";
+export type OverlayType =
+  | "text"
+  | "cursor"
+  | "badge"
+  | "arrow"
+  | "zoom-focus"
+  | "electric-border"
+  // Cursor pack
+  | "human-cursor"
+  | "ai-command-cursor"
+  | "multi-cursor"
+  | "drag-and-drop"
+  | "highlight-cursor"
+  | "click-ripple";
 
 // ─── Overlay Animation Types ─────────────────────────────────────
 export type OverlayAnimationType = "pop" | "fade" | "draw-path" | "float";
@@ -123,6 +203,8 @@ export interface Theme {
 export interface TransitionIn {
   type: TransitionType;
   durationFrames: number;
+  /** Type-specific config for rich transitions (direction, colors, grid size…). */
+  params?: Record<string, unknown>;
 }
 
 // ─── Overlay Position ────────────────────────────────────────────
@@ -183,6 +265,19 @@ export interface TextLayer {
   variableWeight?: boolean;
 }
 
+// ─── Scene Modifier ──────────────────────────────────────────────
+export interface SceneModifier {
+  type: ModifierType;
+  /** Scene-local frame the modifier begins on (default 0). */
+  startFrame?: number;
+  /** Frames the modifier animates over (default: to end of scene). */
+  durationFrames?: number;
+  /** Easing curve for the modifier's progress (default Apple decelerate). */
+  easing?: EasingConfig;
+  /** Modifier-specific parameters (scales, offsets, blur, path, …). */
+  params?: Record<string, unknown>;
+}
+
 // ─── Scene ───────────────────────────────────────────────────────
 export interface Scene {
   id: string;
@@ -191,6 +286,7 @@ export interface Scene {
   transitionIn?: TransitionIn;
   props: Record<string, unknown>;
   overlays?: OverlayLayer[];
+  modifiers?: SceneModifier[];
   keyframes?: Keyframe[];
   staggerGroup?: StaggerGroup;
   camera?: Camera;

@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import { VideoProject } from "./compositions/VideoProject";
 import type { VideoProject as VideoProjectType } from "./types/schema";
 import { getPreset } from "./theme/presets";
+import { componentShowcaseProject } from "./demo/componentShowcaseProject";
 
 // ── Demo compositions ────────────────────────────────────────────
 import { PromptCardDemo } from "./demo/PromptCardDemo";
@@ -184,6 +185,22 @@ const heylemonStyleProject = heylemonStyle as unknown as VideoProjectType;
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* ── Component Showcase (new library reel) ───────────────── */}
+      <Composition
+        id="ComponentShowcase"
+        component={VideoProject}
+        durationInFrames={
+          Math.round(
+            componentShowcaseProject.metadata.fps *
+              componentShowcaseProject.metadata.totalDurationSec,
+          )
+        }
+        fps={componentShowcaseProject.metadata.fps}
+        width={componentShowcaseProject.metadata.width}
+        height={componentShowcaseProject.metadata.height}
+        defaultProps={{ project: componentShowcaseProject }}
+      />
+
       {/* Main VideoProject composition */}
       <Composition
         id="VideoProject"

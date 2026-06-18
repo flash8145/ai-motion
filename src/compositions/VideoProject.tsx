@@ -3,6 +3,7 @@ import { AbsoluteFill, Sequence, useCurrentFrame } from "remotion";
 import type { VideoProject as VideoProjectType, Scene } from "../types/schema";
 import { ThemeProvider } from "../theme/ThemeProvider";
 import { getTransitionInStyle } from "../animation/transitions";
+import { TransitionRegistry } from "../transitions/TransitionRegistry";
 import { AudioTrack } from "../audio/AudioTrack";
 
 // ── Scene components ─────────────────────────────────────────────
@@ -79,12 +80,39 @@ import { ScreenRecordingMockup } from "../scenes/ScreenRecordingMockup";
 import { FeatureTextPanel } from "../scenes/FeatureTextPanel";
 import { AppDemoOutro } from "../scenes/AppDemoOutro";
 
+// ── Typography Pack ──────────────────────────────────────────────
+import { SplitTextReveal } from "../scenes/SplitTextReveal";
+import { WordCascade } from "../scenes/WordCascade";
+import { LetterMorph } from "../scenes/LetterMorph";
+import { GradientHeadline } from "../scenes/GradientHeadline";
+import { KineticTypography } from "../scenes/KineticTypography";
+import { MaskedTextReveal } from "../scenes/MaskedTextReveal";
+import { TextExplosion } from "../scenes/TextExplosion";
+import { TypewriterPro } from "../scenes/TypewriterPro";
+
+// ── UI Pack (framing + themed atoms) ─────────────────────────────
+import { BrowserWindow } from "../scenes/BrowserWindow";
+import { NotificationToast } from "../scenes/NotificationToast";
+import { CommandPalette } from "../scenes/CommandPalette";
+import { SearchBar } from "../scenes/SearchBar";
+import { ChatPanel } from "../scenes/ChatPanel";
+
 // ── Overlay components ───────────────────────────────────────────
+import { applyModifiers } from "../modifiers/applyModifiers";
 import { TextOverlay } from "../overlays/TextOverlay";
 import { CursorOverlay } from "../overlays/CursorOverlay";
 import { BadgeOverlay } from "../overlays/BadgeOverlay";
 import { ArrowOverlay } from "../overlays/ArrowOverlay";
 import { ZoomFocusOverlay } from "../overlays/ZoomFocusOverlay";
+
+// ── Cursor Pack overlays ─────────────────────────────────────────
+import { HumanCursor } from "../overlays/cursor/HumanCursor";
+import { AICommandCursor } from "../overlays/cursor/AICommandCursor";
+import { MultiCursor } from "../overlays/cursor/MultiCursor";
+import { DragAndDrop } from "../overlays/cursor/DragAndDrop";
+import { HighlightCursor } from "../overlays/cursor/HighlightCursor";
+import { ClickRipple } from "../overlays/cursor/ClickRipple";
+import type { CursorWaypoint } from "../overlays/cursor/cursorPath";
 import type { OverlayLayer } from "../types/schema";
 
 interface VideoProjectProps {
@@ -901,6 +929,214 @@ function renderScene(scene: Scene): React.ReactNode {
         />
       );
 
+    // ── Typography Pack ──────────────────────────────────────────
+    case "SplitTextReveal":
+      return (
+        <SplitTextReveal
+          text={(props.text as string) ?? "Split Text Reveal"}
+          fontSize={props.fontSize as number | undefined}
+          fontWeight={props.fontWeight as number | undefined}
+          color={props.color as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          wordStagger={props.wordStagger as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          maxWidth={props.maxWidth as number | undefined}
+          align={props.align as "left" | "center" | undefined}
+        />
+      );
+
+    case "WordCascade":
+      return (
+        <WordCascade
+          text={(props.text as string) ?? "Word Cascade"}
+          fontSize={props.fontSize as number | undefined}
+          fontWeight={props.fontWeight as number | undefined}
+          color={props.color as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          wordStagger={props.wordStagger as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          maxWidth={props.maxWidth as number | undefined}
+          accentColor={props.accentColor as string | undefined}
+        />
+      );
+
+    case "LetterMorph":
+      return (
+        <LetterMorph
+          text={(props.text as string) ?? "Morph"}
+          fontSize={props.fontSize as number | undefined}
+          fontWeight={props.fontWeight as number | undefined}
+          color={props.color as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          letterStagger={props.letterStagger as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+        />
+      );
+
+    case "GradientHeadline":
+      return (
+        <GradientHeadline
+          text={(props.text as string) ?? "Gradient Headline"}
+          subtitle={props.subtitle as string | undefined}
+          fontSize={props.fontSize as number | undefined}
+          fontWeight={props.fontWeight as number | undefined}
+          colors={props.colors as string[] | undefined}
+          angle={props.angle as number | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          maxWidth={props.maxWidth as number | undefined}
+        />
+      );
+
+    case "KineticTypography":
+      return (
+        <KineticTypography
+          lines={
+            (props.lines as Array<{
+              text: string;
+              fontSize?: number;
+              fontWeight?: number;
+              color?: string;
+              highlight?: string;
+              align?: "left" | "center" | "right";
+              motion?: "scale" | "slide" | "pop";
+            }>) ?? [{ text: "Kinetic" }, { text: "Typography" }]
+          }
+          backgroundColor={props.backgroundColor as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          lineStagger={props.lineStagger as number | undefined}
+        />
+      );
+
+    case "MaskedTextReveal":
+      return (
+        <MaskedTextReveal
+          text={(props.text as string) ?? "Masked Reveal"}
+          fontSize={props.fontSize as number | undefined}
+          fontWeight={props.fontWeight as number | undefined}
+          color={props.color as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          barColor={props.barColor as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          direction={props.direction as "left" | "right" | undefined}
+          maxWidth={props.maxWidth as number | undefined}
+        />
+      );
+
+    case "TextExplosion":
+      return (
+        <TextExplosion
+          text={(props.text as string) ?? "Boom"}
+          fontSize={props.fontSize as number | undefined}
+          fontWeight={props.fontWeight as number | undefined}
+          color={props.color as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          mode={props.mode as "assemble" | "explode" | undefined}
+          scatter={props.scatter as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+          revealFrames={props.revealFrames as number | undefined}
+        />
+      );
+
+    case "TypewriterPro":
+      return (
+        <TypewriterPro
+          lines={(props.lines as string[]) ?? ["Hello, world."]}
+          fontSize={props.fontSize as number | undefined}
+          fontWeight={props.fontWeight as number | undefined}
+          color={props.color as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          charsPerFrame={props.charsPerFrame as number | undefined}
+          linePause={props.linePause as number | undefined}
+          cursorColor={props.cursorColor as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          mono={props.mono as boolean | undefined}
+          align={props.align as "left" | "center" | undefined}
+        />
+      );
+
+    // ── UI Pack ───────────────────────────────────────────────────
+    case "BrowserWindow":
+      return (
+        <BrowserWindow
+          mediaSrc={props.mediaSrc as string | undefined}
+          mediaType={props.mediaType as "image" | "video" | undefined}
+          url={props.url as string | undefined}
+          variant={props.variant as "light" | "dark" | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          widthFraction={props.widthFraction as number | undefined}
+          scrollFrom={props.scrollFrom as number | undefined}
+          scrollTo={props.scrollTo as number | undefined}
+          scrollStart={props.scrollStart as number | undefined}
+          scrollEnd={props.scrollEnd as number | undefined}
+          startFrame={props.startFrame as number | undefined}
+        />
+      );
+
+    case "NotificationToast":
+      return (
+        <NotificationToast
+          notifications={
+            (props.notifications as Array<{
+              title: string;
+              body?: string;
+              icon?: string;
+              appName?: string;
+              accent?: string;
+            }>) ?? [{ title: "New notification" }]
+          }
+          backgroundColor={props.backgroundColor as string | undefined}
+          position={props.position as "center" | "top-right" | undefined}
+          startFrame={props.startFrame as number | undefined}
+          stagger={props.stagger as number | undefined}
+        />
+      );
+
+    case "CommandPalette":
+      return (
+        <CommandPalette
+          query={props.query as string | undefined}
+          placeholder={props.placeholder as string | undefined}
+          results={
+            (props.results as Array<{ label: string; icon?: string; hint?: string }>) ?? []
+          }
+          activeIndex={props.activeIndex as number | undefined}
+          accentColor={props.accentColor as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          typeSpeed={props.typeSpeed as number | undefined}
+        />
+      );
+
+    case "SearchBar":
+      return (
+        <SearchBar
+          query={props.query as string | undefined}
+          placeholder={props.placeholder as string | undefined}
+          suggestions={props.suggestions as string[] | undefined}
+          accentColor={props.accentColor as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          heading={props.heading as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          typeSpeed={props.typeSpeed as number | undefined}
+        />
+      );
+
+    case "ChatPanel":
+      return (
+        <ChatPanel
+          messages={
+            (props.messages as Array<{ role: "user" | "assistant"; text: string }>) ?? []
+          }
+          title={props.title as string | undefined}
+          accentColor={props.accentColor as string | undefined}
+          backgroundColor={props.backgroundColor as string | undefined}
+          startFrame={props.startFrame as number | undefined}
+          messageStagger={props.messageStagger as number | undefined}
+          showTyping={props.showTyping as boolean | undefined}
+        />
+      );
+
     default:
       return null;
   }
@@ -991,6 +1227,110 @@ function renderOverlays(overlays: OverlayLayer[]): React.ReactNode[] {
           />
         );
 
+      // ── Cursor Pack ──────────────────────────────────────────
+      case "human-cursor":
+        return (
+          <HumanCursor
+            key={overlay.id}
+            path={(props.path as CursorWaypoint[]) ?? [{ x: overlay.position.x, y: overlay.position.y }]}
+            startFrame={overlay.startTimeFrame}
+            durationFrames={overlay.durationFrames}
+            color={props.color as string | undefined}
+            size={props.size as number | undefined}
+            rippleColor={props.rippleColor as string | undefined}
+          />
+        );
+
+      case "ai-command-cursor":
+        return (
+          <AICommandCursor
+            key={overlay.id}
+            path={(props.path as CursorWaypoint[]) ?? [{ x: overlay.position.x, y: overlay.position.y }]}
+            startFrame={overlay.startTimeFrame}
+            durationFrames={overlay.durationFrames}
+            command={props.command as string | undefined}
+            accentColor={props.accentColor as string | undefined}
+            size={props.size as number | undefined}
+          />
+        );
+
+      case "multi-cursor":
+        return (
+          <MultiCursor
+            key={overlay.id}
+            cursors={
+              (props.cursors as Array<{
+                path: CursorWaypoint[];
+                label?: string;
+                color?: string;
+              }>) ?? []
+            }
+            startFrame={overlay.startTimeFrame}
+            durationFrames={overlay.durationFrames}
+            size={props.size as number | undefined}
+          />
+        );
+
+      case "drag-and-drop":
+        return (
+          <DragAndDrop
+            key={overlay.id}
+            from={(props.from as { x: number; y: number }) ?? overlay.position}
+            to={
+              (props.to as { x: number; y: number }) ?? {
+                x: overlay.position.x + 200,
+                y: overlay.position.y,
+              }
+            }
+            startFrame={overlay.startTimeFrame}
+            durationFrames={overlay.durationFrames}
+            item={
+              props.item as
+                | { label?: string; width?: number; height?: number; color?: string }
+                | undefined
+            }
+            cursorColor={props.cursorColor as string | undefined}
+          />
+        );
+
+      case "highlight-cursor":
+        return (
+          <HighlightCursor
+            key={overlay.id}
+            box={
+              (props.box as { x: number; y: number; width: number; height: number }) ?? {
+                x: overlay.position.x,
+                y: overlay.position.y,
+                width: overlay.position.width ?? 300,
+                height: overlay.position.height ?? 160,
+              }
+            }
+            startFrame={overlay.startTimeFrame}
+            durationFrames={overlay.durationFrames}
+            color={props.color as string | undefined}
+            label={props.label as string | undefined}
+            cursorColor={props.cursorColor as string | undefined}
+          />
+        );
+
+      case "click-ripple":
+        return (
+          <ClickRipple
+            key={overlay.id}
+            clicks={
+              (props.clicks as Array<{ x: number; y: number; atFrame?: number }>) ?? [
+                { x: overlay.position.x, y: overlay.position.y },
+              ]
+            }
+            startFrame={overlay.startTimeFrame}
+            durationFrames={overlay.durationFrames}
+            color={props.color as string | undefined}
+            maxSize={props.maxSize as number | undefined}
+            rings={props.rings as number | undefined}
+            dot={props.dot as boolean | undefined}
+          />
+        );
+
       default:
         return null;
     }
@@ -1008,6 +1348,20 @@ const SceneWrapper: React.FC<{
 
   if (!scene.transitionIn || scene.transitionIn.type === "none") {
     return <AbsoluteFill>{children}</AbsoluteFill>;
+  }
+
+  // Rich component-based transitions take priority over the legacy style path.
+  const RichTransition = TransitionRegistry[scene.transitionIn.type];
+  if (RichTransition) {
+    return (
+      <RichTransition
+        frame={frame}
+        durationFrames={scene.transitionIn.durationFrames}
+        params={scene.transitionIn.params}
+      >
+        {children}
+      </RichTransition>
+    );
   }
 
   const styles = getTransitionInStyle(
@@ -1058,10 +1412,16 @@ export const VideoProject: React.FC<VideoProjectProps> = ({ project }) => {
             premountFor={15}
           >
             <SceneWrapper scene={scene}>
-              {renderScene(scene)}
+              {applyModifiers(
+                scene.modifiers,
+                scene.durationFrames,
+                <>
+                  {renderScene(scene)}
 
-              {/* Overlays within this scene */}
-              {scene.overlays && renderOverlays(scene.overlays)}
+                  {/* Overlays within this scene */}
+                  {scene.overlays && renderOverlays(scene.overlays)}
+                </>,
+              )}
             </SceneWrapper>
           </Sequence>
         ))}

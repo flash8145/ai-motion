@@ -69,6 +69,23 @@ import { AppLogoReveal } from "../scenes/AppLogoReveal";
 import { CleanCardPromo } from "../scenes/CleanCardPromo";
 import { EyeOutlineScene } from "../scenes/EyeOutlineScene";
 
+// ── Typography Pack ──────────────────────────────────────────────
+import { SplitTextReveal } from "../scenes/SplitTextReveal";
+import { WordCascade } from "../scenes/WordCascade";
+import { LetterMorph } from "../scenes/LetterMorph";
+import { GradientHeadline } from "../scenes/GradientHeadline";
+import { KineticTypography } from "../scenes/KineticTypography";
+import { MaskedTextReveal } from "../scenes/MaskedTextReveal";
+import { TextExplosion } from "../scenes/TextExplosion";
+import { TypewriterPro } from "../scenes/TypewriterPro";
+
+// ── UI Pack (framing + themed atoms) ─────────────────────────────
+import { BrowserWindow } from "../scenes/BrowserWindow";
+import { NotificationToast } from "../scenes/NotificationToast";
+import { CommandPalette } from "../scenes/CommandPalette";
+import { SearchBar } from "../scenes/SearchBar";
+import { ChatPanel } from "../scenes/ChatPanel";
+
 /**
  * Master registry of all available scene components.
  * Keys must match the `type` field in Scene Graph JSON.
@@ -137,6 +154,23 @@ export const SceneRegistry: Record<string, React.FC<any>> = {
   AppLogoReveal,
   CleanCardPromo,
   EyeOutlineScene,
+
+  // Phase 9 — Typography pack
+  SplitTextReveal,
+  WordCascade,
+  LetterMorph,
+  GradientHeadline,
+  KineticTypography,
+  MaskedTextReveal,
+  TextExplosion,
+  TypewriterPro,
+
+  // Phase 10 — UI pack (framing + themed atoms)
+  BrowserWindow,
+  NotificationToast,
+  CommandPalette,
+  SearchBar,
+  ChatPanel,
 };
 
 export type SceneRegistryKey = keyof typeof SceneRegistry;
